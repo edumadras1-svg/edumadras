@@ -1,0 +1,803 @@
+EduMadras
+UI/UX Design Specification
+For Stitch MCP / Design Handoff
+India's Premier College Discovery Platform
+Version 1.0  |  April 2025  |  Next.js + Supabase
+Table of Contents
+1. Brand Identity
+   1.1 Color Palette
+   1.2 Typography System
+   1.3 Spacing & Grid
+   1.4 Logo Usage
+2. Design Principles
+3. Component Library
+   3.1 Navigation Bar
+   3.2 Buttons
+   3.3 College Card
+   3.4 Stream Filter Pills
+   3.5 Search Bar
+   3.6 Counselor Card
+   3.7 Alert / Announcement Banner
+   3.8 Sticky Notes Badge
+   3.9 Breadcrumb
+   3.10 Lead Form Modal
+   3.11 Compare Bar
+4. Page Specifications
+   4.1 Homepage
+   4.2 College Listing Page
+   4.3 College Detail Page
+   4.4 Compare Page
+   4.5 Course Detail Page
+   4.6 Entrance Exam Page
+   4.7 City Landing Page
+   4.8 Counselors Page
+5. Mobile & Responsive Design
+6. SEO UI Patterns
+7. Interaction States & Micro-animations
+8. Accessibility Requirements
+1. Brand Identity
+EduMadras is a trusted college discovery platform for Indian students aged 17-24. The brand communicates reliability, clarity, and ambition. Every design decision must reinforce trust — students are making life-defining decisions on this platform.
+1.1 Color Palette
+The palette is derived directly from the EduMadras logo — navy blue, teal, and slate gray. These colors convey academic authority and modern professionalism.
+Swatch
+Color Name
+Usage
+#1B3A5C
+Navy Primary
+Headers, navbar, primary CTAs, hero backgrounds, active states
+#1a7a6e
+Teal Accent
+Section accents, success states, teal hover effects, links
+#2A5298
+Blue Mid
+Secondary buttons, info badges, hyperlinks
+#F97316
+Orange Spark
+Urgency tags, offer banners, deadline alerts only
+#E6F1FB
+Engineering Blue
+Engineering stream badge backgrounds
+#E1F5EE
+Medical Green
+Medical stream badge backgrounds
+#EEEDFE
+Management Purple
+Management stream badge backgrounds
+#FAECE7
+Law Coral
+Law stream badge backgrounds
+#FAEEDA
+Design Amber
+Design stream badge backgrounds
+#F9FAFB
+Surface Gray
+Page background, card surfaces
+#E5E7EB
+Border Light
+Card borders, dividers, input borders
+#111827
+Text Primary
+All headings, primary body text
+#6B7280
+Text Secondary
+Supporting text, metadata, labels
+#9CA3AF
+Text Tertiary
+Placeholders, timestamps, hints
+#FFFFFF
+White
+Card backgrounds, modal backgrounds, nav background
+1.2 Typography System
+EduMadras uses Inter as the primary typeface — a clean, highly legible sans-serif that renders well at all sizes on mobile and desktop. System font stack as fallback.
+Element
+Size
+Weight
+Usage
+Hero Title
+48px / 3rem
+700 Bold
+Homepage hero headline only
+Page Title (H1)
+36px / 2.25rem
+700 Bold
+College name, page headings
+Section Title (H2)
+28px / 1.75rem
+600 SemiBold
+Section headers on pages
+Card Title (H3)
+20px / 1.25rem
+600 SemiBold
+College card names, widget titles
+Body Large
+16px / 1rem
+400 Regular
+Primary body text, descriptions
+Body Small
+14px / 0.875rem
+400 Regular
+Card metadata, supporting info
+Label
+13px / 0.8125rem
+500 Medium
+Form labels, filter chips, tabs
+Caption
+12px / 0.75rem
+400 Regular
+Timestamps, image captions, footnotes
+Badge / Tag
+11px / 0.6875rem
+600 SemiBold
+Stream badges, status pills, tags
+Navigation Link
+14px / 0.875rem
+500 Medium
+Navbar links
+Button Text
+14px / 0.875rem
+600 SemiBold
+All button labels
+Mono / Code
+13px / 0.8125rem
+400 Regular
+Fee amounts when tabular, slugs
+1.3 Spacing & Grid System
+EduMadras uses an 8px base unit system. All spacing values are multiples of 8. The layout uses a 12-column grid at 1280px max-width with 24px gutters.
+Token
+Value — Usage
+space-1
+4px — Icon gaps, inline element spacing
+space-2
+8px — Component internal padding
+space-3
+12px — Card internal gaps
+space-4
+16px — Card padding, form field gaps
+space-5
+20px — Section subitem spacing
+space-6
+24px — Card margin, grid gutter
+space-8
+32px — Section spacing
+space-10
+40px — Large section padding
+space-12
+48px — Hero padding
+space-16
+64px — Page section separation
+radius-sm
+6px — Badges, pills, small buttons
+radius-md
+10px — Input fields, small cards
+radius-lg
+14px — College cards, modals
+radius-xl
+20px — Hero sections, large containers
+radius-full
+9999px — Stream filter pills, avatar circles
+shadow-card
+0 1px 3px rgba(0,0,0,0.08) — College cards default
+shadow-hover
+0 8px 24px rgba(0,0,0,0.12) — College cards on hover
+shadow-modal
+0 20px 60px rgba(0,0,0,0.20) — Modals, dropdowns
+1.4 Logo Usage
+Minimum size: 120px wide on desktop, 80px on mobile
+Clear space: Equal to the height of the "E" in EduMadras on all sides
+Dark backgrounds: Use full-color logo (navy + teal)
+White navbar: Use full-color logo
+NEVER stretch, rotate, recolor, or add effects to the logo
+Favicon: Use the book icon portion only, at 32x32px
+2. Design Principles
+1. Student First — Every decision serves a 17-year-old making a life choice
+  Use plain, jargon-free language. "Annual fees" not "tuition quantum"
+  Show the most important information first: fees, package, eligibility
+  Never bury the counselor contact. It is always one tap away
+  Avoid dark patterns — no fake countdown timers, no manipulative CTAs
+2. Trust Through Data — Every number must be sourced and dated
+  Show "Last updated: Month Year" on all fee/package data
+  Display government approval badges (AICTE, UGC, MCI) prominently
+  Ratings must show review count alongside the number
+  Use official college logo and banner images, not stock photos
+3. Speed is a Feature — Sub-2 second loads on 4G mobile
+  Lazy-load all images below the fold
+  Skeleton loaders on all cards during data fetch
+  No layout shift after images load (set explicit width/height)
+  Critical CSS inline in <head>. Non-critical deferred
+4. SEO is Design — Every page element serves Google indexing
+  H1 must contain college name + city for every college page
+  FAQ sections on every college page (drives featured snippets)
+  Breadcrumb visible on all inner pages
+  Structured data JSON-LD injected server-side on every page
+5. Mobile First — 73% of Indian students browse on phones
+  Design at 375px width first. Expand to desktop as enhancement
+  Touch targets minimum 44x44px
+  Bottom navigation bar on mobile (not hamburger menu)
+  Sticky "Get Free Counseling" CTA on mobile at all times
+3. Component Library
+All components are built as reusable React components. Each component spec below includes dimensions, states, colors, and behavior.
+3.1 Navigation Bar
+The navbar is sticky, always visible. It anchors the brand and provides quick access to the main sections. On scroll, it adds a subtle border-bottom shadow.
+Property
+Specification
+Height
+64px desktop / 56px mobile
+Background
+#FFFFFF with 0.5px bottom border #E5E7EB on scroll
+Max width
+1280px, centered
+Padding
+0 24px desktop / 0 16px mobile
+Logo area
+Logo image 36px height + "EduMadras" text 18px/700 Navy
+Nav links
+"Colleges" / "Courses" / "Counselors" / "Compare" / "Loans"
+Link style
+14px/500 #6B7280, hover color #1B3A5C, active color #1B3A5C + underline
+Primary CTA
+"Get Free Counseling" — Navy filled button, 14px/600
+Mobile
+Logo left + Hamburger right. Bottom tab bar replaces nav links.
+Active state
+Current page link: #1B3A5C color + 2px bottom border #1a7a6e
+Search trigger
+Search icon in navbar opens full-width search overlay
+3.2 Button System
+Variant
+Spec — When to Use
+Primary
+bg #1B3A5C / text white / 14px/600 / h-44px / r-10px / px-20px — Main actions: Apply, Submit, Enquire
+Secondary
+border 1.5px #1B3A5C / text #1B3A5C / transparent bg — Supporting actions: View Details, Compare
+Teal Accent
+bg #1a7a6e / text white — Positive actions: Download Brochure, Check Eligibility
+Ghost
+no border / text #6B7280 / hover bg #F3F4F6 — Cancel, Close, Dismiss
+Danger
+bg #DC2626 / text white — Delete, Remove from compare
+Hover state
+All filled buttons: 8% darker bg. Outline: filled with brand color.
+Disabled
+opacity 0.4, cursor not-allowed, no hover effect
+Loading
+Spinner icon left of text, button disabled, text changes to "Sending..."
+Icon + Text
+Icon 16px, 8px gap, icon on left of text
+Full-width mobile
+All primary CTAs stretch to 100% on screens under 480px
+3.3 College Card
+The most important component. Used on listing pages, search results, and homepage. Communicates trust, ranking, and key stats at a glance.
+Property
+Specification
+Width
+Grid: 1/3 desktop, 1/2 tablet, 1/1 mobile. Min 280px.
+Height
+Auto. Banner 160px, body content variable.
+Border radius
+14px
+Background
+#FFFFFF
+Shadow
+0 1px 3px rgba(0,0,0,0.08)
+Hover shadow
+0 8px 24px rgba(0,0,0,0.12), translateY(-2px), 200ms ease
+Banner image
+100% width, 160px height, object-fit: cover. Gradient overlay bottom-to-top.
+Stream badge
+Positioned top-left on banner. Color per stream (see 1.1).
+Rank badge
+Positioned top-right on banner. "Rank #1" in White/Navy pill.
+College logo
+48x48px, rounded-lg, white bg, positioned at banner/body boundary.
+College name
+18px/600 #111827. Truncate at 2 lines.
+Location
+13px #6B7280, location pin icon 12px
+Stats row
+Avg Package | Rating | Students — 13px/500, dividers between
+Approval badges
+AICTE / UGC / MCI chips — 11px/600, each with distinct light bg
+CTA row
+"View Details" (ghost) + "Get Counseling" (primary) — side by side
+Recommended
+Gold border 2px #F59E0B + "Recommended" badge top-right when is_recommended=true
+Compare checkbox
+Appears on hover bottom-left. "Compare" checkbox with count indicator.
+3.4 Stream Filter Pills
+Property
+Specification
+Layout
+Horizontal scrollable row. No wrapping on mobile.
+Options
+"All" / "Engineering" / "Medical" / "Management" / "Law" / "Design"
+Active state
+bg #1B3A5C / text white / 1.5px border #1B3A5C
+Idle state
+bg transparent / text #374151 / 1.5px border #D1D5DB
+Hover
+bg #F3F4F6
+Size
+13px/500, h-36px, px-16px, border-radius 999px
+Icons
+Each stream has a 14px icon (laptop, stethoscope, briefcase, gavel, pen-tool)
+Behavior
+Clicking filters college cards immediately (no page reload, client-side filter)
+URL update
+URL updates to /colleges?stream=engineering for shareability + SEO
+3.5 Search Bar
+Property
+Specification
+Variants
+Hero (full-width, large) + Navbar (compact, triggered by icon)
+Hero size
+max-width 640px, h-56px, rounded-xl, white bg, shadow-md
+Input
+16px/400 text, placeholder "Search colleges, courses, cities..."
+Search button
+Navy bg, "Search" text, inside the input on right side
+Suggestions
+Dropdown: Recent searches + Top matching colleges + Courses
+Suggestion item
+36px height, college logo 20px, college name 14px/500, stream badge
+Keyboard nav
+Arrow keys navigate suggestions. Enter selects. Escape closes.
+Empty state
+"No results for X — Try broader search" with 3 suggested streams
+Mobile
+Full-screen overlay search on mobile. Keyboard auto-opens.
+3.6 Counselor Card
+Property
+Specification
+Layout
+Horizontal card: Avatar left, Name + Role center, Call button right
+Avatar
+52px circle, initials if no photo, bg #E6F1FB, text #1B3A5C
+Name
+15px/600 #111827
+Role
+13px/400 #6B7280 (e.g. "Senior Counselor — Engineering")
+Online indicator
+8px green dot on avatar. Shows "Available Now" text when is_active=true
+Call button
+"Call Now" — Teal filled, phone icon, 13px/600
+WhatsApp button
+"WhatsApp" — Green outlined, WhatsApp icon, 13px/500
+Hover
+Entire card slightly elevated. Both buttons show filled state.
+3.7 Alert / Announcement Banner
+Type
+Colors + Usage
+Info (default)
+bg #E6F1FB / border-left 3px #2A5298 / icon: info circle blue — General announcements
+Warning
+bg #FAEEDA / border-left 3px #F59E0B / icon: warning triangle amber — Deadlines
+Offer
+bg #FAEEDA / border-left 3px #F97316 / icon: tag orange — Discounts, scholarships
+Success
+bg #E1F5EE / border-left 3px #1a7a6e / icon: checkmark teal — Confirmations
+Layout
+Icon 16px + Title 14px/600 + Message 13px/400 + Dismiss X button
+Position
+Below navbar, above page content. Stacks if multiple alerts.
+With image
+When image_url is set: image right side (120px width), text left
+Dismissable
+X button top-right. State saved in localStorage per alert ID.
+Expiry
+Automatically hidden after expires_at timestamp. No flash on load.
+3.8 Sticky Notes Badge
+Sticky notes from the sticky_notes table appear as colored badges on college cards and detail pages. They communicate special attributes like "Top Placements" or "Scholarship Available".
+Property
+Specification
+Size
+11px/700 text, px-10px py-4px, border-radius 4px
+Color
+Driven by color column in sticky_notes table (e.g. #EF4444, #1a7a6e)
+Text color
+Driven by text_color column (white or dark depending on bg)
+Position
+Below college name in card, or in a row on detail page
+Max visible
+3 badges on card, all badges on detail page
+With image
+If image_url set: small icon 12px before text inside badge
+3.9 Breadcrumb
+Property
+Specification
+Style
+12px/400 text, chevron separator (>), 8px gaps
+Colors
+Past crumbs: #2A5298 (clickable link) / Current: #374151 (not linked)
+Pattern
+Home > Engineering > IIT Madras > B.Tech Computer Science
+Mobile
+Collapses to "... > [Current Page]" with back arrow on small screens
+Schema
+BreadcrumbList JSON-LD injected in page <head> matching visible breadcrumb
+3.10 Lead Form Modal
+Triggered by "Get Free Counseling" or "Apply Now" buttons. Submits to the leads table. This is the primary conversion point of the entire platform.
+Property
+Specification
+Trigger
+"Get Free Counseling" / "Apply Now" / "Enquire Now" buttons
+Width
+480px desktop / full-screen mobile
+Overlay
+rgba(0,0,0,0.5) backdrop, click outside to close
+Header
+College logo + "Get Counseling for [College Name]" / generic if no college
+Fields
+Name (required) / Phone (required) / Email / City / Target Course (dropdown) / Qualification
+Phone field
+Indian flag emoji + +91 prefix, 10-digit validation, keypad auto-opens mobile
+Submit button
+"Get Free Counseling" — Full width, Navy primary, loading state
+Trust signals
+"500+ students counseled" + "Free, no spam" below button
+Success state
+Replace form with: checkmark + "We will call you within 2 hours"
+Prefill
+If user is logged in: prefill from users table data
+college_id
+Automatically attached if modal opened from a college page
+3.11 Compare Bar
+Appears fixed at bottom of screen when user adds 1+ colleges to compare. Allows comparing up to 3 colleges before navigating to the Compare page.
+Property
+Specification
+Trigger
+"Compare" checkbox on college card hover
+Position
+Fixed bottom, full width, above mobile nav bar
+Height
+72px
+Background
+#1B3A5C (Navy)
+Content
+College thumbnails with X to remove + count "2 colleges" + "Compare Now" button
+Max
+3 colleges. After 3: "Remove one to add another" toast
+Animation
+Slides up from bottom on first add. Jiggles on 3rd add.
+Compare button
+White text, teal bg, navigates to /compare/[slug1]-vs-[slug2]
+4. Page Specifications
+4.1 Homepage
+Purpose
+First impression, lead generation, brand trust. Drive users to college discovery or counselor booking.
+URL Pattern
+/
+Section 1 — Alert Bar (conditional)
+Shown only when active alerts exist in the alerts table. Dismissable. Stacks up to 2.
+Section 2 — Hero Section
+Property
+Specification
+Background
+Navy-to-Teal gradient (#1B3A5C to #1a7a6e), 100vw, min-height 560px desktop / 480px mobile
+Tagline
+"Find Your Perfect College Across India" — 48px/700/white
+Subtitle
+"Compare 500+ colleges · Free expert counseling · Apply online" — 18px/400/white 80% opacity
+Search bar
+White card, 640px wide, centered below subtitle, large variant (see 3.5)
+Trust stats row
+Below search: "500+ Colleges" | "14+ Courses" | "Free Counseling" | "6 Streams" in white
+Stream quick links
+6 stream pills below stats. Light-outlined style on dark bg.
+Section 3 — Active Banners / Promotions
+Auto-playing carousel sourced from banners table. Max 3 banners. Each has image (right) + title/subtitle/CTA (left). Dots navigation. Auto-advance every 5 seconds. Pause on hover.
+Section 4 — Stream Sections (one per stream)
+6 sections: Engineering, Medical, Management, Law, Design, in that order. Each section is controlled by show_medical / show_engineering flags in app_settings table.
+Property
+Specification
+Section header
+Stream icon + "Top [Stream] Colleges" H2 + "View All" link right
+Cards
+3 cards on desktop (1 row of 3), 2 on tablet, 1 scroll on mobile. From colleges table filtered by stream, ordered by rank ASC.
+Recommended first
+Colleges with is_recommended=true appear first within stream.
+SEO link
+"View All Engineering Colleges" links to /colleges/engineering
+Section 5 — Why EduMadras (Trust Section)
+3 or 4 feature tiles in a row. "500+ Colleges" / "Free Expert Counseling" / "Verified Data" / "Trusted by 10,000+ Students". Icons + short copy. Light gray background section.
+Section 6 — Meet Our Counselors
+Grid of counselor cards from counselors table where is_active=true. Max 4 shown. "View All Counselors" link.
+Section 7 — FAQ Section
+5 most common questions as accordion. Rendered with FAQPage JSON-LD schema. Drives Google featured snippets.
+What is EduMadras?
+How does free counseling work?
+Which entrance exams can I use to search colleges?
+How is fee information verified?
+Can I compare colleges on EduMadras?
+4.2 College Listing Page
+Purpose
+Core discovery page. SEO pillar. Students browse, filter, and shortlist colleges.
+URL Pattern
+/colleges/[stream]?city=&type=&exam=&sort=
+Layout
+Two-column layout: 280px filter sidebar (desktop) + main content grid. Single column on mobile with filter drawer.
+Filter Sidebar
+Filter
+Type — Options
+Stream
+Radio pills — Engineering / Medical / Management / Law / Design / All
+City
+Multi-select checkbox list — From colleges.city values, alphabetical
+College Type
+Radio — Government / Private / Deemed / All
+Entrance Exam
+Multi-select — JEE Advanced / JEE Mains / NEET / CAT / CLAT / BITSAT / GMAT / NID DAT / NIFT
+Fee Range
+Range slider — ₹0 to ₹40L, step ₹1L. Format: "₹5L - ₹20L"
+Rating
+Star filter — 4.5+ / 4.0+ / 3.5+ / Any
+Approvals
+Multi-select checkboxes — AICTE / UGC / MCI / NAAC / NBA
+Apply button
+"Apply Filters" Navy primary + "Reset" ghost — sticky at bottom of sidebar
+Main Content
+Property
+Specification
+Results count
+"Showing 12 of 47 Engineering Colleges" — 14px/500 #374151
+Sort options
+Dropdown: "Rank (Low to High)" / "Fees (Low to High)" / "Avg Package (High to Low)" / "Rating (High to Low)"
+College cards
+3-column grid desktop, 2-col tablet, 1-col mobile. Card component from 3.3.
+Pagination
+12 per page. Numbered pagination: Prev / 1 2 3 ... / Next. URL updates: ?page=2
+Empty state
+If no results: Illustration + "No colleges match your filters" + "Reset Filters" button
+SEO H1
+"Top Engineering Colleges in India 2025" — visible H1 above results count
+SEO intro
+2-3 sentences about the stream, written per-page. Below H1, above filters.
+4.3 College Detail Page
+Purpose
+The most content-rich, SEO-critical page. Every data point from the schema becomes indexed content.
+URL Pattern
+/colleges/[stream]/[slug]
+Above the fold — College Hero
+Property
+Specification
+Banner
+Full-width 320px height. banner_url from colleges table. Gradient overlay.
+Logo
+80px, white card bg, positioned bottom-left of banner overlapping body
+College name
+H1, 32px/700 #111827. Must include city: "IIT Madras, Chennai"
+Breadcrumb
+Home > Engineering > IIT Madras
+Stats bar
+Rank #1 | Rating 4.9/5 | Est. 1959 | 10,000 Students — horizontal, dividers
+Approval chips
+AICTE · UGC · NAAC A++ — colored chips
+Sticky notes
+Colored badges from college_sticky_notes. E.g. "Top Placement 2024"
+CTA buttons
+"Get Free Counseling" (primary) + "Download Brochure" (secondary) + "Add to Compare" (ghost)
+Page Layout — Sticky Sidebar
+Left column: main content (Courses, About, Placements, FAQ). Right column (320px sticky): Lead form + Counselor card + Compare button. On mobile: lead form floats as sticky CTA at bottom.
+Main Content Sections (in order)
+Section
+Content Details
+Courses & Fees
+Table: Course Name | Duration | Seats | Annual Fee | Eligibility | Avg Package. Sourced from college_courses JOIN master_courses. Rows expand for details.
+About the College
+description from colleges table. 2-3 paragraphs. Followed by key facts: Type, City, State, Established Year.
+Placement Statistics
+avg_package and highest_package from colleges table. Bar chart or stat cards. "Top Recruiters" placeholder section.
+Admission Process
+Eligibility criteria from college_courses table, formatted per course. Step-by-step numbered list.
+Campus & Facilities
+Text + image gallery. Editorial content section (can be CMS-driven later).
+FAQ Section
+5+ Q&A pairs specific to this college. Accordion. FAQPage JSON-LD schema.
+Similar Colleges
+3 college cards from same stream. "Students also viewed" heading.
+4.4 Compare Page
+Purpose
+Side-by-side comparison of 2-3 colleges. High-intent traffic. Programmatically generated from URL params.
+URL Pattern
+/compare/[slug-a]-vs-[slug-b]
+Section
+Spec
+Header
+"IIT Madras vs IIT Delhi — Which is Better?" — H1, includes both college names for SEO
+College columns
+2-3 columns, one per college. College banner + logo + name at top of each.
+Comparison table
+Rows: Rank / Rating / Fees / Avg Package / Highest Package / Total Students / Type / Approvals / Location / Established. Color-code winner per row (green bg).
+Courses comparison
+Common courses shown side by side with fee differences highlighted.
+Winner indicator
+Small trophy icon next to better value in each row. Configurable logic.
+Editorial verdict
+"Which is better for Computer Science?" — Short editorial paragraph below table.
+CTA
+"Get counseling to choose between these colleges" — Navy banner section below table.
+Schema
+Both colleges as EducationalOrganization in JSON-LD. BreadcrumbList.
+4.5 Course Detail Page
+Purpose
+All colleges offering a specific course. High SEO value. Sourced from master_courses + college_courses.
+URL Pattern
+/courses/[course-slug]
+Property
+Spec
+H1
+"B.Tech Computer Science — Colleges, Fees & Eligibility 2025"
+Course overview
+Duration, typical eligibility, stream. 2-3 sentences.
+Colleges table
+All colleges offering this course. Columns: College | City | Type | Fee | Eligibility | Avg Package | Action.
+Sort
+By fee / by rank / by package. Default: rank ASC.
+Filter
+Government/Private filter. City filter.
+Eligibility info box
+Which entrance exams qualify. Sourced from eligibility column.
+4.6 Entrance Exam Page
+Purpose
+All colleges accepting a specific entrance exam. Massive seasonal traffic (Jan-June).
+URL Pattern
+/entrance-exams/[exam-slug]
+Property
+Spec
+H1
+"Colleges Accepting JEE Advanced 2025 — Fees, Cutoffs & Counseling"
+Exam info box
+What is this exam, who conducts it, when results come. 100-150 words.
+College grid
+All colleges with this exam in eligibility column. Full card grid with stream filter.
+Cutoff section
+Placeholder table for cutoff ranks by category (General/OBC/SC/ST). Add-on feature.
+Important dates
+Timeline component: Registration / Exam / Result / Counseling dates.
+4.7 City Landing Page
+Purpose
+All colleges in a specific city. Local SEO powerhouse.
+URL Pattern
+/cities/[city-slug]
+Property
+Spec
+H1
+"Top Colleges in Chennai 2025 — Engineering, Medical & More"
+Intro text
+Brief description of the city's education ecosystem. 100 words.
+Stream tabs
+Filter colleges by stream. All / Engineering / Medical / Management etc.
+College grid
+Full card grid. Filtered from colleges.city column.
+City stats box
+Number of colleges | Streams available | Govt vs Private ratio.
+4.8 Counselors Page
+Purpose
+Browse all counselors and initiate contact. Trust-building page.
+URL Pattern
+/counselors
+Property
+Spec
+H1
+"Talk to Our Expert College Counselors — Free Guidance"
+Intro
+2 sentences: "Our counselors are former admissions officers and education experts."
+Grid
+3-col desktop / 2-col tablet / 1-col mobile. Counselor cards from counselors table.
+Filter
+Stream specialization filter: Engineering / Medical / Management / All.
+CTA top
+Wide banner: "Not sure which counselor to choose? We'll match you." + form.
+Availability badge
+Green "Available Now" or Gray "Busy" based on is_active field.
+5. Mobile & Responsive Design
+73% of Indian students browse education sites on mobile. Mobile is the primary design target, not a secondary concern.
+Breakpoint
+Width — Layout Changes
+Mobile S
+320px — Single column. Simplified nav. Compact cards.
+Mobile L
+375px — Primary mobile design target. All mobile specs apply here.
+Mobile XL
+428px — Same as Mobile L, minor spacing increases.
+Tablet
+768px — 2-column cards. Sidebar as drawer. Tablet nav.
+Desktop S
+1024px — 3-column cards. Sidebar visible. Full nav.
+Desktop L
+1280px — Max-width container. Content centered.
+Desktop XL
+1440px+ — No change. 1280px max-width, outer margin fills.
+Mobile-specific UI Patterns
+Bottom navigation bar: 5 tabs — Home / Colleges / Compare / Counselors / Profile. 60px height, white bg, border-top.
+Sticky CTA bar: "Get Free Counseling" fixed bottom, above nav bar, 100% width, Navy. Only on college detail pages.
+Filter drawer: Slides up from bottom 85% screen height. Scrim behind. Drag handle at top.
+Search: Full-screen overlay. Auto-focuses input. Large touch targets (44px min).
+College cards on mobile: Full width. Horizontal scroll layout for stream sections.
+Compare bar: Above bottom nav when active. Compact 3-thumbnail layout.
+Lead form: Full screen modal. Keyboard-aware (viewport adjusts for keyboard).
+6. SEO UI Patterns
+These are UI elements that directly impact Google search ranking and appearance. Every element here is non-negotiable.
+6.1 Page Title Formula (in <title> tag)
+  [College Name] — Fees, Courses, Placements [Year] | EduMadras
+  Top Engineering Colleges in India [Year] — Rankings, Fees | EduMadras
+  Colleges Accepting JEE Advanced [Year] — List, Cutoffs | EduMadras
+6.2 Meta Description Formula
+  IIT Madras: B.Tech fees ₹8L/yr, avg package ₹21.5L. Rank #1 Engineering. AICTE approved. Compare courses, check eligibility, get free counseling.
+6.3 H1 Placement Rule
+Every page must have exactly one H1. It must appear in the visible page content above the fold. It must contain the primary keyword for that page.
+6.4 FAQ Component (Required on every college page)
+5+ question-answer pairs. Rendered as visible accordion on page. FAQPage JSON-LD injected in <head>. Questions should be exact phrases students search.
+What is the [course] fee at [College]?
+What is the cutoff for [College]?
+Is [College] government or private?
+What is the placement package at [College]?
+Which entrance exam is required for [College]?
+6.5 Breadcrumb (Required on all inner pages)
+Visible breadcrumb component as described in 3.9. BreadcrumbList JSON-LD must exactly match what is visible on screen.
+6.6 Last Updated Timestamp
+"Data last verified: March 2025" must appear on every college detail page, near the fees table. This is an E-E-A-T signal Google values.
+6.7 Internal Linking Requirements
+Every stream badge on a college card must link to /colleges/[stream]
+Every city mention must link to /cities/[city-slug]
+Every entrance exam mention must link to /entrance-exams/[exam-slug]
+College detail page must link to 3 "Similar Colleges" cards
+Compare page must link back to both college detail pages
+7. Interaction States & Micro-animations
+Element
+Interaction — Animation Spec
+College card hover
+translateY(-4px) + shadow deepens. 200ms ease-out. Cursor: pointer.
+Button hover
+Background 8% darker. 150ms ease. Scale stays 1.
+Button active/click
+scale(0.97). 100ms. Releases to 1 on mouse-up.
+Button loading
+Spinner replaces icon. Text stays. No layout shift. Disabled state.
+Filter pill select
+Background fills Navy. Text turns white. 150ms ease.
+Stream section scroll
+Horizontal scroll with momentum. Hide scrollbar but keep functionality.
+Modal open
+Backdrop fades in 200ms. Modal slides up 12px + fades in 250ms.
+Modal close
+Backdrop fades out 150ms. Modal fades down 200ms.
+Toast notification
+Slides in from bottom-right. Auto-dismiss after 4s. Manual X dismiss.
+Compare bar appear
+Fixed bar slides up from bottom 300ms ease-out on first item add.
+Page transitions
+Next.js default. Fade: 150ms on exit, 200ms on enter.
+Skeleton loaders
+All card grids show skeleton cards while fetching. Pulse animation 1.5s.
+Search suggestions
+Dropdown fades in 150ms. List items stagger 30ms each.
+Accordion FAQ
+Content height animates open/close. 250ms ease. Chevron rotates 180deg.
+Image lazy load
+Blur placeholder (blurDataURL from next/image). Fades in when loaded.
+8. Accessibility Requirements
+EduMadras must meet WCAG 2.1 AA standard. Students with disabilities deserve equal access to education opportunities.
+Requirement
+Implementation
+Color contrast
+All text on colored backgrounds must meet 4.5:1 ratio minimum. Navy on white: passes. White on Navy: passes. Check all badge text.
+Focus indicators
+All interactive elements: 3px solid #1a7a6e outline offset 2px on keyboard focus. Never remove outline with outline:none only.
+Alt text
+All college logo images: alt="[College Name] Logo". Banners: alt="[College Name] campus". Decorative: alt=""
+Semantic HTML
+Navigation: <nav>. Main content: <main>. College sections: <section> with aria-label. Sidebar: <aside>. Headings in correct H1>H2>H3 order.
+Touch targets
+Minimum 44x44px for all interactive elements on mobile. Apply min-h-[44px] to all buttons.
+Form labels
+All inputs have visible <label> or aria-label. Required fields have aria-required="true". Errors use aria-describedby.
+Keyboard navigation
+Tab order follows visual reading order. Modal traps focus inside. Escape closes modal/drawer.
+Screen reader
+Stream badges: aria-label="Engineering college" not just the color. Stats: aria-label="Average placement package: 21.5 lakh rupees".
+Loading states
+aria-busy="true" on containers during data fetch. aria-live="polite" on result counts when filters change.
+Skip link
+"Skip to main content" as first focusable element. Visible on focus.
+EduMadras UI/UX Design Specification v1.0
+Prepared for Stitch MCP / Design Handoff  |  April 2025

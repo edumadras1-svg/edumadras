@@ -1,0 +1,1974 @@
+EduMadras
+
+Highly Promising SEO Strategy
+
+Complete Growth Playbook to Dominate Google Search
+
+10,000+
+
+Indexable pages
+
+500K+
+
+Monthly search volume
+
+12 months
+
+To 1M+ traffic
+
+Version 1.0  |  April 2025
+
+
+
+Executive Summary
+
+EduMadras operates in India's education discovery market — a space worth ₹8,000 crore in digital ad spend annually. Shiksha.com, Careers360, and Collegedunia collectively rank for 4M+ keywords and generate 50M+ monthly visits from SEO alone. This document is EduMadras's complete playbook to capture a significant share of that traffic within 12 months.
+
+
+
+The Core Opportunity
+
+87% of Indian students begin their college search on Google.
+
+Search volume for education keywords peaks January-June (JEE/NEET season).
+
+Most competitors have weak mobile UX — a gap EduMadras can exploit.
+
+Local SEO ("colleges in Chennai") is almost entirely uncontested.
+
+Compare pages ("IIT Madras vs IIT Delhi") are underserved — massive long-tail opportunity.
+
+Featured snippet positions for FAQ-type queries are largely unclaimed.
+
+
+
+This document covers 8 pillars: Programmatic SEO, Technical SEO, On-Page SEO, Keyword Strategy, Content Clusters, Local SEO, Structured Data, and Link Building. Each pillar has specific, measurable actions tied to a delivery timeline.
+
+
+
+1. Keyword Strategy — Own Every Search Intent
+
+Indian education searches fall into 4 clear intent types. EduMadras must own all four. Ignoring any one means giving traffic to competitors.
+
+
+
+1.1 The Four Intent Types
+
+Intent Type
+
+Example Queries
+
+Monthly Volume
+
+Target Page
+
+Navigational
+
+"IIT Madras fees" / "AIIMS admissions"
+
+2M+ combined
+
+College detail pages
+
+Informational
+
+"best engineering colleges India" / "NEET cutoff 2025"
+
+800K+
+
+Stream listings, exam pages
+
+Comparative
+
+"IIT Madras vs IIT Bombay" / "private vs govt medical"
+
+300K+
+
+Compare pages
+
+Transactional
+
+"apply IIT Madras" / "counseling for NEET"
+
+150K+
+
+Lead forms, counselor pages
+
+
+
+1.2 Primary Keyword Clusters — Act on These First
+
+Keyword Cluster
+
+Primary Keyword
+
+Est. Monthly Vol.
+
+Competition
+
+Priority
+
+Engineering Colleges
+
+best engineering colleges in India
+
+165,000
+
+High
+
+P0
+
+IIT Keywords
+
+IIT Madras fees / IIT Delhi cutoff
+
+320,000
+
+Medium
+
+P0
+
+NEET Medical
+
+medical colleges accepting NEET
+
+110,000
+
+High
+
+P0
+
+JEE Advanced
+
+colleges accepting JEE Advanced
+
+90,000
+
+Medium
+
+P0
+
+MBA Colleges
+
+top MBA colleges India CAT
+
+75,000
+
+High
+
+P1
+
+City Colleges
+
+engineering colleges in Chennai
+
+45,000
+
+Low
+
+P0
+
+Compare
+
+IIT Madras vs IIT Bombay
+
+38,000
+
+Very Low
+
+P0
+
+Law Colleges
+
+top law colleges India CLAT
+
+55,000
+
+Medium
+
+P1
+
+Fees Queries
+
+IIT Madras B.Tech fees 2025
+
+28,000
+
+Low
+
+P0
+
+Placement Queries
+
+IIT Madras placement package
+
+22,000
+
+Low
+
+P0
+
+Design Colleges
+
+NID Ahmedabad admission
+
+18,000
+
+Low
+
+P1
+
+Scholarship
+
+colleges with 100% scholarship
+
+35,000
+
+Low
+
+P1
+
+
+
+1.3 Long-Tail Keywords — The Hidden Traffic Gold
+
+Long-tail keywords (3-5 words) have 70% lower competition and 3x higher conversion rate. EduMadras's programmatic SEO strategy generates these automatically from the database.
+
+
+
+Long-tail Keyword Formulas (Auto-Generated from Schema)
+
+"[College Name] [Course] fees [Year]" — e.g. IIT Madras B.Tech CSE fees 2025
+
+"[College Name] vs [College Name]" — e.g. BITS Pilani vs NIT Trichy
+
+"[stream] colleges in [city]" — e.g. medical colleges in Vellore
+
+"colleges accepting [exam] [year]" — e.g. colleges accepting CLAT 2025
+
+"[College Name] placement package [year]" — e.g. AIIMS Delhi placement 2025
+
+"[Course] colleges under [fee] lakhs" — e.g. MBBS colleges under 5 lakhs
+
+"[College Name] cutoff [category] [year]" — e.g. IIT Delhi cutoff OBC 2025
+
+"is [College Name] government or private" — exact FAQ match
+
+"[College Name] [approval] approved" — e.g. BITS Pilani NAAC approved
+
+"[stream] colleges [state]" — e.g. management colleges Tamil Nadu
+
+
+
+1.4 Seasonal Keyword Calendar
+
+Indian education has extremely predictable traffic spikes. Plan content and crawl budget around this calendar.
+
+Month
+
+Peak Keywords
+
+Traffic Multiplier
+
+Action Required
+
+January
+
+JEE registration, college list 2025
+
+2x baseline
+
+Publish updated fee/seat data
+
+February
+
+JEE Advanced eligibility, mock tests
+
+2.5x
+
+Exam guide pages live
+
+March
+
+NEET registration, CLAT preparation
+
+3x
+
+Exam pages fully indexed
+
+April
+
+JEE Main result, college predictor
+
+4x peak
+
+Cutoff predictor tool live
+
+May
+
+JEE Advanced, NEET exam
+
+5x — PEAK
+
+All content freshness updated
+
+June
+
+NEET result, counseling process
+
+5x — PEAK
+
+Counselor CTAs boosted
+
+July
+
+College admissions, seat allotment
+
+4x
+
+Admission guide content
+
+August
+
+CAT registration, MBA colleges
+
+3x
+
+Management section boosted
+
+September-December
+
+Steady baseline research
+
+1x
+
+Build content for next season
+
+
+
+2. Programmatic SEO — 10,000 Pages from Your Database
+
+This is the single most powerful SEO strategy available to EduMadras. Every row in Supabase becomes a Google-indexed page. Zero manual content writing required. Competitors like Shiksha.com have 2M+ pages — this is how they got there.
+
+
+
+2.1 Page Type Matrix
+
+Page Type
+
+URL Pattern
+
+Pages Generated
+
+Target Keyword Type
+
+College Detail
+
+/colleges/[stream]/[slug]
+
+500+ (scale)
+
+Brand + fee + placement queries
+
+Stream Listing
+
+/colleges/[stream]
+
+6 pages
+
+"Best [stream] colleges India"
+
+Stream × City
+
+/colleges/[stream]/[city]
+
+60+ pages
+
+"[stream] colleges in [city]"
+
+City Hub
+
+/cities/[city-slug]
+
+50+ pages
+
+"colleges in [city]"
+
+Course Listing
+
+/courses/[course-slug]
+
+14+ pages
+
+"[course] colleges fees eligibility"
+
+College × Course
+
+/colleges/[stream]/[slug]/[course-slug]
+
+200+ pages
+
+"[course] at [college] fees"
+
+Entrance Exam
+
+/entrance-exams/[exam]
+
+8 pages
+
+"colleges accepting [exam]"
+
+Compare (2)
+
+/compare/[slug-a]-vs-[slug-b]
+
+Unlimited
+
+"[college A] vs [college B]"
+
+State Listing
+
+/colleges/[stream]/[state]
+
+60+ pages
+
+"[stream] colleges in [state]"
+
+Fee Range
+
+/colleges/[stream]/fees-under-[X]-lakhs
+
+30+ pages
+
+"[stream] colleges under [X] lakhs"
+
+Govt vs Private
+
+/colleges/government/[stream]
+
+12 pages
+
+"government [stream] colleges"
+
+Top Ranked
+
+/colleges/top-[N]/[stream]
+
+18 pages
+
+"top 10 engineering colleges"
+
+
+
+IMPORTANT: Add These Columns to Supabase Right Now
+
+ALTER TABLE colleges ADD COLUMN slug text UNIQUE NOT NULL;
+
+ALTER TABLE colleges ADD COLUMN meta_title text;
+
+ALTER TABLE colleges ADD COLUMN meta_description text;
+
+ALTER TABLE master_courses ADD COLUMN slug text UNIQUE NOT NULL;
+
+CREATE TABLE seo_pages (id uuid, page_type text, slug text, h1 text, intro_text text, faq jsonb);
+
+CREATE TABLE college_reviews (id uuid, college_id uuid, rating int, body text, verified bool);
+
+
+
+2.2 Next.js Implementation — The Exact Code Pattern
+
+This is the generateStaticParams + generateMetadata pattern for the college detail page. Replicate this for every programmatic page type.
+
+
+
+// app/colleges/[stream]/[slug]/page.tsx
+
+
+
+export async function generateStaticParams() {
+
+  const { data } = await supabase.from("colleges").select("slug, stream");
+
+  return data.map(c => ({
+
+    stream: c.stream.toLowerCase(),
+
+    slug: c.slug
+
+  }));
+
+}
+
+
+
+export async function generateMetadata({ params }) {
+
+  const college = await getCollege(params.slug);
+
+  const topCourse = await getTopCourse(college.id);
+
+  return {
+
+    title: `${college.name} Fees, Courses & Placements 2025 | EduMadras`,
+
+    description: `${college.name} in ${college.city}: ${topCourse.name} fees ₹${topCourse.fee/100000}L/yr, avg package ₹${college.avg_package}L. ${college.approvals.join(", ")} approved. Compare, check eligibility, free counseling.`,
+
+    openGraph: { title: ..., images: [college.banner_url] },
+
+    alternates: { canonical: `/colleges/${params.stream}/${params.slug}` }
+
+  }
+
+}
+
+
+
+2.3 Title Tag Formulas — Tested Against Competitors
+
+Page Type
+
+Title Formula
+
+Example Output
+
+College Detail
+
+[Name] — Fees, Courses, Placements [Year]
+
+IIT Madras — Fees, Courses, Placements 2025
+
+Stream Listing
+
+Top [N] [Stream] Colleges in India [Year] — Rankings & Fees
+
+Top 50 Engineering Colleges in India 2025
+
+City Stream
+
+[Stream] Colleges in [City] [Year] — Fees, Admission
+
+Engineering Colleges in Chennai 2025
+
+Compare
+
+[A] vs [B] [Year] — Fees, Placements, Rankings
+
+IIT Madras vs IIT Bombay 2025
+
+Exam Page
+
+Colleges Accepting [Exam] [Year] — Cutoffs, Fees, List
+
+Colleges Accepting JEE Advanced 2025
+
+Course Page
+
+[Course] Colleges in India [Year] — Fees, Seats, Eligibility
+
+MBBS Colleges in India 2025
+
+City Hub
+
+Top Colleges in [City] [Year] — Engineering, Medical & More
+
+Top Colleges in Chennai 2025
+
+Fee Range
+
+[Stream] Colleges under [X] Lakhs [Year]
+
+Engineering Colleges under 5 Lakhs 2025
+
+
+
+2.4 Meta Description Formulas
+
+Meta descriptions do not directly affect ranking but dramatically affect click-through rate (CTR). Higher CTR = stronger ranking signal over time.
+
+
+
+Meta Description Templates
+
+COLLEGE: "[College Name]: [Course] fees ₹[X]L/yr, avg package ₹[Y]L. Rank #[N] [stream]. [Approvals]. Compare courses, check JEE/NEET cutoff, get free counseling."
+
+STREAM: "Compare India's top [stream] colleges by fees, placements & cutoff. [N] colleges listed with AICTE/UGC approval status. Free expert counseling available."
+
+COMPARE: "[College A] vs [College B]: fees ₹[X] vs ₹[Y], avg package ₹[A]L vs ₹[B]L, Rank #[N1] vs #[N2]. Full side-by-side comparison with counseling support."
+
+EXAM: "Find all colleges accepting [Exam] [Year]. [N] colleges listed with cutoff ranks, fees, seats available. Compare and get free admission counseling."
+
+CITY: "Compare [N] colleges in [City] — Engineering, Medical, Management, Law. Verified fees, placement stats, AICTE/UGC approval. Free counseling."
+
+
+
+3. Technical SEO — The Foundation Everything Else Stands On
+
+Technical SEO mistakes can wipe out all content and programmatic efforts. These are the non-negotiables. Google cannot rank pages it cannot find, crawl, and index correctly.
+
+
+
+3.1 Priority Action Items
+
+Pri
+
+Action
+
+Why It Matters / Implementation
+
+P0
+
+Add slug to colleges table
+
+Without slug, no clean URLs. Run migration today. All programmatic pages depend on this.
+
+P0
+
+Create sitemap.ts in Next.js
+
+Google cannot discover 10,000 pages without a sitemap. Auto-generated from Supabase on every build.
+
+P0
+
+Create robots.txt
+
+Block /admin, /api/*, /leads, /loan-enquiries, /activities. Prevent sensitive data indexing.
+
+P0
+
+Canonical tags on all pages
+
+Prevent duplicate content penalties. Every page needs self-referencing canonical tag.
+
+P0
+
+Set revalidate on college pages
+
+Use ISR: export const revalidate = 86400. Fresh data without full rebuilds.
+
+P1
+
+Core Web Vitals pass
+
+LCP < 2.5s, CLS < 0.1, INP < 200ms. Use next/image everywhere. Required for ranking.
+
+P1
+
+Structured data JSON-LD
+
+EducationalOrganization + FAQPage + BreadcrumbList + Course on every applicable page.
+
+P1
+
+hreflang for regional pages
+
+If adding Tamil/Hindi content later, hreflang prevents duplicate content issues.
+
+P1
+
+Open Graph + Twitter Cards
+
+Social sharing drives backlinks. OG image should be college banner with name overlay.
+
+P2
+
+Google Search Console setup
+
+Submit sitemap. Monitor index coverage errors. Watch for crawl anomalies weekly.
+
+P2
+
+Image optimization pipeline
+
+All college logos/banners through next/image. WebP format. Explicit width/height. blurDataURL.
+
+P2
+
+Internal link audit
+
+Every college card stream badge must link to /colleges/[stream]. City names to /cities/[city].
+
+P3
+
+Pagespeed Score > 90 mobile
+
+Run Lighthouse monthly. Fix render-blocking resources. Defer non-critical JS.
+
+
+
+3.2 sitemap.ts — Complete Implementation
+
+// app/sitemap.ts
+
+import { MetadataRoute } from "next"
+
+import { createClient } from "@/lib/supabase/server"
+
+
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+
+  const supabase = createClient()
+
+  const base = "https://edumadras.com"
+
+
+
+  // Fetch all colleges
+
+  const { data: colleges } = await supabase
+
+    .from("colleges").select("slug, stream, updated_at")
+
+
+
+  // Fetch all courses
+
+  const { data: courses } = await supabase
+
+    .from("master_courses").select("slug, stream")
+
+
+
+  const staticPages = [
+
+    { url: base, changeFrequency: "weekly", priority: 1.0 },
+
+    { url: `${base}/colleges`, changeFrequency: "daily", priority: 0.9 },
+
+    { url: `${base}/counselors`, changeFrequency: "weekly", priority: 0.8 },
+
+    ["engineering","medical","management","law","design"].map(s => ({
+
+      url: `${base}/colleges/${s}`, changeFrequency: "daily", priority: 0.9
+
+    }))
+
+  ].flat()
+
+
+
+  const collegePages = colleges.map(c => ({
+
+    url: `${base}/colleges/${c.stream.toLowerCase()}/${c.slug}`,
+
+    lastModified: new Date(c.updated_at),
+
+    changeFrequency: "weekly", priority: 0.8
+
+  }))
+
+
+
+  return [...staticPages, ...collegePages, ...coursePages]
+
+}
+
+
+
+3.3 robots.txt — Complete File
+
+User-agent: *
+
+Allow: /
+
+Disallow: /admin
+
+Disallow: /api/
+
+Disallow: /leads
+
+Disallow: /loan-enquiries
+
+Disallow: /activities
+
+Disallow: /_next/
+
+
+
+Sitemap: https://edumadras.com/sitemap.xml
+
+
+
+3.4 Core Web Vitals Targets
+
+Metric
+
+Target
+
+What Causes Failure
+
+Fix in Next.js
+
+LCP (Largest Content Paint)
+
+< 2.5 seconds
+
+College banner images not preloaded
+
+Add priority prop to hero images: <Image priority />
+
+CLS (Cumulative Layout Shift)
+
+< 0.1
+
+Images without dimensions, font FOIT
+
+Always set width+height on next/image. Use font-display: swap.
+
+INP (Interaction to Next Paint)
+
+< 200ms
+
+Heavy filter JS blocking main thread
+
+Debounce filter inputs. Use useTransition() for filter state.
+
+TTFB (Time to First Byte)
+
+< 800ms
+
+Supabase queries on every request
+
+ISR with revalidate=86400. Cache college data. Use edge runtime.
+
+FID (First Input Delay)
+
+< 100ms
+
+Large JS bundles blocking interaction
+
+Code-split with dynamic imports. Defer analytics scripts.
+
+
+
+4. On-Page SEO — Maximize Every Page's Ranking Power
+
+
+
+4.1 The Perfect College Detail Page Structure
+
+This is the ideal HTML structure for a college page. Google's crawler reads top-to-bottom. Every element placement is strategic.
+
+
+
+<head>
+
+  <title>IIT Madras Fees, Courses & Placements 2025 | EduMadras</title>
+
+  <meta name="description" content="IIT Madras: B.Tech fees ₹8L/yr..." />
+
+  <link rel="canonical" href="https://edumadras.com/colleges/engineering/iit-madras" />
+
+  <script type="application/ld+json">{ EducationalOrganization schema }</script>
+
+  <script type="application/ld+json">{ FAQPage schema }</script>
+
+  <script type="application/ld+json">{ BreadcrumbList schema }</script>
+
+</head>
+
+<body>
+
+  <nav> ... EduMadras logo + links ... </nav>
+
+  <nav aria-label="breadcrumb"> Home > Engineering > IIT Madras </nav>  ← Breadcrumb
+
+  <h1>IIT Madras, Chennai — Fees, Courses & Placements 2025</h1>  ← H1 with keyword
+
+  <p class="last-updated">Data verified: March 2025</p>  ← E-E-A-T signal
+
+  <section> ... college stats bar (rank, rating, approvals) ... </section>
+
+  <section>
+
+    <h2>Courses & Fees at IIT Madras 2025</h2>  ← H2 with keyword
+
+    <table> ... college_courses JOIN master_courses data ... </table>
+
+  </section>
+
+  <section>
+
+    <h2>IIT Madras Placement Statistics</h2>
+
+    ... avg_package, highest_package from colleges table ...
+
+  </section>
+
+  <section>
+
+    <h2>Frequently Asked Questions — IIT Madras</h2>  ← FAQPage target
+
+    <details><summary>What is the fee for B.Tech at IIT Madras?</summary>...
+
+  </section>
+
+  <section> ... similar colleges (internal links) ... </section>
+
+</body>
+
+
+
+4.2 H1/H2/H3 Usage Rules
+
+Tag
+
+Rule
+
+Example for College Page
+
+H1
+
+Exactly ONE per page. Contains college name + city + year. Above the fold.
+
+"IIT Madras, Chennai — Fees, Courses & Placements 2025"
+
+H2
+
+One per major section. Contains keyword variation + college name.
+
+"Courses & Fees at IIT Madras" / "IIT Madras Placements"
+
+H3
+
+Sub-sections within H2. Course names, FAQ questions, facility names.
+
+"B.Tech Computer Science" / "What is the JEE cutoff?"
+
+H4-H6
+
+Rarely needed. Use for deep nested content only.
+
+Sub-specializations, detailed eligibility sub-sections
+
+
+
+4.3 Internal Linking Strategy — The PageRank Flow Map
+
+Internal links pass authority between pages. Every link from a high-authority page to a lower-authority page strengthens the target. Build this deliberately.
+
+
+
+The Authority Flow Hierarchy
+
+LEVEL 1 (Highest Authority): Homepage → receives most external links
+
+LEVEL 2: Stream listing pages (/colleges/engineering) → linked from homepage and all college cards
+
+LEVEL 3: College detail pages → linked from stream pages, compare pages, exam pages
+
+LEVEL 4: Course/exam/city pages → linked from college detail pages and listings
+
+
+
+RULE: Every page must link UP to its parent in the hierarchy.
+
+RULE: Every page must link SIDEWAYS to 3-5 related pages (similar colleges).
+
+RULE: Stream badge on college card = link to /colleges/[stream] (do NOT forget this).
+
+RULE: Every city mention on a page = link to /cities/[city] automatically.
+
+RULE: Every exam mention = link to /entrance-exams/[exam] automatically.
+
+RULE: Compare page links back to BOTH college detail pages in the breadcrumb.
+
+
+
+4.4 Content Freshness Strategy
+
+Google rewards fresh content. Education data changes annually. Build a system to show freshness signals without rewriting content.
+
+Update Type
+
+Frequency
+
+What Changes
+
+Implementation
+
+Year in titles/H1s
+
+Annual (Jan)
+
+"2025" → "2026"
+
+Update year column in seo_pages table
+
+Fee data
+
+Annual (June)
+
+Annual fee updates from colleges
+
+Update college_courses.fee values
+
+Placement data
+
+Annual (Sept)
+
+New batch avg/highest package
+
+Update avg_package, highest_package
+
+Exam cutoffs
+
+Post-result (June/Aug)
+
+New cutoff ranks
+
+Add college_cutoffs table, update yearly
+
+Last updated stamp
+
+Automatic
+
+Timestamp shown on page
+
+Use updated_at from Supabase, display on UI
+
+ISR revalidation
+
+Daily
+
+Serves fresh static pages
+
+revalidate = 86400 in Next.js page
+
+
+
+5. Structured Data — Control How Google Displays Your Pages
+
+Structured data (JSON-LD) does not directly improve ranking but dramatically improves how pages appear in search results — star ratings, FAQ dropdowns, breadcrumbs, review counts. These drive 20-40% higher CTR.
+
+
+
+5.1 Complete JSON-LD for College Detail Page
+
+// Inject ALL THREE schemas in the <head> of every college page
+
+
+
+// 1. EducationalOrganization
+
+{
+
+  "@context": "https://schema.org",
+
+  "@type": "EducationalOrganization",
+
+  "name": "Indian Institute of Technology Madras",
+
+  "alternateName": "IIT Madras",
+
+  "url": "https://edumadras.com/colleges/engineering/iit-madras",
+
+  "logo": "https://[bucket]/iit-madras-logo.png",
+
+  "image": "https://[bucket]/iit-madras-banner.jpg",
+
+  "description": "IIT Madras is the top-ranked...",
+
+  "foundingDate": "1959",
+
+  "address": {
+
+    "@type": "PostalAddress",
+
+    "addressLocality": "Chennai",
+
+    "addressRegion": "Tamil Nadu",
+
+    "addressCountry": "IN"
+
+  },
+
+  "aggregateRating": {
+
+    "@type": "AggregateRating",
+
+    "ratingValue": "4.9",
+
+    "bestRating": "5",
+
+    "worstRating": "1",
+
+    "ratingCount": "1240"
+
+  }
+
+}
+
+
+
+// 2. FAQPage — Gets accordion in search results (HUGE CTR boost)
+
+{
+
+  "@context": "https://schema.org",
+
+  "@type": "FAQPage",
+
+  "mainEntity": [{
+
+    "@type": "Question",
+
+    "name": "What is the B.Tech fee at IIT Madras?",
+
+    "acceptedAnswer": {
+
+      "@type": "Answer",
+
+      "text": "The annual B.Tech fee at IIT Madras is ₹8,00,000..."
+
+    }
+
+  }, {
+
+    "@type": "Question",
+
+    "name": "What is the JEE Advanced cutoff for IIT Madras?",
+
+    "acceptedAnswer": { "@type": "Answer", "text": "..." }
+
+  }]
+
+}
+
+
+
+// 3. BreadcrumbList
+
+{
+
+  "@context": "https://schema.org",
+
+  "@type": "BreadcrumbList",
+
+  "itemListElement": [
+
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://edumadras.com" },
+
+    { "@type": "ListItem", "position": 2, "name": "Engineering", "item": "/colleges/engineering" },
+
+    { "@type": "ListItem", "position": 3, "name": "IIT Madras", "item": "/colleges/engineering/iit-madras" }
+
+  ]
+
+}
+
+
+
+5.2 Course Schema — For Course Detail Pages
+
+{
+
+  "@context": "https://schema.org",
+
+  "@type": "Course",
+
+  "name": "B.Tech in Computer Science",
+
+  "description": "4-year undergraduate engineering program...",
+
+  "provider": { "@type": "EducationalOrganization", "name": "IIT Madras" },
+
+  "timeRequired": "P4Y",
+
+  "numberOfCredits": "160",
+
+  "educationalLevel": "Undergraduate",
+
+  "offers": {
+
+    "@type": "Offer",
+
+    "price": "800000",
+
+    "priceCurrency": "INR",
+
+    "description": "Total program fee"
+
+  }
+
+}
+
+
+
+5.3 Structured Data by Page Type
+
+Page Type
+
+Schema Types to Include
+
+Visible Benefit in Google
+
+College Detail
+
+EducationalOrganization + FAQPage + BreadcrumbList
+
+Star rating + FAQ accordion + breadcrumb trail
+
+Course Page
+
+Course + BreadcrumbList + FAQPage
+
+Course structured result + breadcrumb
+
+Compare Page
+
+EducationalOrganization (both) + BreadcrumbList
+
+Breadcrumb trail for both colleges
+
+Homepage
+
+WebSite + SearchAction + Organization
+
+Sitelinks search box in Google
+
+Counselors Page
+
+Organization + FAQPage
+
+FAQ accordion in results
+
+Blog/News
+
+Article + BreadcrumbList + FAQPage
+
+Article rich result + date shown
+
+Entrance Exam
+
+Event (if dated) + FAQPage + BreadcrumbList
+
+FAQ accordion + event date shown
+
+
+
+6. Content Clusters — The Strategy That Builds Domain Authority
+
+Content clusters are groups of deeply interlinked pages around a central topic. Google sees you as an authority on that topic when you own an entire cluster. This is how EduMadras builds unstoppable domain authority over 12 months.
+
+
+
+6.1 The 6 Content Clusters for EduMadras
+
+Cluster
+
+Pillar Page
+
+Supporting Pages
+
+Estimated Total Traffic
+
+Engineering
+
+/colleges/engineering
+
+All IITs, NITs, BITS pages + JEE pages + city pages
+
+180,000/mo at maturity
+
+Medical
+
+/colleges/medical
+
+All AIIMS, CMC, JIPMER + NEET pages + city pages
+
+120,000/mo
+
+Management
+
+/colleges/management
+
+All IIMs, ISB + CAT pages + city pages
+
+90,000/mo
+
+Law
+
+/colleges/law
+
+All NLUs + CLAT pages + city pages
+
+45,000/mo
+
+Design
+
+/colleges/design
+
+NID, NIFT + exam pages
+
+25,000/mo
+
+Admissions Guide
+
+/admissions
+
+JEE guide, NEET guide, CAT guide, CLAT guide
+
+60,000/mo
+
+
+
+6.2 The Admissions Guide Cluster — Highest ROI Content
+
+Students desperately search for step-by-step guidance during exam season. This content has massive search volume and extremely low competition because competitors only publish lists, not guides.
+
+
+
+Build These 8 Guide Pages (Month 1-2)
+
+1. "JEE Advanced 2025 — Complete Guide: Eligibility, Syllabus, Cutoffs, Colleges" → /guides/jee-advanced
+
+2. "NEET 2025 — Complete Guide: Registration, Syllabus, Cutoffs, MBBS Colleges" → /guides/neet
+
+3. "CAT 2025 — Complete Guide: Eligibility, Exam Pattern, IIM Cutoffs" → /guides/cat
+
+4. "CLAT 2025 — Complete Guide: Eligibility, NLU Cutoffs, Admission Process" → /guides/clat
+
+5. "How to Choose Between IIT Madras and IIT Bombay" → editorial comparison
+
+6. "Government vs Private Engineering Colleges — Complete Comparison" → high-intent
+
+7. "Engineering Colleges Under 5 Lakhs Total Fees" → financial intent
+
+8. "Best Colleges for Computer Science in India 2025" → mega list page
+
+
+
+6.3 UGC (User-Generated Content) — The Billion Dollar Differentiator
+
+Reviews, ratings, and student testimonials are the single most powerful E-E-A-T signal. Google explicitly rewards content with personal experience. Shiksha and Careers360 built their authority on this.
+
+
+
+UGC Feature
+
+SEO Impact
+
+Schema
+
+Implementation
+
+Student Reviews
+
+Adds 200-500 words of unique content per college. Google rewards this.
+
+Review + AggregateRating
+
+Add college_reviews table. Rating 1-5 + body text + verified boolean.
+
+Alumni Testimonials
+
+E-E-A-T signal. "Experience" in EEAT means real people.
+
+Person + alumniOf
+
+Quote cards with name, batch, company. Source from LinkedIn initially.
+
+Q&A Section
+
+"X people found this helpful" builds engagement signals.
+
+QAPage schema
+
+Add college_qa table. Students ask, counselors answer. Indexed by Google.
+
+Photo Gallery
+
+Image search traffic. Alt text = "IIT Madras campus photo".
+
+ImageObject
+
+Student-submitted campus photos with geolocation metadata.
+
+
+
+6.4 The College Predictor Tool — Viral SEO Asset
+
+A "College Predictor" tool that takes a student's rank/score and shows which colleges they qualify for is the single highest-traffic tool in the education space. JEE College Predictor alone gets 2M+ visits in April-June.
+
+
+
+College Predictor — Build This in Month 2
+
+Input: Exam (JEE/NEET/CAT) + Score/Rank + Category (General/OBC/SC/ST)
+
+Output: List of colleges from EduMadras database where their rank falls within eligibility
+
+Logic: Compare entered rank against college_courses.eligibility thresholds
+
+CTA: "Get personalized counseling for your rank" → Lead form
+
+SEO: Tool generates shareable results URL: /predictor?exam=jee&rank=5000&category=general
+
+Traffic: This tool alone can generate 50,000+ visits per month during exam season
+
+Backlinks: Education bloggers and YouTube channels will link to this tool organically
+
+
+
+7. Local SEO — Dominate City-Level Searches
+
+Local SEO is the most underserved opportunity in Indian education. "Engineering colleges in Chennai" gets 45,000 searches/month and Shiksha.com's city pages are poorly optimized. EduMadras can rank #1 for dozens of city queries.
+
+
+
+7.1 City × Stream Page Strategy
+
+City
+
+Target Stream Pages
+
+Est. Monthly Volume
+
+Competition
+
+Chennai
+
+Engineering + Medical + Management
+
+65,000
+
+Medium — Winnable
+
+Delhi
+
+Engineering + Medical + Law
+
+90,000
+
+High — Long-term play
+
+Mumbai
+
+Engineering + Management + Design
+
+75,000
+
+High — Long-term play
+
+Bangalore
+
+Engineering + Management
+
+55,000
+
+Medium
+
+Hyderabad
+
+Engineering + Management + Law
+
+48,000
+
+Low — Win quickly
+
+Pune
+
+Engineering + Management
+
+35,000
+
+Low — Win quickly
+
+Vellore
+
+Medical + Engineering
+
+22,000
+
+Very Low — Instant win
+
+Pilani
+
+Engineering
+
+18,000
+
+Very Low — Instant win
+
+Puducherry
+
+Medical
+
+15,000
+
+Very Low — Instant win
+
+Ahmedabad
+
+Management + Design
+
+28,000
+
+Low — Win quickly
+
+
+
+7.2 City Page Content Formula
+
+Each city page needs unique content beyond just a list of colleges. This is what beats competitors.
+
+
+
+City Page Content Formula (/cities/chennai)
+
+H1: "Top Colleges in Chennai 2025 — Engineering, Medical, Management"
+
+H2: "Why Study in Chennai?" — 100-word city overview (IIT Madras city, tech hub, etc.)
+
+H2: "Top Engineering Colleges in Chennai" — 3 college cards with stream filter
+
+H2: "Top Medical Colleges in Chennai" — medical college cards
+
+H2: "Fees Overview for Chennai Colleges" — min-max fee range table
+
+H2: "How to Apply to Chennai Colleges" — 200-word guide with entrance exam links
+
+H2: "Frequently Asked Questions" — 5 FAQs with FAQPage schema
+
+Internal links: Link to /colleges/engineering/chennai, /colleges/medical/chennai etc.
+
+
+
+7.3 Google Business Profile Strategy
+
+EduMadras should create a Google Business Profile for the platform itself AND encourage students to leave reviews. This drives local search visibility for counseling-related queries.
+
+Action
+
+Impact
+
+Implementation
+
+Create Google Business Profile
+
+Appears in local pack for "college counseling Chennai"
+
+Register business at business.google.com
+
+Complete profile 100%
+
+Higher ranking in local results
+
+Add photos, hours, services, description with keywords
+
+Get 50+ Google Reviews
+
+Star rating appears in search results
+
+Ask counseled students to leave reviews after placement
+
+Add Q&A on GBP
+
+Answers appear in search results
+
+Pre-populate with "Do you offer free counseling?"
+
+Post updates weekly
+
+Freshness signal for local search
+
+Post exam date alerts, scholarship news, college updates
+
+
+
+8. Link Building — The Authority That Beats Competitors
+
+Backlinks from authoritative websites are still the #1 ranking factor for competitive keywords. EduMadras needs a systematic link acquisition strategy. Quality beats quantity every time.
+
+
+
+8.1 Link Building Strategies by Priority
+
+Strategy
+
+Target Domains
+
+Links/Month
+
+Effort
+
+Impact
+
+College Predictor Tool
+
+Education blogs, YouTube channels
+
+20-50 organic
+
+Build once
+
+Very High
+
+Data / Stats Pages
+
+News sites, education journalists
+
+5-10/month
+
+Update annually
+
+Very High
+
+Resource Link Building
+
+College official websites
+
+2-5/month
+
+Outreach email
+
+High
+
+Guest Posts
+
+Shiksha blog, EduCBA, Career360
+
+2-4/month
+
+Content writing
+
+Medium-High
+
+HARO / Journalist Sources
+
+Times of India, Hindu Education
+
+1-3/month
+
+Daily monitoring
+
+Very High (authority)
+
+Broken Link Building
+
+Education resource sites
+
+3-6/month
+
+Prospecting tool
+
+Medium
+
+Infographic Distribution
+
+Pinterest, SlideShare, education blogs
+
+5-10/month
+
+Design + outreach
+
+Medium
+
+College Forum Presence
+
+Quora, Reddit, college forums
+
+10-20/month
+
+Daily 30 min
+
+Low-Medium
+
+
+
+8.2 The Stats / Data Page Strategy
+
+Creating a definitive "data page" that journalists reference is the most efficient link building strategy. Build these 5 pages and promote them to education journalists.
+
+
+
+5 Data Pages That Attract Backlinks Automatically
+
+1. /research/engineering-college-placement-stats-india — Annual placement data across all colleges
+
+2. /research/medical-college-seats-india — MBBS seat availability by state and college type
+
+3. /research/average-engineering-fees-india — Fee comparison trends over 5 years
+
+4. /research/jee-advanced-cutoff-history — Cutoff rank trends by category, 2015-2025
+
+5. /research/women-in-engineering-india — Gender ratio stats across top engineering colleges
+
+
+
+Email these pages to: Times of India Education, Hindu Education Plus, Hindustan Times Education,
+
+India Today Education, NDTV Education, education bloggers with 10K+ subscribers.
+
+Subject line: "EduMadras just published [2025] data on [topic] — free for citation"
+
+
+
+8.3 The College Reciprocal Link Opportunity
+
+Many college websites link to ranking/review sites in their "recognition" sections. EduMadras can be listed on college websites directly.
+
+Action
+
+Target
+
+How
+
+Reach out to college admission offices
+
+Get listed on their "where to find us" page
+
+Email: "We feature [College] — can we be listed on your admissions resources page?"
+
+Offer free embeddable rankings widget
+
+College website embeds your widget
+
+Build: <iframe src="edumadras.com/widget/[college-slug]"> showing ratings
+
+Send annual placement report
+
+College PR/media teams share it
+
+"We've published [College]'s placement data — here's the link for your press releases"
+
+
+
+9. Measurement — Track These 12 KPIs Every Week
+
+KPI
+
+Tool
+
+Target (Month 6)
+
+Target (Month 12)
+
+Organic sessions/month
+
+Google Analytics 4
+
+50,000
+
+300,000+
+
+Pages indexed by Google
+
+Google Search Console
+
+500+
+
+2,000+
+
+Keywords in Top 10
+
+Ahrefs / Search Console
+
+50+
+
+500+
+
+Average position (overall)
+
+Search Console
+
+< 30
+
+< 15
+
+Core Web Vitals pass rate
+
+Search Console / Lighthouse
+
+90%
+
+98%
+
+Click-through rate (CTR)
+
+Search Console
+
+> 3%
+
+> 5%
+
+Backlinks acquired
+
+Ahrefs
+
+50+
+
+300+
+
+Domain Rating (DR)
+
+Ahrefs
+
+20+
+
+35+
+
+Leads from organic traffic
+
+GA4 + Supabase leads
+
+200/mo
+
+1,500/mo
+
+Featured snippets owned
+
+Search Console / Ahrefs
+
+10+
+
+50+
+
+Pages with structured data
+
+Search Console Rich Results
+
+100%
+
+100%
+
+Mobile usability errors
+
+Search Console
+
+0
+
+0
+
+
+
+9.1 Weekly SEO Monitoring Checklist
+
+Check Google Search Console: New index coverage errors → Fix within 48 hours
+
+Check Core Web Vitals report in Search Console → Any pages failing? Fix immediately.
+
+Run Ahrefs Site Audit: New broken links, redirect chains, missing meta tags
+
+Monitor top 20 keyword positions in Ahrefs/Semrush → Any drops? Investigate content.
+
+Check new backlinks acquired this week in Ahrefs
+
+Review GA4: Which pages have highest bounce rate? Improve content or CTAs.
+
+Check sitemap status in Search Console → All pages submitted and indexed?
+
+Verify rich results in Search Console → FAQ, breadcrumb, reviews all showing?
+
+
+
+
+
+10. 12-Month Execution Roadmap
+
+
+
+Phase
+
+Timeline
+
+Actions
+
+Expected Traffic
+
+Phase 0: Foundation
+
+Week 1
+
+Slug migration, sitemap.ts, robots.txt, canonical tags, GSC setup
+
+0 (no pages yet)
+
+Phase 1: Launch
+
+Week 2-4
+
+All 17 college pages live with generateMetadata + JSON-LD + FAQ section
+
+2,000/mo
+
+Phase 2: Listings
+
+Month 2
+
+6 stream listing pages, 8 exam pages, 14 course pages, all with optimized H1/meta
+
+8,000/mo
+
+Phase 3: Local
+
+Month 3
+
+50 city pages, 30 city×stream pages, Google Business Profile setup
+
+20,000/mo
+
+Phase 4: Compare
+
+Month 4
+
+Compare pages for top 50 college pairs, compare bar UI live
+
+35,000/mo
+
+Phase 5: Tools
+
+Month 5
+
+College predictor tool live, fee calculator, rank predictor
+
+60,000/mo
+
+Phase 6: Content
+
+Month 6
+
+8 exam guide pages, 5 data/research pages, UGC reviews launched
+
+90,000/mo
+
+Phase 7: Scale
+
+Month 7-9
+
+Add 100+ more colleges, expand city coverage, blog/news section
+
+180,000/mo
+
+Phase 8: Authority
+
+Month 10-12
+
+Link building campaign, HARO outreach, infographic distribution
+
+300,000+/mo
+
+
+
+The Most Important Rule: Index Before You Perfect
+
+Ship the page FIRST. Optimize it SECOND.
+
+A published page with 70% perfect SEO beats an unpublished perfect page EVERY TIME.
+
+Google needs time to crawl, index, and rank. The clock starts only when the page is live.
+
+Every week a page is not published is a week of ranking time wasted.
+
+Publish all 17 college pages in Week 1 even if the content is basic. Improve over time.
+
+
+
+
+
+EduMadras Highly Promising SEO Strategy — v1.0 — April 2025
+
+Confidential — For Internal Use Only
+
