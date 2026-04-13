@@ -15,12 +15,14 @@ import {
   Search,
   Menu,
   X,
+  BookOpen,
 } from "lucide-react";
 import { useState } from "react";
 
 const navItems = [
   { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
   { name: "Colleges", href: "/admin/colleges", icon: GraduationCap },
+  { name: "Courses", href: "/admin/courses", icon: BookOpen },
   { name: "Leads", href: "/admin/leads", icon: MessageSquare },
   { name: "Counselors", href: "/admin/counselors", icon: Users },
   { name: "Banners", href: "/admin/banners", icon: ImageIcon },

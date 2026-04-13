@@ -131,6 +131,8 @@ create table if not exists public.colleges (
   logo_url text,
   banner_url text,
   type text,
+  fee_structure_url text,
+  overall_rating numeric(3, 2),
   approvals text[], -- Stored as array of strings
   rating numeric,
   avg_package numeric,

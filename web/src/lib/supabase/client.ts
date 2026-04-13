@@ -7,4 +7,8 @@ if (!supabaseUrl || !supabaseAnonKey) {
   console.warn("Supabase credentials missing. Data fetching may fail.");
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+// Fallback to a dummy URL if missing, to prevent Next.js from throwing 'supabaseUrl is required' on startup
+export const supabase = createClient(
+  supabaseUrl || "https://dummy-project.supabase.co", 
+  supabaseAnonKey || "dummy-key"
+);

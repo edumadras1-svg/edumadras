@@ -19,12 +19,29 @@ import {
   ChevronRight,
 } from "lucide-react";
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/JsonLd";
 
 export const metadata: Metadata = {
   title: "Find the Best Colleges in Tamil Nadu 2026 | EduMadras",
   description: "Discover top engineering, medical, arts and science colleges in Tamil Nadu. Compare fees, placements, and cutoffs.",
 };
 
+const homeSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "EduMadras",
+  "description": "College discovery platform for Tamil Nadu",
+  "url": "https://edumadras.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Pondicherry",
+    "addressCountry": "IN"
+  },
+  "areaServed": [
+    { "@type": "State", "name": "Tamil Nadu" },
+    { "@type": "City", "name": "Pondicherry" }
+  ]
+};
 
 const streams = [
   { name: "Engineering", slug: "engineering", icon: GraduationCap, color: "bg-stream-engineering text-stream-engineering-text" },
@@ -128,6 +145,7 @@ const faqItems = [
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
+      <JsonLd schema={homeSchema} />
       <TopNavBar />
 
       {/* ==================== HERO SECTION ==================== */}

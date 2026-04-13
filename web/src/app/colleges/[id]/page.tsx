@@ -3,6 +3,7 @@
 import { TopNavBar } from "@/components/TopNavBar";
 import { CollegeCard } from "@/components/CollegeCard";
 import { FAQAccordion } from "@/components/FAQAccordion";
+import { InlineCTABanner } from "@/components/InlineCTABanner";
 import { mockColleges, mockCourses, type College, type CollegeCourse } from "@/lib/mockData";
 import Link from "next/link";
 import { useEffect, useState, use } from "react";
@@ -24,6 +25,7 @@ import {
   TrendingUp,
   Loader2,
 } from "lucide-react";
+import { JsonLd } from "@/components/JsonLd";
 
 function formatPkg(val: number | null): string {
   if (!val) return "N/A";
@@ -133,8 +135,44 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
 
   const streamSlug = college.stream?.toLowerCase() || "engineering";
 
+  // Structured Data
+  const firstCourse = courses[0];
+  const topCourses = courses.slice(0, 5).map(c => c.master_courses?.name).filter(Boolean).join(", ");
+  
+  const collegeFaqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": `What is the fee for ${firstCourse?.master_courses?.name || "courses"} at ${college.name}?`,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": `The fee for ${firstCourse?.master_courses?.name || "the main course"} at ${college.name} is approximately ${formatFee(firstCourse?.fee)}. Overall fees range from ${formatFee(Math.min(...courses.map(c => c.fee || Infinity)))} to ${formatFee(Math.max(...courses.map(c => c.fee || 0)))} per year.`
+        }
+      },
+      {
+        "@type": "Question",
+        "name": `What is the cutoff for ${college.name}?`,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": `The cutoff for ${college.name} varies by course and category. For ${college.stream} programs, admission is primarily based on performance in national or state-level entrance exams. Please contact our expert counselors for the latest category-wise cutoff details.`
+        }
+      },
+      {
+        "@type": "Question",
+        "name": `What are the top courses at ${college.name}?`,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": `${college.name} is well-known for its ${college.stream} programs. Top courses include ${topCourses || "various undergraduate and postgraduate programs"}.`
+        }
+      }
+    ]
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-surface">
+      <JsonLd schema={collegeFaqSchema} />
       <TopNavBar />
 
       {/* Breadcrumb */}
@@ -168,7 +206,7 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
           <button className="p-2.5 bg-white/20 backdrop-blur-md rounded-full text-white hover:bg-white/30 transition-colors" aria-label="Share">
             <Share2 className="w-5 h-5" />
           </button>
-          <button className="p-2.5 bg-white/20 backdrop-blur-md rounded-full text-white hover:bg-white/30 transition-colors" aria-label="Save">
+          <button className="p-2.5 bg-white/20 backdrop-blur-md rounded-full text-white hover:bg-white/30 transition-colors" aria-label="Heart">
             <Heart className="w-5 h-5" />
           </button>
         </div>
@@ -362,6 +400,8 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
           <FAQAccordion items={faqItems} />
         </section>
 
+        <InlineCTABanner />
+
         {/* Similar Colleges */}
         {similarColleges.length > 0 && (
           <section>
@@ -381,6 +421,7 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
                     approvals={sc.approvals || []}
                     bannerUrl={sc.banner_url || undefined}
                     logoUrl={sc.logo_url || undefined}
+                    totalStudents={sc.total_students ? formatStudents(sc.total_students) : "N/A"}
                   />
                 </div>
               ))}

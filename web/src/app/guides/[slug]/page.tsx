@@ -1,98 +1,213 @@
-import { TopNavBar } from "@/components/TopNavBar";
-import { ChevronRight, Calendar, User, Clock } from "lucide-react";
+import React from "react";
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
 import Link from "next/link";
-import type { Metadata } from "next";
+import { 
+  ChevronRight, 
+  Clock, 
+  MapPin, 
+  Star, 
+  ArrowRight, 
+  BookOpen, 
+  ListOrdered,
+  HelpCircle
+} from "lucide-react";
+import { guides } from "@/lib/guidesConfig";
+import { mockColleges } from "@/lib/mockData";
+import { InlineCTABanner } from "@/components/InlineCTABanner";
+import { FAQAccordion } from "@/components/FAQAccordion";
+import { TopNavBar } from "@/components/TopNavBar";
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+interface PageProps {
+  params: Promise<{ slug: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const guideTitle = slug
-    .split("-")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
+  const guide = guides[slug];
   
+  if (!guide) return { title: "Guide Not Found | EduMadras" };
+
   return {
-    title: `${guideTitle} | EduMadras`,
-    description: `Expert guide on ${guideTitle} for 2026. Get the latest admissions tips, requirements, and insights from EduMadras.`,
+    title: `${guide.title} | EduMadras`,
+    description: guide.description,
+    openGraph: {
+      title: guide.title,
+      description: guide.description,
+      type: "article",
+    }
   };
 }
 
-export default async function GuidePage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function GuidePage({ params }: PageProps) {
   const { slug } = await params;
-  const guideTitle = slug
-    .split("-")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
+  const guide = guides[slug];
+
+  if (!guide) notFound();
+
+  const relatedColleges = mockColleges.filter(c => guide.relatedCollegeIds.includes(c.id));
+
+  // JSON-LD for FAQ
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": guide.faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  };
 
   return (
-    <div className="flex flex-col min-h-screen bg-white">
+    <div className="bg-white min-h-screen font-sans antialiased text-text-primary">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <TopNavBar />
 
-      <div className="bg-surface px-4 py-3">
-        <div className="container-mobile">
-          <nav className="flex items-center gap-1.5 text-caption" aria-label="Breadcrumb">
-            <Link href="/" className="text-blue-mid hover:underline">Home</Link>
-            <ChevronRight className="w-3 h-3 text-text-tertiary" />
-            <span className="text-text-secondary font-medium">Guides</span>
-            <ChevronRight className="w-3 h-3 text-text-tertiary" />
-            <span className="text-text-secondary font-medium truncate max-w-[200px]">{guideTitle}</span>
-          </nav>
-        </div>
+      {/* Breadcrumbs */}
+      <div className="max-w-7xl mx-auto px-6 pt-24 md:pt-32">
+        <nav className="flex items-center gap-2 text-badge font-bold uppercase tracking-widest text-text-tertiary">
+          <Link href="/" className="hover:text-teal transition-colors">Home</Link>
+          <ChevronRight className="w-3 h-3" />
+          <Link href="/guides" className="hover:text-teal transition-colors">Guides</Link>
+          <ChevronRight className="w-3 h-3" />
+          <span className="text-teal truncate max-w-[200px]">{guide.title}</span>
+        </nav>
       </div>
 
-      <main className="container-mobile py-8 pb-32">
-        <article className="max-w-3xl mx-auto">
-          <header className="mb-10">
-            <h1 className="text-h1 text-text-primary mb-4">{guideTitle}</h1>
-            
-            <div className="flex items-center gap-4 text-caption text-text-tertiary">
-              <div className="flex items-center gap-1.5">
-                <Calendar className="w-3.5 h-3.5" />
-                <span>Updated April 2026</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <User className="w-3.5 h-3.5" />
-                <span>EduMadras Expert</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <Clock className="w-3.5 h-3.5" />
-                <span>5 min read</span>
-              </div>
+      {/* Guide Hero */}
+      <header className="max-w-7xl mx-auto px-6 pt-6 pb-12">
+        <div className="max-w-3xl">
+          <h1 className="text-display-sm md:text-display-md font-extrabold text-navy leading-tight tracking-tight">
+            {guide.title}
+          </h1>
+          <div className="mt-6 flex flex-wrap items-center gap-6 text-body-sm text-text-secondary font-medium">
+            <div className="flex items-center gap-2">
+              <Clock className="w-4 h-4 text-teal" />
+              <span>Last Updated: {guide.lastUpdated}</span>
             </div>
-          </header>
-
-          <div className="prose prose-slate max-w-none space-y-6 text-body-lg text-text-secondary">
-            <p>
-              Navigating the college admissions landscape in 2026 requires up-to-date information and strategic planning. Whether you are looking for engineering excellence or medical expertise, this guide provides the foundational knowledge needed to make informed decisions.
-            </p>
-            <h2 className="text-h3 text-text-primary mt-8">Key Considerations for 2026</h2>
-            <p>
-              The admission process has evolved to include more holistic reviews of student profiles. Beyond entrance exam scores like JEE and NEET, colleges are increasingly looking at extra-curricular achievements and community impact.
-            </p>
-            <div className="bg-surface-low rounded-2xl p-6 my-8">
-              <h3 className="text-label font-bold text-navy mb-2">Pro Tip</h3>
-              <p className="text-body-sm italic">
-                Always verify the latest accreditation and approval status (AICTE/UGC/MCI) before finalizing your application. EduMadras provides a simplified verification badge for all listed institutions.
-              </p>
+            <div className="flex items-center gap-2">
+              <BookOpen className="w-4 h-4 text-teal" />
+              <span>{guide.sections.length} Sections</span>
             </div>
-            <p>
-              We recommend starting your research at least six months before the application deadlines to ensure you have all documentation ready and can participate in any required counseling sessions.
-            </p>
           </div>
+        </div>
+      </header>
 
-          <div className="mt-16 pt-8 border-t border-border-ghost text-center">
-            <h2 className="text-h3 text-text-primary mb-4">Want Personalized Guidance?</h2>
-            <p className="text-body-sm text-text-secondary mb-6">
-              Our expert counselors are available for free 1-on-1 sessions.
-            </p>
-            <Link 
-              href="/counselors" 
-              className="inline-block px-10 py-3 bg-teal hover:bg-teal/90 text-white font-semibold rounded-xl transition-all shadow-md btn-press"
-            >
-              Talk to a Counselor
-            </Link>
+      {/* Content Layout */}
+      <div className="max-w-7xl mx-auto px-6 pb-24 flex flex-col lg:flex-row gap-12 relative">
+        
+        {/* Sidebar Table of Contents */}
+        <aside className="lg:w-64 shrink-0 lg:sticky lg:top-32 h-fit order-2 lg:order-1">
+          <div className="bg-surface-low rounded-3xl p-6 border border-border-ghost shadow-inner">
+            <div className="flex items-center gap-2 mb-6 text-navy">
+              <ListOrdered className="w-5 h-5" />
+              <h2 className="text-badge font-extrabold uppercase tracking-widest">In this guide</h2>
+            </div>
+            <nav className="space-y-4">
+              {guide.sections.map((section) => (
+                <a 
+                  key={section.slug}
+                  href={`#${section.slug}`}
+                  className="block text-body-sm font-semibold text-text-secondary hover:text-teal transition-all leading-tight border-l-2 border-transparent hover:border-teal/30 pl-4 py-0.5"
+                >
+                  {section.title}
+                </a>
+              ))}
+              <a 
+                href="#faqs"
+                className="block text-body-sm font-semibold text-text-secondary hover:text-teal transition-all border-l-2 border-transparent pl-4 py-0.5"
+              >
+                Frequently Asked Questions
+              </a>
+            </nav>
+          </div>
+        </aside>
+
+        {/* Main Content */}
+        <article className="flex-1 order-1 lg:order-2">
+          <div className="space-y-16">
+            {guide.sections.map((section, index) => (
+              <React.Fragment key={section.slug}>
+                <section id={section.slug} className="scroll-mt-32 animate-fade-in group">
+                  <h2 className="text-h2 md:text-h1 font-bold text-navy mb-6 tracking-tight flex items-center gap-3">
+                    <span className="text-teal/40 font-mono text-body-sm group-hover:text-teal transition-colors">0{index + 1}</span>
+                    {section.title}
+                  </h2>
+                  <div className="text-body-md text-text-secondary leading-relaxed space-y-4">
+                    <p>{section.content}</p>
+                    {section.subsections?.map((sub, i) => (
+                      <div key={i} className="mt-8 bg-surface-low p-6 rounded-2xl border-l-4 border-teal shadow-inner">
+                        <h3 className="text-body-sm font-extrabold text-navy uppercase tracking-widest mb-2">{sub.title}</h3>
+                        <p className="text-text-secondary leading-relaxed">{sub.content}</p>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+                
+                {/* Inline CTA after the 3rd section */}
+                {index === 2 && <InlineCTABanner />}
+              </React.Fragment>
+            ))}
+
+            {/* FAQ Section */}
+            <section id="faqs" className="scroll-mt-32 pt-8 border-t border-border-ghost animate-fade-in">
+              <div className="flex items-center gap-3 mb-8">
+                <HelpCircle className="w-8 h-8 text-teal" />
+                <h2 className="text-h2 md:text-h1 font-bold text-navy tracking-tight">Frequently Asked Questions</h2>
+              </div>
+              <FAQAccordion items={guide.faqs} />
+            </section>
+
+            {/* Related Colleges Section */}
+            <section className="pt-16 border-t border-border-ghost animate-fade-in">
+              <h2 className="text-h2 font-bold text-navy mb-8 tracking-tight">Top Colleges Linked to this Guide</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {relatedColleges.map((college) => (
+                  <Link 
+                    key={college.id}
+                    href={`/colleges/${college.id}`}
+                    className="group bg-white rounded-3xl border border-border-ghost p-5 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 block"
+                  >
+                    <div className="w-full h-32 rounded-2xl overflow-hidden mb-4 bg-surface-low relative">
+                      {college.banner_url ? (
+                        <img src={college.banner_url} alt={college.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                      ) : (
+                        <div className="w-full h-full bg-navy flex items-center justify-center text-white font-bold text-2xl uppercase">
+                           {college.name[0]}
+                        </div>
+                      )}
+                      {college.rank && (
+                        <div className="absolute top-3 left-3 bg-white/90 backdrop-blur px-2 py-1 rounded-lg text-[10px] font-extrabold text-navy uppercase tracking-widest border border-border-ghost">
+                          NIRF #{college.rank}
+                        </div>
+                      )}
+                    </div>
+                    <h3 className="text-body-sm font-bold text-navy line-clamp-1 group-hover:text-teal transition-colors">{college.name}</h3>
+                    <div className="mt-2 flex items-center gap-1.5 text-caption text-text-tertiary">
+                       <MapPin className="w-3.5 h-3.5" /> {college.city}
+                    </div>
+                    <div className="mt-4 flex items-center justify-between">
+                       <div className="flex items-center gap-1 text-amber-500 font-bold text-badge">
+                          <Star className="w-3.5 h-3.5 fill-amber-500 font-bold" /> {college.rating}
+                       </div>
+                       <span className="text-teal font-extrabold text-badge uppercase tracking-widest flex items-center gap-1 group-hover:gap-2 transition-all">
+                          View Details <ArrowRight className="w-3.5 h-3.5" />
+                       </span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </section>
           </div>
         </article>
-      </main>
+
+      </div>
     </div>
   );
 }
