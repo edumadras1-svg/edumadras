@@ -52,7 +52,7 @@ export default function AdminSettingsPage() {
           const val = typeof setting.value === "string" ? setting.value : JSON.stringify(setting.value);
           // Handle boolean fields
           if (key === "maintenance_mode" || key === "show_engineering" || key === "show_medical") {
-            (newConfig[key] as boolean) = val === "true" || val === true;
+            (newConfig[key] as boolean) = val === "true";
           } else {
             (newConfig[key] as string) = val.replace(/^"|"$/g, "");
           }
