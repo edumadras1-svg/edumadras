@@ -1,6 +1,7 @@
 import { TopNavBar } from "@/components/TopNavBar";
 import { CollegeCard } from "@/components/CollegeCard";
 import { FAQAccordion } from "@/components/FAQAccordion";
+import { HeroSearch } from "@/components/HeroSearch";
 import Link from "next/link";
 import {
   Search,
@@ -53,7 +54,7 @@ const streams = [
 
 const engineeringColleges = [
   {
-    id: "10000000-0000-0000-0000-000000000001",
+    id: "1",
     name: "IIT Madras",
     location: "Chennai, Tamil Nadu",
     rating: 4.9,
@@ -66,7 +67,7 @@ const engineeringColleges = [
     totalStudents: "10K+",
   },
   {
-    id: "10000000-0000-0000-0000-000000000002",
+    id: "2",
     name: "IIT Delhi",
     location: "New Delhi, Delhi",
     rating: 4.8,
@@ -79,7 +80,7 @@ const engineeringColleges = [
     totalStudents: "9.5K+",
   },
   {
-    id: "10000000-0000-0000-0000-000000000003",
+    id: "3",
     name: "IIT Bombay",
     location: "Mumbai, Maharashtra",
     rating: 4.9,
@@ -95,6 +96,19 @@ const engineeringColleges = [
 
 const medicalColleges = [
   {
+    id: "4",
+    name: "CMC Vellore",
+    location: "Vellore, Tamil Nadu",
+    rating: 4.8,
+    fees: "₹1.5L/yr",
+    package: "₹15 LPA",
+    rank: 3,
+    stream: "Medical",
+    approvals: ["MCI"],
+    bannerUrl: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&q=80",
+    totalStudents: "1.5K+",
+  },
+  {
     id: "10000000-0000-0000-0000-000000000007",
     name: "AIIMS Delhi",
     location: "New Delhi, Delhi",
@@ -106,19 +120,6 @@ const medicalColleges = [
     approvals: ["MCI"],
     bannerUrl: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=600&q=80",
     totalStudents: "2K+",
-  },
-  {
-    id: "10000000-0000-0000-0000-000000000008",
-    name: "CMC Vellore",
-    location: "Vellore, Tamil Nadu",
-    rating: 4.8,
-    fees: "₹1.5L/yr",
-    package: "₹15 LPA",
-    rank: 3,
-    stream: "Medical",
-    approvals: ["MCI"],
-    bannerUrl: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&q=80",
-    totalStudents: "1.5K+",
   },
 ];
 
@@ -163,20 +164,7 @@ export default function Home() {
           </p>
 
           {/* Search Bar */}
-          <div className="mt-8 w-full max-w-lg mx-auto">
-            <div className="flex items-center bg-white rounded-xl h-14 pl-4 pr-2 shadow-modal">
-              <Search className="w-5 h-5 text-text-tertiary mr-3 shrink-0" />
-              <input
-                type="text"
-                placeholder="Search colleges, courses, cities..."
-                className="flex-1 h-full bg-transparent outline-none text-body-sm text-text-primary placeholder:text-text-tertiary"
-                aria-label="Search colleges"
-              />
-              <button className="h-10 px-5 bg-navy hover:bg-navy-dark text-white text-sm font-semibold rounded-lg transition-colors btn-press shrink-0">
-                Search
-              </button>
-            </div>
-          </div>
+          <HeroSearch />
 
           {/* Trust Stats */}
           <div className="mt-8 flex items-center justify-center gap-4 md:gap-8 flex-wrap">

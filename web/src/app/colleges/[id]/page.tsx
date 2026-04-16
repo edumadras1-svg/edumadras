@@ -16,7 +16,6 @@ import {
   Award,
   Users,
   BookOpen,
-  GraduationCap,
   Calendar,
   ChevronRight,
   Download,
@@ -24,8 +23,10 @@ import {
   Building2,
   TrendingUp,
   Loader2,
+  CheckCircle2,
 } from "lucide-react";
 import { JsonLd } from "@/components/JsonLd";
+import { motion, AnimatePresence } from "framer-motion";
 
 function formatPkg(val: number | null): string {
   if (!val) return "N/A";
@@ -46,6 +47,20 @@ function formatStudents(val: number | null): string {
   return `${val}`;
 }
 
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.5 }
+};
+
+const staggerContainer = {
+  animate: {
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
 export default function CollegeDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   const [college, setCollege] = useState<College | null>(null);
@@ -56,34 +71,23 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
   useEffect(() => {
     function fetchData() {
       setLoading(true);
-
-      // Simulate network
       setTimeout(() => {
-        // Fetch college
         const collegeData = mockColleges.find(c => c.id === id);
-        
         if (!collegeData) {
           setLoading(false);
           return;
         }
-
         setCollege(collegeData);
-
-        // Fetch courses
         const coursesData = mockCourses.filter(c => c.college_id === id);
         setCourses(coursesData);
-
-        // Fetch similar colleges (same stream, excluding current)
         const similarData = mockColleges
           .filter(c => c.stream === collegeData.stream && c.id !== id)
           .sort((a, b) => (a.rank || 999) - (b.rank || 999))
           .slice(0, 4);
-
         setSimilarColleges(similarData);
         setLoading(false);
       }, 400);
     }
-
     fetchData();
   }, [id]);
 
@@ -92,7 +96,12 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
       <div className="flex flex-col min-h-screen bg-surface">
         <TopNavBar />
         <div className="flex-1 flex items-center justify-center">
-          <Loader2 className="w-8 h-8 text-teal animate-spin" />
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+          >
+            <Loader2 className="w-10 h-10 text-teal" />
+          </motion.div>
         </div>
       </div>
     );
@@ -102,11 +111,14 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
     return (
       <div className="flex flex-col min-h-screen bg-surface">
         <TopNavBar />
-        <div className="flex-1 flex flex-col items-center justify-center">
-          <p className="text-h2 text-text-primary">College not found</p>
-          <Link href="/colleges" className="mt-4 text-teal font-semibold hover:underline">
-            ← Back to Colleges
-          </Link>
+        <div className="flex-1 flex flex-col items-center justify-center p-6 text-center">
+          <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}>
+            <h2 className="text-3xl font-bold text-text-primary">College not found</h2>
+            <p className="text-text-secondary mt-2">The institution you are looking for does not exist or has been moved.</p>
+            <Link href="/colleges" className="mt-6 inline-flex items-center gap-2 h-12 px-6 bg-navy text-white font-semibold rounded-xl btn-press">
+              <ArrowLeft className="w-5 h-5" /> Back to Colleges
+            </Link>
+          </motion.div>
         </div>
       </div>
     );
@@ -135,280 +147,321 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
 
   const streamSlug = college.stream?.toLowerCase() || "engineering";
 
-  // Structured Data
-  const firstCourse = courses[0];
-  const topCourses = courses.slice(0, 5).map(c => c.master_courses?.name).filter(Boolean).join(", ");
-  
-  const collegeFaqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": `What is the fee for ${firstCourse?.master_courses?.name || "courses"} at ${college.name}?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": `The fee for ${firstCourse?.master_courses?.name || "the main course"} at ${college.name} is approximately ${formatFee(firstCourse?.fee)}. Overall fees range from ${formatFee(Math.min(...courses.map(c => c.fee || Infinity)))} to ${formatFee(Math.max(...courses.map(c => c.fee || 0)))} per year.`
-        }
-      },
-      {
-        "@type": "Question",
-        "name": `What is the cutoff for ${college.name}?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": `The cutoff for ${college.name} varies by course and category. For ${college.stream} programs, admission is primarily based on performance in national or state-level entrance exams. Please contact our expert counselors for the latest category-wise cutoff details.`
-        }
-      },
-      {
-        "@type": "Question",
-        "name": `What are the top courses at ${college.name}?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": `${college.name} is well-known for its ${college.stream} programs. Top courses include ${topCourses || "various undergraduate and postgraduate programs"}.`
-        }
-      }
-    ]
-  };
-
   return (
-    <div className="flex flex-col min-h-screen bg-surface">
-      <JsonLd schema={collegeFaqSchema} />
+    <div className="flex flex-col min-h-screen bg-[#F8FAFC]">
       <TopNavBar />
 
-      {/* Breadcrumb */}
-      <div className="bg-white px-4 py-2">
+      {/* Breadcrumb - Glass Style */}
+      <div className="bg-white/50 backdrop-blur-md sticky top-14 md:top-16 z-30 px-4 py-2 border-b border-gray-100">
         <div className="container-mobile">
-          <nav className="flex items-center gap-1.5 text-caption" aria-label="Breadcrumb">
-            <Link href="/" className="text-blue-mid hover:underline">Home</Link>
-            <ChevronRight className="w-3 h-3 text-text-tertiary" />
-            <Link href={`/colleges?stream=${streamSlug}`} className="text-blue-mid hover:underline capitalize">{college.stream || "Colleges"}</Link>
-            <ChevronRight className="w-3 h-3 text-text-tertiary" />
-            <span className="text-text-secondary font-medium truncate max-w-[180px]">{college.name}</span>
+          <nav className="flex items-center gap-1.5 text-[11px] md:text-caption" aria-label="Breadcrumb">
+            <Link href="/" className="text-blue-600 hover:text-blue-800 transition-colors">Home</Link>
+            <ChevronRight className="w-3 h-3 text-gray-400" />
+            <Link href={`/colleges?stream=${streamSlug}`} className="text-blue-600 hover:text-blue-800 transition-colors capitalize">{college.stream || "Colleges"}</Link>
+            <ChevronRight className="w-3 h-3 text-gray-400" />
+            <span className="text-gray-600 font-medium truncate max-w-[150px] md:max-w-none">{college.name}</span>
           </nav>
         </div>
       </div>
 
-      {/* Hero Banner */}
-      <section className="relative h-56 md:h-72 bg-navy overflow-hidden">
-        {college.banner_url ? (
-          <img src={college.banner_url} alt={`${college.name} campus`} className="w-full h-full object-cover" />
-        ) : (
-          <div className="w-full h-full gradient-hero" />
-        )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+      {/* Hero Header */}
+      <section className="relative h-[280px] md:h-[400px] overflow-hidden">
+        <motion.div 
+          initial={{ scale: 1.1 }} 
+          animate={{ scale: 1 }} 
+          transition={{ duration: 1.5 }}
+          className="absolute inset-0"
+        >
+          {college.banner_url ? (
+            <img src={college.banner_url} alt={`${college.name} campus`} className="w-full h-full object-cover" />
+          ) : (
+            <div className="w-full h-full gradient-hero" />
+          )}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-transparent to-black/20" />
+        </motion.div>
 
-        <div className="absolute top-4 left-4 md:hidden">
-          <Link href="/colleges" className="p-2.5 bg-white/20 backdrop-blur-md rounded-full text-white hover:bg-white/30 transition-colors inline-flex">
-            <ArrowLeft className="w-5 h-5" />
-          </Link>
-        </div>
+        {/* Floating Actions */}
         <div className="absolute top-4 right-4 flex gap-2">
-          <button className="p-2.5 bg-white/20 backdrop-blur-md rounded-full text-white hover:bg-white/30 transition-colors" aria-label="Share">
+          <button className="w-10 h-10 bg-white/10 backdrop-blur-md rounded-full text-white flex items-center justify-center hover:bg-white/20 transition-all border border-white/20">
             <Share2 className="w-5 h-5" />
           </button>
-          <button className="p-2.5 bg-white/20 backdrop-blur-md rounded-full text-white hover:bg-white/30 transition-colors" aria-label="Heart">
+          <button className="w-10 h-10 bg-white/10 backdrop-blur-md rounded-full text-white flex items-center justify-center hover:bg-white/20 transition-all border border-white/20">
             <Heart className="w-5 h-5" />
           </button>
         </div>
       </section>
 
-      {/* College Info */}
-      <section className="container-mobile relative bg-white rounded-t-[20px] -mt-6 pt-2 pb-6 px-4 md:px-6">
-        <div className="absolute -top-10 left-6 w-20 h-20 bg-white rounded-[14px] shadow-hover flex items-center justify-center overflow-hidden">
-          {college.logo_url ? (
-            <img src={college.logo_url} alt={`${college.name} logo`} className="w-14 h-14 object-contain" />
-          ) : (
-            <span className="text-xl font-bold text-navy">
-              {college.name.split(" ").map(n => n[0]).join("").slice(0, 3)}
-            </span>
-          )}
-        </div>
-
-        <div className="pt-12">
-          <h1 className="text-h1 text-text-primary">{college.name} Admissions 2026</h1>
-
-          <div className="flex items-center gap-1.5 mt-1.5 text-text-secondary">
-            <MapPin className="w-4 h-4 shrink-0" />
-            <span className="text-label">
-              {college.city}, {college.state}
-              {college.established_year ? ` · Established ${college.established_year}` : ""}
-            </span>
-          </div>
-
-          {/* Stats Bar */}
-          <div className="flex items-center gap-3 mt-4 flex-wrap">
-            {college.rank && (
-              <div className="flex items-center gap-1.5 text-label">
-                <Award className="w-4 h-4 text-teal" />
-                <span className="text-text-secondary">Rank</span>
-                <span className="font-semibold text-text-primary">#{college.rank}</span>
-              </div>
-            )}
-            {college.rating && (
-              <div className="flex items-center gap-1.5 text-label">
-                <Star className="w-4 h-4 text-teal" />
-                <span className="text-text-secondary">Rating</span>
-                <span className="font-semibold text-text-primary">{college.rating}/5</span>
-              </div>
-            )}
-            {college.established_year && (
-              <div className="flex items-center gap-1.5 text-label">
-                <Calendar className="w-4 h-4 text-teal" />
-                <span className="text-text-secondary">Est.</span>
-                <span className="font-semibold text-text-primary">{college.established_year}</span>
-              </div>
-            )}
-            {college.total_students && (
-              <div className="flex items-center gap-1.5 text-label">
-                <Users className="w-4 h-4 text-teal" />
-                <span className="text-text-secondary">Students</span>
-                <span className="font-semibold text-text-primary">{formatStudents(college.total_students)}</span>
-              </div>
-            )}
-          </div>
-
-          {/* Approval Badges */}
-          <div className="flex flex-wrap gap-2 mt-4">
-            {(college.approvals || []).map((badge) => (
-              <span key={badge} className="bg-stream-engineering text-stream-engineering-text text-badge px-3 py-1 rounded-full">
-                {badge}
-              </span>
-            ))}
-            {college.is_recommended && (
-              <span className="bg-amber-50 text-amber-700 text-badge px-3 py-1 rounded-full">
-                ⭐ Recommended
-              </span>
-            )}
-          </div>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col gap-2.5 mt-6 md:flex-row">
-            <button className="h-12 bg-navy hover:bg-navy-dark text-white font-semibold rounded-[10px] transition-colors btn-press flex items-center justify-center gap-2 md:flex-1">
-              Get Free Counseling
-            </button>
-            <button className="h-12 bg-teal hover:bg-teal/90 text-white font-semibold rounded-[10px] transition-colors btn-press flex items-center justify-center gap-2 md:flex-1">
-              <Download className="w-4 h-4" /> Download Brochure
-            </button>
-            <Link
-              href="/compare"
-              className="h-12 bg-surface-low hover:bg-surface-container text-navy font-semibold rounded-[10px] transition-colors btn-press flex items-center justify-center gap-2 md:w-auto md:px-6"
-            >
-              <GitCompareArrows className="w-4 h-4" /> Compare
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Main Content */}
-      <main className="container-mobile pb-32 space-y-8 mt-2">
-        {/* Courses & Fees */}
-        {courses.length > 0 && (
-          <section className="bg-surface-card rounded-[14px] shadow-card p-5">
-            <div className="flex items-center gap-2 mb-4">
-              <BookOpen className="w-5 h-5 text-teal" />
-              <h2 className="text-h3 text-text-primary">Courses & Fees</h2>
-              <span className="text-badge bg-surface-low text-text-secondary px-2 py-0.5 rounded ml-auto">
-                {courses.length} course{courses.length > 1 ? "s" : ""}
-              </span>
+      {/* Main Container */}
+      <main className="container-mobile -mt-20 md:-mt-32 relative z-10 px-4 pb-24">
+        
+        {/* College Identity Card */}
+        <motion.div 
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, type: "spring" }}
+          className="bg-white rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.08)] p-6 md:p-8"
+        >
+          <div className="flex flex-col md:flex-row gap-6 md:items-end">
+            {/* Logo */}
+            <div className="w-24 h-24 md:w-32 md:h-32 bg-white rounded-2xl shadow-xl flex items-center justify-center border border-gray-100 overflow-hidden shrink-0 -mt-2 md:-mt-0">
+               {college.logo_url ? (
+                <img src={college.logo_url} alt={`${college.name} logo`} className="w-16 h-16 md:w-20 md:h-20 object-contain" />
+              ) : (
+                <span className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-navy to-teal">
+                  {college.name.split(" ").map(n => n[0]).join("").slice(0, 3)}
+                </span>
+              )}
             </div>
 
-            <div className="space-y-0">
-              {courses.map((course, i) => (
-                <div key={course.id} className={`py-4 ${i !== 0 ? "border-t border-border-ghost" : ""}`}>
-                  <div className="flex items-start justify-between gap-2">
-                    <div className="flex-1 min-w-0">
-                      <h3 className="text-body-sm font-semibold text-text-primary">{course.master_courses?.name || "Course"}</h3>
-                      <div className="flex items-center gap-2 mt-1 flex-wrap">
-                        {course.duration && <span className="text-caption text-text-secondary">{course.duration}</span>}
-                        {course.seats && (
-                          <>
-                            <span className="text-text-tertiary">·</span>
-                            <span className="text-caption text-text-secondary">{course.seats} Seats</span>
-                          </>
-                        )}
-                        {course.eligibility && (
-                          <>
-                            <span className="text-text-tertiary">·</span>
-                            <span className="text-caption text-text-secondary">{course.eligibility}</span>
-                          </>
-                        )}
+            <div className="flex-1">
+              <div className="flex flex-wrap items-center gap-2 mb-2">
+                <span className="bg-blue-50 text-blue-600 text-[10px] font-bold px-2 py-0.5 rounded tracking-wider uppercase">
+                  {college.stream}
+                </span>
+                {college.is_recommended && (
+                  <span className="bg-amber-50 text-amber-600 text-[10px] font-bold px-2 py-0.5 rounded tracking-wider uppercase flex items-center gap-1">
+                    <Star className="w-3 h-3 fill-amber-600" /> Recommended
+                  </span>
+                )}
+              </div>
+              <h1 className="text-2xl md:text-4xl font-extrabold text-[#1E293B] leading-tight mb-2">
+                {college.name} Admission 2026
+              </h1>
+              <div className="flex flex-wrap items-center gap-4 text-gray-500">
+                <div className="flex items-center gap-1.5 text-sm md:text-base">
+                  <MapPin className="w-4 h-4 text-red-400" />
+                  <span>{college.city}, {college.state}</span>
+                </div>
+                {college.established_year && (
+                  <div className="flex items-center gap-1.5 text-sm md:text-base border-l border-gray-200 pl-4">
+                    <Calendar className="w-4 h-4 text-blue-400" />
+                    <span>Est. {college.established_year}</span>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Key Stats Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 pt-8 border-t border-gray-50">
+            {[
+              { icon: Award, label: "NIRF Rank", value: `#${college.rank || "N/A"}`, color: "text-amber-500", bg: "bg-amber-50" },
+              { icon: Star, label: "User Rating", value: `${college.rating || "N/A"}/5`, color: "text-emerald-500", bg: "bg-emerald-50" },
+              { icon: Users, label: "Strength", value: formatStudents(college.total_students), color: "text-blue-500", bg: "bg-blue-50" },
+              { icon: TrendingUp, label: "Avg Package", value: formatPkg(college.avg_package), color: "text-pink-500", bg: "bg-pink-50" },
+            ].map((stat, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2 + (i * 0.1) }}
+                className={`${stat.bg} rounded-2xl p-4 flex flex-col items-center text-center`}
+              >
+                <stat.icon className={`w-5 h-5 ${stat.color} mb-2`} />
+                <span className="text-[10px] md:text-xs text-gray-400 font-bold uppercase tracking-wider">{stat.label}</span>
+                <span className={`text-base md:text-xl font-extrabold ${stat.color.replace('text-', 'text-slate-900')}`}>{stat.value}</span>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-3 mt-8">
+            <button className="flex-1 h-12 bg-[#0F172A] hover:bg-[#1E293B] text-white font-bold rounded-xl transition-all shadow-xl shadow-slate-200 btn-press flex items-center justify-center gap-2">
+              Apply Now Free
+            </button>
+            <button className="flex-1 h-12 bg-white border-2 border-slate-100 hover:border-blue-200 hover:bg-blue-50 text-slate-800 font-bold rounded-xl transition-all btn-press flex items-center justify-center gap-2">
+              <Download className="w-4 h-4" /> Brochure
+            </button>
+            <button className="w-full sm:w-auto px-6 h-12 bg-slate-50 text-slate-600 font-bold rounded-xl hover:bg-slate-100 transition-all btn-press flex items-center justify-center gap-2">
+              <GitCompareArrows className="w-4 h-4" /> Compare
+            </button>
+          </div>
+        </motion.div>
+
+        {/* Content Tabs Navigation - Placeholder for feel */}
+        <div className="flex gap-6 mt-12 overflow-x-auto no-scrollbar pb-2 border-b border-gray-100">
+          {["Overview", "Courses", "Placement", "Admission"].map((tab, i) => (
+            <button key={tab} className={`text-sm font-bold pb-2 transition-all whitespace-nowrap ${i === 0 ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-400 hover:text-gray-600"}`}>
+              {tab}
+            </button>
+          ))}
+        </div>
+
+        {/* Sections Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
+          
+          {/* Left Column (Main Info) */}
+          <div className="lg:col-span-2 space-y-8">
+            
+            {/* About */}
+            <motion.section {...fadeInUp} className="bg-white rounded-3xl p-6 md:p-8 shadow-sm">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 bg-indigo-50 rounded-xl flex items-center justify-center">
+                  <Building2 className="w-5 h-5 text-indigo-600" />
+                </div>
+                <h2 className="text-xl md:text-2xl font-bold text-slate-900">About the Institution</h2>
+              </div>
+              <p className="text-base md:text-lg text-slate-600 leading-relaxed">
+                {college.description || "Information about this college will be updated soon. Stay tuned for details about campus life, infrastructure, and unique features."}
+              </p>
+              
+              <div className="grid grid-cols-2 gap-4 mt-8">
+                {[
+                  { label: "Ownership", value: college.type },
+                  { label: "Approved By", value: college.approvals?.join(", ") },
+                  { label: "Campus Area", value: "250+ Acres" },
+                  { label: "Total Faculty", value: "450+" },
+                ].map((item, i) => (
+                  <div key={i} className="flex flex-col gap-1">
+                    <span className="text-xs text-slate-400 font-bold uppercase">{item.label}</span>
+                    <span className="text-sm font-semibold text-slate-700">{item.value || "Not available"}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.section>
+
+            {/* Courses & Fees */}
+            <motion.section {...fadeInUp} className="bg-white rounded-3xl p-6 md:p-8 shadow-sm">
+              <div className="flex items-center justify-between mb-8">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-emerald-50 rounded-xl flex items-center justify-center">
+                    <BookOpen className="w-5 h-5 text-emerald-600" />
+                  </div>
+                  <h2 className="text-xl md:text-2xl font-bold text-slate-900">Popular Courses</h2>
+                </div>
+                <span className="text-xs font-bold bg-slate-100 text-slate-600 px-3 py-1.5 rounded-full">
+                  {courses.length} Programs
+                </span>
+              </div>
+
+              <div className="space-y-4">
+                {courses.map((course, i) => (
+                  <div 
+                    key={course.id} 
+                    className="p-4 md:p-6 border border-gray-50 bg-slate-50/30 rounded-2xl hover:bg-slate-50 transition-colors group"
+                  >
+                    <div className="flex flex-col md:flex-row justify-between gap-4">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-2">
+                          <h3 className="text-base md:text-lg font-bold text-slate-800">{course.master_courses?.name}</h3>
+                          <CheckCircle2 className="w-4 h-4 text-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </div>
+                        <div className="flex flex-wrap gap-x-4 gap-y-2 text-xs md:text-sm text-slate-500 font-medium">
+                          <span className="flex items-center gap-1"><BookOpen className="w-3.5 h-3.5" /> {course.duration}</span>
+                          <span className="flex items-center gap-1"><Users className="w-3.5 h-3.5" /> {course.seats} Seats</span>
+                          <span className="hidden sm:inline-block text-slate-300">|</span>
+                          <span className="text-slate-600">{course.eligibility}</span>
+                        </div>
+                      </div>
+                      <div className="flex flex-row md:flex-col justify-between md:text-right items-center md:items-end">
+                        <p className="text-lg md:text-xl font-extrabold text-[#111827]">{formatFee(course.fee)}</p>
+                        <p className="text-[10px] md:text-xs text-slate-400 font-bold uppercase">Estimated Annual Fee</p>
                       </div>
                     </div>
-                    <div className="text-right shrink-0">
-                      <p className="text-body-sm font-bold text-teal">{formatFee(course.fee)}</p>
-                      {course.avg_package && (
-                        <p className="text-caption text-text-tertiary">{formatPkg(course.avg_package)} avg pkg</p>
-                      )}
+                  </div>
+                ))}
+              </div>
+            </motion.section>
+          </div>
+
+          {/* Right Column (Sidebar) */}
+          <div className="space-y-8">
+            {/* Quick Actions Card */}
+            <div className="bg-gradient-to-br from-navy to-navy-dark rounded-3xl p-6 text-white shadow-xl">
+              <h3 className="text-xl font-bold mb-2">Interested in Admission?</h3>
+              <p className="text-white/60 text-sm mb-6">Connect with our expert counselors for free personalized guidance.</p>
+              <button className="w-full h-12 bg-white text-navy font-bold rounded-xl mb-3 hover:bg-blue-50 transition-all">
+                Talk to Expert
+              </button>
+              <button className="w-full h-12 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold rounded-xl transition-all">
+                Check Cutoffs
+              </button>
+            </div>
+
+            {/* Ranking Stats */}
+            <div className="bg-white rounded-3xl p-6 shadow-sm">
+              <h3 className="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
+                <Star className="w-5 h-5 text-amber-400" /> Ratings Breakdown
+              </h3>
+              <div className="space-y-4">
+                {[
+                  { label: "Academics", score: 4.8 },
+                  { label: "Infrastructure", score: 4.5 },
+                  { label: "Placement", score: 4.7 },
+                  { label: "Campus Life", score: 4.2 },
+                ].map((r) => (
+                  <div key={r.label}>
+                    <div className="flex justify-between text-sm mb-1">
+                      <span className="font-semibold text-slate-600">{r.label}</span>
+                      <span className="font-bold text-slate-900">{r.score}/5</span>
+                    </div>
+                    <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
+                      <motion.div 
+                        initial={{ width: 0 }}
+                        animate={{ width: `${(r.score / 5) * 100}%` }}
+                        transition={{ duration: 1, delay: 0.5 }}
+                        className="h-full bg-blue-500 rounded-full"
+                      />
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* About */}
-        {college.description && (
-          <section className="bg-surface-card rounded-[14px] shadow-card p-5">
-            <div className="flex items-center gap-2 mb-4">
-              <Building2 className="w-5 h-5 text-teal" />
-              <h2 className="text-h3 text-text-primary">About {college.name}</h2>
-            </div>
-
-            <p className="text-body-lg text-text-secondary leading-relaxed">{college.description}</p>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-5">
-              {[
-                { label: "Type", value: college.type || "N/A" },
-                { label: "City", value: college.city || "N/A" },
-                { label: "State", value: college.state || "N/A" },
-                { label: "Established", value: college.established_year?.toString() || "N/A" },
-              ].map((fact) => (
-                <div key={fact.label} className="bg-surface-low rounded-lg p-3">
-                  <p className="text-badge text-text-tertiary">{fact.label}</p>
-                  <p className="text-body-sm font-semibold text-text-primary mt-0.5">{fact.value}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* Placement Statistics */}
-        {(college.avg_package || college.highest_package) && (
-          <section className="bg-surface-card rounded-[14px] shadow-card p-5">
-            <div className="flex items-center gap-2 mb-4">
-              <TrendingUp className="w-5 h-5 text-teal" />
-              <h2 className="text-h3 text-text-primary">Placement Statistics</h2>
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-gradient-to-br from-teal/10 to-teal/5 rounded-[12px] p-5 text-center">
-                <p className="text-3xl font-bold text-teal">{formatPkg(college.avg_package)}</p>
-                <p className="text-label text-text-secondary mt-1">Average Package</p>
-              </div>
-              <div className="bg-gradient-to-br from-navy/10 to-navy/5 rounded-[12px] p-5 text-center">
-                <p className="text-3xl font-bold text-navy">{formatPkg(college.highest_package)}</p>
-                <p className="text-label text-text-secondary mt-1">Highest Package</p>
+                ))}
               </div>
             </div>
-          </section>
-        )}
 
-        {/* FAQ */}
-        <section>
-          <h2 className="text-h3 text-text-primary mb-4">Frequently Asked Questions</h2>
-          <FAQAccordion items={faqItems} />
+            {/* Placement highlights */}
+            <div className="bg-white rounded-3xl p-6 shadow-sm overflow-hidden relative">
+              <div className="absolute -top-6 -right-6 w-24 h-24 bg-rose-50 rounded-full pointer-events-none" />
+              <h3 className="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2 relative">
+                <TrendingUp className="w-5 h-5 text-rose-500" /> Placement History
+              </h3>
+              <div className="space-y-6 relative">
+                 <div className="flex items-center justify-between p-3 bg-rose-50 rounded-2xl">
+                    <div>
+                      <p className="text-2xl font-black text-rose-600">{formatPkg(college.highest_package)}</p>
+                      <p className="text-[10px] font-bold text-rose-400 uppercase">Highest CTC</p>
+                    </div>
+                    <div className="text-right">
+                       <p className="text-xl font-bold text-slate-800">{formatPkg(college.avg_package)}</p>
+                       <p className="text-[10px] font-bold text-slate-400 uppercase">Average CTC</p>
+                    </div>
+                 </div>
+                 <div className="flex flex-wrap gap-2">
+                   {["Google", "Microsoft", "Amazon", "Goldman Sachs", "ITC"].map(c => (
+                     <span key={c} className="text-[10px] font-bold px-3 py-1 bg-slate-100 text-slate-500 rounded-full">{c}</span>
+                   ))}
+                   <span className="text-[10px] font-bold px-3 py-1 bg-slate-100 text-slate-500 rounded-full">200+ more</span>
+                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* FAQs */}
+        <section className="mt-16">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-2">Have Some Questions?</h2>
+            <p className="text-slate-500">Find answers to commonly asked questions about {college.name}</p>
+          </div>
+          <div className="max-w-3xl mx-auto">
+             <FAQAccordion items={faqItems} />
+          </div>
         </section>
 
         <InlineCTABanner />
 
-        {/* Similar Colleges */}
+        {/* Similar Colleges (Horizontal Scroll) */}
         {similarColleges.length > 0 && (
-          <section>
-            <h2 className="text-h3 text-text-primary mb-4">Students Also Viewed</h2>
-            <div className="flex gap-4 overflow-x-auto no-scrollbar pb-2">
-              {similarColleges.map((sc) => (
-                <div key={sc.id} className="min-w-[300px]">
+          <section className="mt-16">
+            <h2 className="text-2xl font-bold text-slate-900 mb-8">Students Also Compared With</h2>
+            <div className="flex gap-6 overflow-x-auto no-scrollbar pb-6 pl-1 -ml-1">
+              {similarColleges.map((sc, i) => (
+                <motion.div 
+                  key={sc.id} 
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                  className="min-w-[300px] md:min-w-[340px]"
+                >
                   <CollegeCard
                     id={sc.id}
                     name={sc.name}
@@ -423,27 +476,29 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
                     logoUrl={sc.logo_url || undefined}
                     totalStudents={sc.total_students ? formatStudents(sc.total_students) : "N/A"}
                   />
-                </div>
+                </motion.div>
               ))}
             </div>
           </section>
         )}
       </main>
 
-      {/* Sticky Bottom CTA */}
-      <div className="fixed bottom-[60px] md:bottom-0 left-0 right-0 z-40 bg-white p-3 shadow-[0_-4px_20px_rgba(27,58,92,0.08)]">
-        <div className="container-mobile flex gap-3">
-          <Link
-            href="/compare"
-            className="flex-1 h-12 bg-surface-low text-navy font-semibold rounded-[10px] btn-press hover:bg-surface-container transition-colors flex items-center justify-center"
-          >
-            Add to Compare
-          </Link>
-          <button className="flex-1 h-12 bg-navy hover:bg-navy-dark text-white font-semibold rounded-[10px] btn-press transition-colors shadow-sm">
-            Get Free Counseling
+      {/* Sticky Bottom Actions (Mobile) */}
+      <AnimatePresence>
+        <motion.div 
+          initial={{ y: 100 }}
+          animate={{ y: 0 }}
+          className="fixed bottom-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-xl md:hidden p-4 pb-6 flex gap-3 border-t border-gray-100 shadow-[0_-8px_30px_rgba(0,0,0,0.04)]"
+        >
+          <button className="flex-1 h-12 bg-navy text-white font-bold rounded-xl btn-press text-sm">
+            Talk to Experts
           </button>
-        </div>
-      </div>
+          <button className="flex-1 h-12 bg-teal text-white font-bold rounded-xl btn-press text-sm">
+            Apply Online
+          </button>
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 }
+

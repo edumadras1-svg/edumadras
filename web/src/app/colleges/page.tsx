@@ -10,9 +10,11 @@ import {
   ArrowLeft,
   X,
   Check,
+  Loader2,
 } from "lucide-react";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, Suspense } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 // Sort options
 const sortOptions = [
@@ -44,12 +46,32 @@ function formatStudents(val: number | null): string {
 }
 
 export default function CollegesPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex flex-col min-h-screen bg-surface">
+        <TopNavBar />
+        <div className="flex-1 flex items-center justify-center">
+          <Loader2 className="w-8 h-8 text-teal animate-spin" />
+        </div>
+      </div>
+    }>
+      <CollegesContent />
+    </Suspense>
+  );
+}
+
+function CollegesContent() {
+  const searchParams = useSearchParams();
+  const initialQuery = searchParams.get("q") || "";
+  const initialStream = searchParams.get("stream") || "all";
+
   const [colleges, setColleges] = useState<College[]>([]);
   const [loading, setLoading] = useState(true);
   const [totalCount, setTotalCount] = useState(0);
-  const [activeStream, setActiveStream] = useState("all");
+  const [activeStream, setActiveStream] = useState(initialStream);
   const [sortBy, setSortBy] = useState("rank-asc");
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchQuery, setSearchQuery] = useState(initialQuery);
 
   // Filter state
   const [showSortDropdown, setShowSortDropdown] = useState(false);
@@ -70,6 +92,17 @@ export default function CollegesPage() {
     const ascending = sortDir === "asc";
 
     let filtered = [...mockColleges];
+
+    // Search filter
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+      filtered = filtered.filter(c => 
+        c.name.toLowerCase().includes(q) || 
+        c.city.toLowerCase().includes(q) || 
+        c.state.toLowerCase().includes(q) ||
+        (c.stream && c.stream.toLowerCase().includes(q))
+      );
+    }
 
     // Stream filter
     if (activeStream !== "all") {
@@ -112,16 +145,24 @@ export default function CollegesPage() {
       setTotalCount(filtered.length);
       setLoading(false);
     }, 400);
-  }, [activeStream, sortBy, currentPage, selectedTypes, selectedApprovals]);
+  }, [activeStream, sortBy, currentPage, selectedTypes, selectedApprovals, searchQuery]);
 
   useEffect(() => {
     fetchColleges();
   }, [fetchColleges]);
 
+  // Sync stream from URL if it changes
+  useEffect(() => {
+    const s = searchParams.get("stream");
+    if (s) setActiveStream(s);
+    const q = searchParams.get("q");
+    if (q) setSearchQuery(q);
+  }, [searchParams]);
+
   // Reset page when filters change
   useEffect(() => {
     setCurrentPage(1);
-  }, [activeStream, sortBy, selectedTypes, selectedApprovals]);
+  }, [activeStream, sortBy, selectedTypes, selectedApprovals, searchQuery]);
 
   const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE);
 
