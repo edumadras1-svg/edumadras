@@ -566,19 +566,18 @@ DROP POLICY IF EXISTS "Admins can delete banners" ON public.banners;
 DROP POLICY IF EXISTS "Authenticated users can do everything" ON public.banners;
 DROP POLICY IF EXISTS "Public can view active banners" ON public.banners;
 
--- 1. Public Read Access (Active banners only)
--- This is for the homepage to see active banners.
+-- 1. Public Read Access (Active banners only for homepage)
 CREATE POLICY "Public can view active banners"
 ON public.banners FOR SELECT
 TO public
 USING (is_active = true);
 
--- 2. Authenticated Access (Full Control)
--- This allows logged-in admins to seeing ALL banners (including inactive ones),
--- and to INSERT, UPDATE, and DELETE them.
-CREATE POLICY "Authenticated users can do everything"
+-- 2. Full Public Access (For development/admin purposes)
+-- NOTE: In production, this should be restricted to authenticated admins only.
+CREATE POLICY "Public can do everything with banners"
 ON public.banners
-TO authenticated
+FOR ALL
+TO public
 USING (true)
 WITH CHECK (true);
 -- Drop unique constraint on code

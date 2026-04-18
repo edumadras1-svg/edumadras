@@ -2,6 +2,7 @@ import { TopNavBar } from "@/components/TopNavBar";
 import { CollegeCard } from "@/components/CollegeCard";
 import { FAQAccordion } from "@/components/FAQAccordion";
 import { HeroSearch } from "@/components/HeroSearch";
+import { supabase } from "@/lib/supabase/client";
 import Link from "next/link";
 import {
   Search,
@@ -143,7 +144,16 @@ const faqItems = [
   { question: "Can I compare colleges on EduMadras?", answer: "Yes! Add up to 3 colleges to compare side-by-side on fees, placements, rankings, and more using our Compare tool." },
 ];
 
-export default function Home() {
+export default async function Home() {
+  const { data: banners } = await supabase
+    .from("banners")
+    .select("*")
+    .eq("is_active", true)
+    .order("created_at", { ascending: false })
+    .limit(1);
+
+  const banner = banners?.[0];
+
   return (
     <div className="flex flex-col min-h-screen">
       <JsonLd schema={homeSchema} />
@@ -198,14 +208,26 @@ export default function Home() {
 
       {/* ==================== PROMOTIONAL BANNER ==================== */}
       <section className="container-mobile -mt-6 relative z-20">
-        <div className="bg-gradient-to-r from-navy-dark to-navy rounded-xl p-6 md:p-8 text-white relative overflow-hidden shadow-hover">
+        <div className={`rounded-xl p-6 md:p-8 text-white relative overflow-hidden shadow-hover ${banner?.gradient || "bg-gradient-to-r from-navy-dark to-navy"}`}>
+          {banner?.image && (
+            <img 
+              src={banner.image} 
+              alt="" 
+              className="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-30"
+            />
+          )}
           <div className="absolute top-0 right-0 w-40 h-40 bg-teal/20 rounded-full -mr-10 -mt-10 blur-2xl" />
-          <span className="text-badge text-teal-light tracking-widest">SCHOLARSHIP ALERT</span>
-          <h2 className="text-h2 text-white mt-2">Upto 50% Scholarship for 2025</h2>
-          <p className="text-body-sm text-white/60 mt-1">Limited seats available. Apply through EduMadras.</p>
-          <button className="mt-5 h-10 px-6 bg-teal hover:bg-teal/90 text-white text-sm font-semibold rounded-lg transition-colors btn-press flex items-center gap-2">
-            Check Eligibility <ArrowRight className="w-4 h-4" />
-          </button>
+          <div className="relative z-10">
+            <span className="text-badge text-teal-light tracking-widest uppercase">{banner?.subtitle || "PROMOTIONAL OFFER"}</span>
+            <h2 className="text-h2 text-white mt-2">{banner?.title || "Upto 50% Scholarship for 2025"}</h2>
+            <p className="text-body-sm text-white/60 mt-1">{banner?.description || banner?.subtitle || "Limited seats available. Apply through EduMadras."}</p>
+            <Link 
+              href={banner?.cta_link || "/apply"}
+              className="mt-5 h-10 px-6 bg-teal hover:bg-teal/90 text-white text-sm font-semibold rounded-lg transition-colors btn-press flex items-center justify-center gap-2 w-fit"
+            >
+              {banner?.cta || "Check Eligibility"} <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
       </section>
 
