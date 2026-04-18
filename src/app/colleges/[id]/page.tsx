@@ -4,7 +4,8 @@ import { TopNavBar } from "@/components/TopNavBar";
 import { CollegeCard } from "@/components/CollegeCard";
 import { FAQAccordion } from "@/components/FAQAccordion";
 import { InlineCTABanner } from "@/components/InlineCTABanner";
-import { mockColleges, mockCourses, type College, type CollegeCourse } from "@/lib/mockData";
+import type { College, CollegeCourse } from "@/lib/mockData";
+import { supabase } from "@/lib/supabase/client";
 import Link from "next/link";
 import { useEffect, useState, use } from "react";
 import {
@@ -69,24 +70,47 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    function fetchData() {
+    async function fetchData() {
       setLoading(true);
-      setTimeout(() => {
-        const collegeData = mockColleges.find(c => c.id === id);
-        if (!collegeData) {
+      try {
+        const { data: collegeData, error: collegeError } = await supabase
+          .from("colleges")
+          .select("*")
+          .eq("id", id)
+          .single();
+
+        if (collegeError || !collegeData) {
           setLoading(false);
           return;
         }
-        setCollege(collegeData);
-        const coursesData = mockCourses.filter(c => c.college_id === id);
-        setCourses(coursesData);
-        const similarData = mockColleges
-          .filter(c => c.stream === collegeData.stream && c.id !== id)
-          .sort((a, b) => (a.rank || 999) - (b.rank || 999))
-          .slice(0, 4);
-        setSimilarColleges(similarData);
+
+        setCollege(collegeData as College);
+
+        const { data: coursesData } = await supabase
+          .from("college_courses")
+          .select("*, master_courses(name, stream)")
+          .eq("college_id", id);
+          
+        if (coursesData) {
+          setCourses(coursesData as unknown as CollegeCourse[]);
+        }
+
+        const { data: similarData } = await supabase
+          .from("colleges")
+          .select("*")
+          .eq("stream", collegeData.stream || "")
+          .neq("id", id)
+          .order("rank", { ascending: true })
+          .limit(4);
+
+        if (similarData) {
+          setSimilarColleges(similarData as College[]);
+        }
+      } catch (err) {
+        console.error("Failed to fetch college details", err);
+      } finally {
         setLoading(false);
-      }, 400);
+      }
     }
     fetchData();
   }, [id]);
