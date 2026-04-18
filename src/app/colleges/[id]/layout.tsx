@@ -1,11 +1,16 @@
-import { mockColleges } from "@/lib/mockData";
+import { supabase } from "@/lib/supabase/client";
 import type { Metadata } from "next";
 
 export async function generateMetadata(
   { params }: { params: Promise<{ id: string }> }
 ): Promise<Metadata> {
   const { id } = await params;
-  const college = mockColleges.find(c => c.id === id);
+  
+  const { data: college } = await supabase
+    .from("colleges")
+    .select("name")
+    .eq("id", id)
+    .single();
   
   if (!college) {
     return {
