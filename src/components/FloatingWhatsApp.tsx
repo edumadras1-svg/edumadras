@@ -2,8 +2,16 @@
 
 import React from "react";
 import { MessageCircle } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 export function FloatingWhatsApp() {
+  const pathname = usePathname();
+
+  // Hide WhatsApp bubble in the admin panel
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
+
   const phoneNumber = "919363699095";
   const message = encodeURIComponent("Hi, I need help finding the right college.");
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;

@@ -3,7 +3,8 @@
 import { TopNavBar } from "@/components/TopNavBar";
 import { CollegeCard } from "@/components/CollegeCard";
 import { StreamPills } from "@/components/StreamPills";
-import { mockColleges, type College } from "@/lib/mockData";
+import type { College } from "@/lib/mockData";
+import { supabase } from "@/lib/supabase/client";
 import {
   SlidersHorizontal,
   ChevronDown,
@@ -73,6 +74,21 @@ function CollegesContent() {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState(initialQuery);
 
+  // DB state
+  const [allDbColleges, setAllDbColleges] = useState<College[]>([]);
+  const [isDbLoaded, setIsDbLoaded] = useState(false);
+
+  useEffect(() => {
+    const fetchAllDb = async () => {
+      const { data } = await supabase.from('colleges').select('*');
+      if (data) {
+        setAllDbColleges(data as College[]);
+      }
+      setIsDbLoaded(true);
+    };
+    fetchAllDb();
+  }, []);
+
   // Filter state
   const [showSortDropdown, setShowSortDropdown] = useState(false);
   const [showFilterDrawer, setShowFilterDrawer] = useState(false);
@@ -86,12 +102,14 @@ function CollegesContent() {
   const activeFilterCount = selectedTypes.length + selectedApprovals.length;
 
   const fetchColleges = useCallback(() => {
+    if (!isDbLoaded) return;
+
     setLoading(true);
 
     const [sortField, sortDir] = sortBy.split("-");
     const ascending = sortDir === "asc";
 
-    let filtered = [...mockColleges];
+    let filtered = [...allDbColleges];
 
     // Search filter
     if (searchQuery) {
@@ -144,8 +162,8 @@ function CollegesContent() {
       setColleges(paginated);
       setTotalCount(filtered.length);
       setLoading(false);
-    }, 400);
-  }, [activeStream, sortBy, currentPage, selectedTypes, selectedApprovals, searchQuery]);
+    }, 100);
+  }, [activeStream, sortBy, currentPage, selectedTypes, selectedApprovals, searchQuery, isDbLoaded, allDbColleges]);
 
   useEffect(() => {
     fetchColleges();

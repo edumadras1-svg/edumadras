@@ -210,8 +210,20 @@ export default function AdminCollegeFormPage({ params }: { params: Promise<{ id:
           {activeTab === 'courses' && !isNew ? (
             <CollegeCoursesManager collegeId={resolvedParams.id} />
           ) : activeTab === 'courses' && isNew ? (
-             <div className="bg-white rounded-2xl shadow-sm border border-border-ghost p-8 text-center">
-               <p className="text-text-secondary">Please save the college first before assigning courses.</p>
+             <div className="bg-white rounded-2xl shadow-sm border border-border-ghost p-8 text-center flex flex-col items-center justify-center min-h-[300px]">
+               <div className="w-16 h-16 bg-blue-50 text-blue-500 rounded-full flex items-center justify-center mb-4">
+                 <BookOpen className="w-8 h-8" />
+               </div>
+               <h3 className="text-xl font-bold text-navy mb-2">Save College First</h3>
+               <p className="text-text-secondary max-w-md mb-6">
+                 You need to save the basic details of this college before you can start assigning courses to it.
+               </p>
+               <button 
+                 onClick={() => setActiveTab('details')}
+                 className="px-6 py-2.5 bg-teal text-white font-bold rounded-xl hover:bg-teal/90 transition-colors shadow-md shadow-teal/20"
+               >
+                 Back to Details Layout
+               </button>
              </div>
           ) : (
             <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-sm border border-border-ghost p-6 md:p-8 space-y-8">

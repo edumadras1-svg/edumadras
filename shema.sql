@@ -139,8 +139,21 @@ create table if not exists public.colleges (
   highest_package numeric,
   total_students integer,
   description text,
-  stream text
+  stream text,
+  is_recommended boolean default false
 );
+
+-- Migration: Ensure colleges table has all required columns
+do $$
+begin
+  if not exists (select 1 from information_schema.columns where table_name = 'colleges' and column_name = 'fee_structure_url') then
+    alter table public.colleges add column fee_structure_url text;
+  end if;
+  
+  if not exists (select 1 from information_schema.columns where table_name = 'colleges' and column_name = 'is_recommended') then
+    alter table public.colleges add column is_recommended boolean default false;
+  end if;
+end $$;
 
 alter table public.colleges enable row level security;
 drop policy if exists "Public Read Colleges" on public.colleges;
@@ -565,6 +578,7 @@ DROP POLICY IF EXISTS "Admins can update banners" ON public.banners;
 DROP POLICY IF EXISTS "Admins can delete banners" ON public.banners;
 DROP POLICY IF EXISTS "Authenticated users can do everything" ON public.banners;
 DROP POLICY IF EXISTS "Public can view active banners" ON public.banners;
+DROP POLICY IF EXISTS "Public can do everything with banners" ON public.banners;
 
 -- 1. Public Read Access (Active banners only for homepage)
 CREATE POLICY "Public can view active banners"

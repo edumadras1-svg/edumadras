@@ -53,76 +53,20 @@ const streams = [
   { name: "Design", slug: "design", icon: Palette, color: "bg-stream-design text-stream-design-text" },
 ];
 
-const engineeringColleges = [
-  {
-    id: "1",
-    name: "IIT Madras",
-    location: "Chennai, Tamil Nadu",
-    rating: 4.9,
-    fees: "₹8L/yr",
-    package: "₹21.5 LPA",
-    rank: 1,
-    stream: "Engineering",
-    approvals: ["AICTE", "UGC"],
-    bannerUrl: "https://images.unsplash.com/photo-1562774053-701939374585?w=600&q=80",
-    totalStudents: "10K+",
-  },
-  {
-    id: "2",
-    name: "IIT Delhi",
-    location: "New Delhi, Delhi",
-    rating: 4.8,
-    fees: "₹8.5L/yr",
-    package: "₹20 LPA",
-    rank: 2,
-    stream: "Engineering",
-    approvals: ["AICTE", "UGC"],
-    bannerUrl: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=600&q=80",
-    totalStudents: "9.5K+",
-  },
-  {
-    id: "3",
-    name: "IIT Bombay",
-    location: "Mumbai, Maharashtra",
-    rating: 4.9,
-    fees: "₹9L/yr",
-    package: "₹23 LPA",
-    rank: 3,
-    stream: "Engineering",
-    approvals: ["AICTE", "UGC"],
-    bannerUrl: "https://images.unsplash.com/photo-1564981797816-1043664bf78d?w=600&q=80",
-    totalStudents: "10.5K+",
-  },
-];
+function formatPackage(val: number | null): string {
+  if (!val) return "N/A";
+  if (val >= 100) return `₹${val.toFixed(0)} LPA`;
+  return `₹${val} LPA`;
+}
 
-const medicalColleges = [
-  {
-    id: "4",
-    name: "CMC Vellore",
-    location: "Vellore, Tamil Nadu",
-    rating: 4.8,
-    fees: "₹1.5L/yr",
-    package: "₹15 LPA",
-    rank: 3,
-    stream: "Medical",
-    approvals: ["MCI"],
-    bannerUrl: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&q=80",
-    totalStudents: "1.5K+",
-  },
-  {
-    id: "10000000-0000-0000-0000-000000000007",
-    name: "AIIMS Delhi",
-    location: "New Delhi, Delhi",
-    rating: 5.0,
-    fees: "₹6K/yr",
-    package: "₹25 LPA",
-    rank: 1,
-    stream: "Medical",
-    approvals: ["MCI"],
-    bannerUrl: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=600&q=80",
-    totalStudents: "2K+",
-  },
-];
+function formatStudents(val: number | null): string {
+  if (!val) return "";
+  if (val >= 1000) return `${(val / 1000).toFixed(val % 1000 === 0 ? 0 : 1)}K+`;
+  return `${val}+`;
+}
+
+
+
 
 const counselors = [
   { name: "Dr. Priya Sharma", role: "Senior Counselor — Engineering", isActive: true, exp: "12+ years" },
@@ -153,6 +97,20 @@ export default async function Home() {
     .limit(1);
 
   const banner = banners?.[0];
+
+  const { data: engineeringColleges } = await supabase
+    .from("colleges")
+    .select("*")
+    .eq("stream", "Engineering")
+    .order("rank", { ascending: true })
+    .limit(6);
+
+  const { data: medicalColleges } = await supabase
+    .from("colleges")
+    .select("*")
+    .eq("stream", "Medical")
+    .order("rank", { ascending: true })
+    .limit(6);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -247,9 +205,23 @@ export default async function Home() {
           </div>
 
           <div className="flex gap-4 overflow-x-auto no-scrollbar pb-4">
-            {engineeringColleges.map((college) => (
+            {engineeringColleges?.map((college) => (
               <div key={college.id} className="min-w-[300px] md:min-w-[320px]">
-                <CollegeCard {...college} />
+                <CollegeCard
+                  id={college.id}
+                  name={college.name}
+                  location={`${college.city || ""}, ${college.state || ""}`.replace(/^, |, $/g, "")}
+                  rating={college.rating || 0}
+                  fees={""}
+                  package={formatPackage(college.avg_package)}
+                  rank={college.rank || undefined}
+                  stream={college.stream || "Engineering"}
+                  approvals={college.approvals || []}
+                  bannerUrl={college.banner_url || undefined}
+                  logoUrl={college.logo_url || undefined}
+                  totalStudents={formatStudents(college.total_students)}
+                  isRecommended={college.is_recommended || false}
+                />
               </div>
             ))}
           </div>
@@ -272,9 +244,23 @@ export default async function Home() {
           </div>
 
           <div className="flex gap-4 overflow-x-auto no-scrollbar pb-4">
-            {medicalColleges.map((college) => (
+            {medicalColleges?.map((college) => (
               <div key={college.id} className="min-w-[300px] md:min-w-[320px]">
-                <CollegeCard {...college} />
+                <CollegeCard
+                  id={college.id}
+                  name={college.name}
+                  location={`${college.city || ""}, ${college.state || ""}`.replace(/^, |, $/g, "")}
+                  rating={college.rating || 0}
+                  fees={""}
+                  package={formatPackage(college.avg_package)}
+                  rank={college.rank || undefined}
+                  stream={college.stream || "Medical"}
+                  approvals={college.approvals || []}
+                  bannerUrl={college.banner_url || undefined}
+                  logoUrl={college.logo_url || undefined}
+                  totalStudents={formatStudents(college.total_students)}
+                  isRecommended={college.is_recommended || false}
+                />
               </div>
             ))}
           </div>

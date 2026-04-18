@@ -16,6 +16,11 @@ const tabs = [
 export function BottomNav() {
   const pathname = usePathname();
 
+  // Hide the mobile bottom nav on admin pages
+  if (pathname?.startsWith("/admin")) {
+    return null;
+  }
+
   return (
     <nav
       className="fixed bottom-0 left-0 right-0 z-50 h-[60px] bg-white flex items-center justify-around px-1 md:hidden animate-slide-bottom"
