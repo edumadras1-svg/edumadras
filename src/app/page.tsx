@@ -19,6 +19,7 @@ import {
   Phone,
   MessageCircle,
   ChevronRight,
+  Anchor,
 } from "lucide-react";
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/JsonLd";
@@ -51,6 +52,7 @@ const streams = [
   { name: "Management", slug: "management", icon: Briefcase, color: "bg-stream-management text-stream-management-text" },
   { name: "Law", slug: "law", icon: Scale, color: "bg-stream-law text-stream-law-text" },
   { name: "Design", slug: "design", icon: Palette, color: "bg-stream-design text-stream-design-text" },
+  { name: "Marine", slug: "marine", icon: Anchor, color: "bg-blue-100 text-blue-700" },
 ];
 
 function formatPackage(val: number | null): string {
@@ -101,14 +103,14 @@ export default async function Home() {
   const { data: engineeringColleges } = await supabase
     .from("colleges")
     .select("*")
-    .eq("stream", "Engineering")
+    .ilike("stream", "%Engineering%")
     .order("rank", { ascending: true })
     .limit(6);
 
   const { data: medicalColleges } = await supabase
     .from("colleges")
     .select("*")
-    .eq("stream", "Medical")
+    .ilike("stream", "%Medical%")
     .order("rank", { ascending: true })
     .limit(6);
 
@@ -177,7 +179,7 @@ export default async function Home() {
           <div className="absolute top-0 right-0 w-40 h-40 bg-teal/20 rounded-full -mr-10 -mt-10 blur-2xl" />
           <div className="relative z-10">
             <span className="text-badge text-teal-light tracking-widest uppercase">{banner?.subtitle || "PROMOTIONAL OFFER"}</span>
-            <h2 className="text-h2 text-white mt-2">{banner?.title || "Upto 50% Scholarship for 2025"}</h2>
+            <h2 className="text-h2 text-white mt-2">{banner?.title || "Upto 50% Scholarship for 2026"}</h2>
             <p className="text-body-sm text-white/60 mt-1">{banner?.description || banner?.subtitle || "Limited seats available. Apply through EduMadras."}</p>
             <Link 
               href={banner?.cta_link || "/apply"}

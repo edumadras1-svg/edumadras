@@ -189,10 +189,10 @@ export default function AdminCollegeFormPage({ params }: { params: Promise<{ id:
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`w-full text-left px-5 py-3.5 rounded-xl text-sm font-bold transition-all flex items-center gap-3 \${
+              className={`w-full text-left px-5 py-3.5 rounded-xl text-sm font-bold transition-all flex items-center gap-3 ${
                 activeTab === tab 
-                  ? "bg-teal text-white shadow-md shadow-teal/20" 
-                  : "bg-white text-text-secondary hover:bg-surface border border-border-ghost"
+                  ? "bg-[#1a7a6e] text-white shadow-md" 
+                  : "bg-white text-[#374151] hover:bg-gray-50 border border-gray-200"
               }`}
             >
               {tab === 'details' && <Building className="w-4 h-4" />}
@@ -262,16 +262,30 @@ export default function AdminCollegeFormPage({ params }: { params: Promise<{ id:
                       </select>
                     </div>
 
-                    <div>
-                      <label className="block text-sm font-bold text-navy mb-1.5">Primary Stream</label>
-                      <select name="stream" value={formData.stream} onChange={handleChange} className="w-full px-4 py-2.5 rounded-xl border border-border-ghost bg-surface-low focus:border-teal outline-none transition-all appearance-none">
-                        <option>Engineering</option>
-                        <option>Medical</option>
-                        <option>Management</option>
-                        <option>Law</option>
-                        <option>Arts & Science</option>
-                        <option>Design</option>
-                      </select>
+                    <div className="md:col-span-2">
+                      <label className="block text-sm font-bold text-navy mb-2">Streams Available</label>
+                      <div className="flex flex-wrap gap-3">
+                        {['Engineering', 'Medical', 'Management', 'Law', 'Arts & Science', 'Design', 'Science', 'Commerce', 'IT', 'Aviation', 'Paramedical', 'Marine'].map(option => (
+                          <label key={option} className="flex items-center gap-2 cursor-pointer bg-surface-low px-3 py-2 rounded-lg border border-border-ghost hover:border-teal/50 transition-colors">
+                            <input 
+                              type="checkbox" 
+                              checked={formData.stream ? formData.stream.split(',').map(s => s.trim()).includes(option) : false}
+                              onChange={(e) => {
+                                const currentStreams = formData.stream ? formData.stream.split(',').map(s => s.trim()).filter(Boolean) : [];
+                                let newStreams;
+                                if (e.target.checked) {
+                                  newStreams = [...currentStreams, option];
+                                } else {
+                                  newStreams = currentStreams.filter(s => s !== option);
+                                }
+                                setFormData(prev => ({ ...prev, stream: newStreams.join(', ') }));
+                              }}
+                              className="w-4 h-4 text-teal rounded border-gray-300 focus:ring-teal"
+                            />
+                            <span className="text-sm font-medium text-navy">{option}</span>
+                          </label>
+                        ))}
+                      </div>
                     </div>
 
                     <div>
@@ -351,11 +365,6 @@ export default function AdminCollegeFormPage({ params }: { params: Promise<{ id:
                   </div>
                   
                   <div className="space-y-5">
-                    <div>
-                      <label className="block text-sm font-bold text-navy mb-1.5">Fee Structure PDF/Image URL</label>
-                      <input type="url" name="fee_structure_url" value={formData.fee_structure_url} onChange={handleChange} placeholder="https://..." className="w-full px-4 py-2.5 rounded-xl border border-border-ghost bg-surface-low focus:border-teal outline-none transition-all" />
-                    </div>
-
                     <div>
                       <label className="block text-sm font-bold text-navy mb-1.5">Logo URL</label>
                       <input type="url" name="logo_url" value={formData.logo_url} onChange={handleChange} placeholder="https://..." className="w-full px-4 py-2.5 rounded-xl border border-border-ghost bg-surface-low focus:border-teal outline-none transition-all" />

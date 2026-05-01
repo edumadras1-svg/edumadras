@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   description:
     "India's premier college discovery platform. Compare 500+ Engineering, Medical, Management, Law & Design colleges. Get free expert counseling. Verified fees & placement data.",
   keywords: "colleges in India, IIT, AIIMS, engineering colleges, medical colleges, college comparison, free counseling, EduMadras",
+  icons: {
+    icon: "/edumadras-logo.ico",
+  },
 };
 
 export default function RootLayout({
@@ -28,7 +31,7 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <meta name="theme-color" content="#1B3A5C" />
-        <link rel="icon" href="/favicon.ico" sizes="32x32" />
+        <link rel="icon" href="/edumadras-logo.ico" sizes="32x32" />
       </head>
       <body className="font-sans min-h-screen bg-surface text-text-primary antialiased">
         <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[200] focus:bg-navy focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm focus:font-semibold">

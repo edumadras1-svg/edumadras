@@ -124,7 +124,11 @@ function CollegesContent() {
 
     // Stream filter
     if (activeStream !== "all") {
-      filtered = filtered.filter(c => c.stream?.toLowerCase() === activeStream.toLowerCase());
+      filtered = filtered.filter(c => {
+        if (!c.stream) return false;
+        const streams = c.stream.split(',').map(s => s.trim().toLowerCase());
+        return streams.includes(activeStream.toLowerCase());
+      });
     }
 
     // Type filter
@@ -233,7 +237,7 @@ function CollegesContent() {
           </div>
 
           <h1 className="text-h1 text-text-primary">
-            Top {streamLabel} Colleges in India 2025
+            Top {streamLabel} Colleges in India 2026
           </h1>
           <p className="text-body-sm text-text-secondary mt-2 max-w-2xl">
             Discover the best {streamLabel.toLowerCase()} institutions across India. Compare fees, placements, rankings, and get expert counseling for free.

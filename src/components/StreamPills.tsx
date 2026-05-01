@@ -9,6 +9,7 @@ const streams = [
   { name: "Management", slug: "management" },
   { name: "Law", slug: "law" },
   { name: "Design", slug: "design" },
+  { name: "Marine", slug: "marine" },
 ];
 
 interface StreamPillsProps {

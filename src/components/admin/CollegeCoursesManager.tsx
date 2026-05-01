@@ -26,7 +26,7 @@ export default function CollegeCoursesManager({ collegeId }: { collegeId: string
   const [courses, setCourses] = useState<CollegeCourse[]>([]);
   const [masterCourses, setMasterCourses] = useState<MasterCourse[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  
+
   // Modal state
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -42,7 +42,7 @@ export default function CollegeCoursesManager({ collegeId }: { collegeId: string
 
   const fetchData = async () => {
     setIsLoading(true);
-    
+
     // Fetch assigned courses with their master course details
     const { data: collegeCourses, error: ccError } = await supabase
       .from('college_courses')
@@ -55,13 +55,13 @@ export default function CollegeCoursesManager({ collegeId }: { collegeId: string
         )
       `)
       .eq('college_id', collegeId);
-      
+
     // Fetch all master courses for the dropdown
     const { data: masterData, error: mError } = await supabase
       .from('master_courses')
       .select('id, name, stream')
       .order('name');
-      
+
     if (ccError || mError) {
       console.error("Error fetching course data", ccError, mError);
     } else {
@@ -73,7 +73,7 @@ export default function CollegeCoursesManager({ collegeId }: { collegeId: string
       setCourses(mappedCourses);
       setMasterCourses(masterData || []);
     }
-    
+
     setIsLoading(false);
   };
 
@@ -122,9 +122,9 @@ export default function CollegeCoursesManager({ collegeId }: { collegeId: string
       alert("Please select a master course");
       return;
     }
-    
+
     setIsSubmitting(true);
-    
+
     const payload = {
       college_id: collegeId,
       course_id: formData.course_id,
@@ -140,7 +140,7 @@ export default function CollegeCoursesManager({ collegeId }: { collegeId: string
         .from('college_courses')
         .update(payload)
         .eq('id', editingId);
-        
+
       if (!error) {
         handleCloseModal();
         fetchData();
@@ -158,7 +158,7 @@ export default function CollegeCoursesManager({ collegeId }: { collegeId: string
       const { error } = await supabase
         .from('college_courses')
         .insert([payload]);
-        
+
       if (!error) {
         handleCloseModal();
         fetchData();
@@ -175,7 +175,7 @@ export default function CollegeCoursesManager({ collegeId }: { collegeId: string
         .from('college_courses')
         .delete()
         .eq('id', id);
-        
+
       if (!error) {
         fetchData();
       } else {
@@ -237,13 +237,13 @@ export default function CollegeCoursesManager({ collegeId }: { collegeId: string
                 </td>
                 <td className="px-6 py-4 text-right">
                   <div className="flex items-center justify-end gap-2">
-                    <button 
+                    <button
                       onClick={() => handleOpenModal(course)}
                       className="p-1.5 text-text-tertiary hover:text-blue-600 transition-colors rounded hover:bg-blue-50"
                     >
                       <Edit2 className="w-4 h-4" />
                     </button>
-                    <button 
+                    <button
                       onClick={() => handleDelete(course.id)}
                       className="p-1.5 text-text-tertiary hover:text-red-600 transition-colors rounded hover:bg-red-50"
                     >
@@ -273,14 +273,14 @@ export default function CollegeCoursesManager({ collegeId }: { collegeId: string
               <h2 className="text-lg font-bold text-navy">
                 {editingId ? "Edit Course Details" : "Assign Master Course"}
               </h2>
-              <button 
+              <button
                 onClick={handleCloseModal}
                 className="p-2 text-text-tertiary hover:text-navy hover:bg-surface rounded-lg transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
-            
+
             <form onSubmit={handleSubmit} className="p-6 space-y-4">
               <div>
                 <label className="block text-sm font-bold text-navy mb-1.5">Master Course <span className="text-red-500">*</span></label>
@@ -298,7 +298,7 @@ export default function CollegeCoursesManager({ collegeId }: { collegeId: string
                   ))}
                 </select>
               </div>
-              
+
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-bold text-navy mb-1.5">Total Fee (₹)</label>
@@ -323,7 +323,7 @@ export default function CollegeCoursesManager({ collegeId }: { collegeId: string
                   />
                 </div>
               </div>
-              
+
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-bold text-navy mb-1.5">Seats Available</label>
@@ -361,7 +361,7 @@ export default function CollegeCoursesManager({ collegeId }: { collegeId: string
                   placeholder="e.g. 60% in 12th PCM"
                 />
               </div>
-              
+
               <div className="pt-6 mt-6 border-t border-border-ghost flex justify-end gap-3">
                 <button
                   type="button"
