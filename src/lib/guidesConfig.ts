@@ -87,5 +87,123 @@ export const guides: Record<string, Guide> = {
       }
     ],
     relatedCollegeIds: ["1", "8", "9"]
+  },
+  "neet-counselling-2026": {
+    slug: "neet-counselling-2026",
+    title: "NEET 2026 Admission Guide — Medical College Counseling",
+    description: "A comprehensive guide to NEET 2026 counseling for MBBS, BDS, and other medical courses in India. Learn about AIQ and State Quota processes.",
+    lastUpdated: "April 20, 2026",
+    sections: [
+      {
+        title: "Introduction to NEET Counseling",
+        slug: "introduction",
+        content: "NEET counseling is the gateway to all medical seats in India. The process is divided into two main categories: All India Quota (AIQ) conducted by MCC, and State Quota conducted by respective state authorities.",
+      },
+      {
+        title: "Eligibility for Counseling",
+        slug: "eligibility",
+        content: "Only candidates who qualify for NEET by scoring the minimum cut-off percentile are eligible to participate in the counseling process. For General category, it's the 50th percentile, while for reserved categories, it's the 40th percentile.",
+      },
+      {
+        title: "AIQ vs. State Quota",
+        slug: "quotas",
+        content: "The Medical Counseling Committee (MCC) conducts counseling for 15% All India Quota seats in Government colleges and 100% seats in Deemed/Central Universities. The remaining 85% seats in state government colleges are filled through State counseling.",
+        subsections: [
+          {
+            title: "Tamil Nadu State Quota",
+            content: "Conducted by the Selection Committee, Directorate of Medical Education (DME) for seats in Tamil Nadu government and private medical colleges."
+          }
+        ]
+      },
+      {
+        title: "Registration Process",
+        slug: "registration",
+        content: "Register on the MCC website (for AIQ) or the DME website (for State Quota). You will need your NEET Roll Number, Application Number, and other personal details to create a profile.",
+      },
+      {
+        title: "Choice Filling & Locking",
+        slug: "choice-filling",
+        content: "This is the most critical step. List your preferred colleges in order of priority. Once you are satisfied with the list, you must 'Lock' your choices before the deadline, otherwise they will be automatically locked.",
+      },
+      {
+        title: "Documents for Verification",
+        slug: "documents",
+        content: "You must carry original documents for physical verification at the allotted college: NEET Admit Card, Scorecard, Class 10 & 12 Certificates, ID Proof, and 8 Passport size photos.",
+      }
+    ],
+    faqs: [
+      {
+        question: "What is the security deposit for NEET counseling?",
+        answer: "For Government colleges, it's typically ₹10,000 (General) or ₹5,000 (SC/ST). For Deemed Universities, it is ₹2,00,000."
+      },
+      {
+        question: "How many rounds are there in NEET counseling?",
+        answer: "Usually, there are four rounds: Round 1, Round 2, Mop-up Round, and Stray Vacancy Round."
+      },
+      {
+        question: "Can I participate in both AIQ and State counseling?",
+        answer: "Yes, you can participate in both simultaneously until you secure and join a seat in one of them."
+      }
+    ],
+    relatedCollegeIds: ["4"]
+  },
+  "josaa-counselling-2026": {
+    slug: "josaa-counselling-2026",
+    title: "IIT-JEE 2026 Admission Guide — JoSAA Counseling Process",
+    description: "Your ultimate guide to JoSAA 2026 counseling for admission to IITs, NITs, IIITs, and GFTIs. Learn about registration, seat allotment, and the business rules.",
+    lastUpdated: "April 25, 2026",
+    sections: [
+      {
+        title: "Overview of JoSAA",
+        slug: "overview",
+        content: "Joint Seat Allocation Authority (JoSAA) manages the common seat allocation for 118 premier technical institutes including 23 IITs, 31 NITs, IIEST Shibpur, 26 IIITs, and 38 Other-Government Funded Technical Institutes (Other-GFTIs).",
+      },
+      {
+        title: "Eligibility for IITs vs NIT+ System",
+        slug: "eligibility",
+        content: "To be eligible for IITs, you must qualify in JEE Advanced. For the NIT+ system (NITs, IIITs, GFTIs), you only need a valid JEE Main rank. Additionally, candidates must have secured 75% marks in Class 12 (65% for SC/ST).",
+      },
+      {
+        title: "The 6-Round Process",
+        slug: "rounds",
+        content: "JoSAA counseling typically consists of six rounds. After each round, candidates are allotted seats based on their rank and choices. If you receive an allotment, you must decide whether to Freeze, Float, or Slide.",
+        subsections: [
+          {
+            title: "Freeze, Float, or Slide?",
+            content: "Freeze means you accept the seat and don't want a better one. Float means you accept the seat but are open to a better college/branch. Slide means you accept the seat but are only open to a better branch in the SAME college."
+          }
+        ]
+      },
+      {
+        title: "Registration & Choice Filling",
+        slug: "registration",
+        content: "Registration is free on the JoSAA portal. Choice filling is the most crucial part—ensure you list your preferred colleges in a logical descending order of preference. There is no limit to the number of choices.",
+      },
+      {
+        title: "Seat Acceptance Fee",
+        slug: "fees",
+        content: "Once a seat is allotted, you must pay the Seat Acceptance Fee (SAF) online to confirm your interest. For 2026, it is expected to be ₹35,000 for General/OBC and ₹17,500 for SC/ST/PwD.",
+      },
+      {
+        title: "CSAB Special Rounds",
+        slug: "csab",
+        content: "After the 6 rounds of JoSAA, if seats remain vacant in the NIT+ system (not IITs), two special rounds are conducted by the Central Seat Allocation Board (CSAB).",
+      }
+    ],
+    faqs: [
+      {
+        question: "Can I change my choices after locking them?",
+        answer: "No, once choices are locked or the deadline passes, you cannot modify them for any subsequent rounds of JoSAA."
+      },
+      {
+        question: "What happens if I don't pay the seat acceptance fee?",
+        answer: "If you fail to pay the fee or upload documents within the deadline, your allotted seat will be cancelled, and you will be out of the JoSAA process."
+      },
+      {
+        question: "Is there a dual reporting requirement?",
+        answer: "No, the entire document verification and seat acceptance process is now conducted online. Physical reporting is only required at the final allotted college after all rounds."
+      }
+    ],
+    relatedCollegeIds: ["1", "2", "3"]
   }
 };

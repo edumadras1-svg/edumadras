@@ -157,8 +157,62 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
 
   const streamSlug = college.stream?.toLowerCase() || "engineering";
 
+  // JSON-LD Structured Data for SEO
+  const collegeSchema = {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": college.name,
+    "description": college.description || `${college.name} is a ${college.type || ""} institution located in ${college.city}, ${college.state}.`,
+    "url": `https://edumadras.com/colleges/${id}`,
+    "logo": college.logo_url || undefined,
+    "image": college.banner_url || college.logo_url || undefined,
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": college.city || "",
+      "addressRegion": college.state || "",
+      "addressCountry": "IN"
+    },
+    "foundingDate": college.established_year ? `${college.established_year}` : undefined,
+    ...(college.rating ? {
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": college.rating,
+        "bestRating": 5,
+        "ratingCount": college.total_students || 100
+      }
+    } : {}),
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://edumadras.com" },
+      { "@type": "ListItem", "position": 2, "name": college.stream || "Colleges", "item": `https://edumadras.com/colleges?stream=${streamSlug}` },
+      { "@type": "ListItem", "position": 3, "name": college.name, "item": `https://edumadras.com/colleges/${id}` }
+    ]
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqItems.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-[#F8FAFC]">
+      {/* SEO JSON-LD Structured Data */}
+      <JsonLd schema={collegeSchema} />
+      <JsonLd schema={breadcrumbSchema} />
+      <JsonLd schema={faqSchema} />
+
       <TopNavBar />
 
       {/* Breadcrumb - Glass Style */}

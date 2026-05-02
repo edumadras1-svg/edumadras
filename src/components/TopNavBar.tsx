@@ -57,10 +57,10 @@ export function TopNavBar() {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-6">
-          {["Colleges", "Courses", "Counselors", "Compare"].map((item) => (
+          {["Home", "Colleges", "Courses", "Counselors", "Guides", "Compare"].map((item) => (
             <Link
               key={item}
-              href={`/${item.toLowerCase()}`}
+              href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
               className="text-sm font-medium text-text-secondary hover:text-navy transition-colors focus-ring rounded-md px-1 py-0.5"
             >
               {item}

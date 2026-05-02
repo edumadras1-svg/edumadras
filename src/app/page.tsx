@@ -332,6 +332,58 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* ==================== EXPERT ADMISSION GUIDES ==================== */}
+      <section className="section-gap bg-surface">
+        <div className="container-mobile">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+            <div>
+              <h2 className="text-h2 text-text-primary">Expert Admission Guides</h2>
+              <p className="text-body-sm text-text-secondary mt-2 max-w-md">
+                Step-by-step documentation to help you navigate India's complex admission processes.
+              </p>
+            </div>
+            <Link href="/guides" className="text-label text-teal font-semibold flex items-center gap-1 hover:gap-2 transition-all shrink-0">
+              Explore All Guides <ChevronRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Link 
+              href="/guides/tnea-counselling-2026"
+              className="group bg-white rounded-3xl p-8 shadow-soft border border-border-ghost hover:shadow-xl transition-all duration-500 flex flex-col md:flex-row gap-6 items-center"
+            >
+              <div className="w-24 h-24 bg-teal/10 rounded-2xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                <BookOpen className="w-10 h-10 text-teal" />
+              </div>
+              <div>
+                <span className="text-badge text-teal font-extrabold uppercase tracking-widest">Most Popular</span>
+                <h3 className="text-h3 text-navy font-bold mt-2 group-hover:text-teal transition-colors">TNEA 2026: Step-by-Step Counseling Guide</h3>
+                <p className="text-caption text-text-secondary mt-2 line-clamp-2">
+                  Learn how to register, verify documents, and master the choice filling process for Tamil Nadu engineering admissions.
+                </p>
+                <div className="mt-4 flex items-center gap-2 text-navy font-bold text-caption uppercase tracking-wider">
+                  Read Guide <ArrowRight className="w-3.5 h-3.5" />
+                </div>
+              </div>
+            </Link>
+
+            <div className="bg-navy rounded-3xl p-8 shadow-card flex flex-col justify-center relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16 blur-2xl" />
+              <div className="relative z-10">
+                <h3 className="text-h3 text-white font-bold">More Guides Coming Soon</h3>
+                <p className="text-caption text-white/50 mt-2">
+                  Detailed walkthroughs for NEET 2026, JEE Mains, and Top MBA Entrance Exams are currently being prepared by our experts.
+                </p>
+                <Link href="/counselors" className="mt-6 inline-flex items-center gap-2 text-teal-light font-bold text-caption uppercase tracking-widest hover:gap-3 transition-all">
+                  Talk to a Counselor <ChevronRight className="w-4 h-4" />
+                </Link>
+              </div>
+              <GraduationCap className="w-24 h-24 text-white/5 absolute bottom-4 right-4 rotate-12 group-hover:scale-125 transition-transform duration-700" />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ==================== FAQ SECTION ==================== */}
       <section className="section-gap bg-white">
         <div className="container-mobile max-w-2xl">

@@ -16,8 +16,11 @@ import {
   Menu,
   X,
   BookOpen,
+  Loader2
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { supabase } from "@/lib/supabase/client";
+import AdminLogin from "@/components/admin/AdminLogin";
 
 const navItems = [
   { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
@@ -33,6 +36,39 @@ const navItems = [
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [session, setSession] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      setIsLoading(false);
+    });
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+  };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-surface-low">
+        <Loader2 className="w-8 h-8 animate-spin text-teal" />
+      </div>
+    );
+  }
+
+  if (!session) {
+    return <AdminLogin />;
+  }
 
   return (
     <div className="flex h-screen bg-surface-low overflow-hidden font-sans">
@@ -45,8 +81,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         {/* Brand Logo */}
         <div className="h-16 flex items-center px-6 border-b border-white/5">
           <Link href="/admin" className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-teal flex items-center justify-center shrink-0">
-              <GraduationCap className="w-5 h-5 text-white" />
+            <div className="w-9 h-9 rounded-xl overflow-hidden shrink-0 border border-white/10 shadow-lg shadow-black/20">
+              <img src="/logo_icon.ico" alt="EduMadras" className="w-full h-full object-contain bg-white" />
             </div>
             {isSidebarOpen && (
               <span className="text-white font-bold tracking-tight text-lg">
@@ -79,7 +115,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
         {/* User Profile / Logout */}
         <div className="p-4 border-t border-white/5 bg-black/10">
-          <button suppressHydrationWarning className="flex items-center gap-3 px-4 py-3 w-full rounded-xl text-white/60 hover:bg-red-500/10 hover:text-red-400 transition-all group">
+          <button onClick={handleSignOut} suppressHydrationWarning className="flex items-center gap-3 px-4 py-3 w-full rounded-xl text-white/60 hover:bg-red-500/10 hover:text-red-400 transition-all group">
             <LogOut className="w-5 h-5 shrink-0" />
             {isSidebarOpen && <span className="font-medium text-[15px]">Sign Out</span>}
           </button>
@@ -115,11 +151,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <div className="h-8 w-[1px] bg-border-ghost mx-1" />
             <div className="flex items-center gap-3">
               <div className="text-right hidden sm:block">
-                <p className="text-label font-semibold text-text-primary leading-none">Admin User</p>
+                <p className="text-label font-semibold text-text-primary leading-none max-w-[150px] truncate">{session?.user?.email}</p>
                 <p className="text-[11px] text-text-tertiary mt-1 uppercase tracking-wider font-bold">Administrator</p>
               </div>
-              <div className="w-9 h-9 rounded-full bg-navy flex items-center justify-center text-white text-sm font-bold border-2 border-surface shadow-sm">
-                AD
+              <div className="w-9 h-9 rounded-full bg-navy flex items-center justify-center text-white text-sm font-bold border-2 border-surface shadow-sm uppercase">
+                {session?.user?.email?.[0] || "A"}
               </div>
             </div>
           </div>

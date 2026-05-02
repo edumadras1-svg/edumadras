@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Users,
   GraduationCap,
@@ -10,24 +10,58 @@ import {
   Clock,
   CheckCircle2,
   AlertCircle,
+  Loader2
 } from "lucide-react";
-import { mockColleges } from "@/lib/mockData";
+import { supabase } from "@/lib/supabase/client";
 
-const stats = [
-  { label: "Total Colleges", value: mockColleges.length, icon: GraduationCap, color: "bg-blue-50 text-blue-600", trend: "+12%" },
-  { label: "Total Leads", value: "1,284", icon: MessageSquare, color: "bg-teal-50 text-teal-600", trend: "+18%" },
-  { label: "Counselors", value: "24", icon: Users, color: "bg-amber-50 text-amber-600", trend: "0%" },
-  { label: "Success Rate", value: "68%", icon: TrendingUp, color: "bg-purple-50 text-purple-600", trend: "+5%" },
-];
-
-const recentLeads = [
-  { id: 1, name: "Rahul Sharma", course: "B.Tech CSE", college: "IIT Madras", status: "Pending", time: "2 mins ago" },
-  { id: 2, name: "Ananya Iyer", course: "MBBS", college: "CMC Vellore", status: "Contacted", time: "15 mins ago" },
-  { id: 3, name: "Varun Gupta", course: "MBA", college: "IIM Ahmedabad", status: "Pending", time: "1 hour ago" },
-  { id: 4, name: "Priya Das", course: "B.Des", college: "NID Ahmedabad", status: "Converted", time: "3 hours ago" },
-];
+const timeAgo = (dateStr: string) => {
+  const diff = Date.now() - new Date(dateStr).getTime();
+  const mins = Math.floor(diff / 60000);
+  if (mins < 1) return "Just now";
+  if (mins < 60) return `${mins} mins ago`;
+  const hrs = Math.floor(mins / 60);
+  if (hrs < 24) return `${hrs} hours ago`;
+  return `${Math.floor(hrs / 24)} days ago`;
+};
 
 export default function AdminDashboard() {
+  const [stats, setStats] = useState([
+    { label: "Total Colleges", value: "...", icon: GraduationCap, color: "bg-blue-50 text-blue-600", trend: "+0%" },
+    { label: "Total Leads", value: "...", icon: MessageSquare, color: "bg-teal-50 text-teal-600", trend: "+0%" },
+    { label: "Counselors", value: "...", icon: Users, color: "bg-amber-50 text-amber-600", trend: "0%" },
+    { label: "Success Rate", value: "...", icon: TrendingUp, color: "bg-purple-50 text-purple-600", trend: "0%" },
+  ]);
+  const [recentLeads, setRecentLeads] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      setIsLoading(true);
+      
+      const { count: collegesCount } = await supabase.from('colleges').select('*', { count: 'exact', head: true });
+      const { count: leadsCount } = await supabase.from('leads').select('*', { count: 'exact', head: true });
+      const { count: counselorsCount } = await supabase.from('counselors').select('*', { count: 'exact', head: true });
+      
+      const { data: leads } = await supabase
+        .from('leads')
+        .select('*, colleges(name)')
+        .order('created_at', { ascending: false })
+        .limit(5);
+
+      setStats([
+        { label: "Total Colleges", value: collegesCount?.toString() || "0", icon: GraduationCap, color: "bg-blue-50 text-blue-600", trend: "+12%" },
+        { label: "Total Leads", value: leadsCount?.toString() || "0", icon: MessageSquare, color: "bg-teal-50 text-teal-600", trend: "+18%" },
+        { label: "Counselors", value: counselorsCount?.toString() || "0", icon: Users, color: "bg-amber-50 text-amber-600", trend: "0%" },
+        { label: "Success Rate", value: "68%", icon: TrendingUp, color: "bg-purple-50 text-purple-600", trend: "+5%" },
+      ]);
+      
+      setRecentLeads(leads || []);
+      setIsLoading(false);
+    }
+    
+    fetchData();
+  }, []);
+
   return (
     <div className="space-y-8 animate-fade-in">
       {/* Welcome Header */}
@@ -77,37 +111,46 @@ export default function AdminDashboard() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-border-ghost">
-                {recentLeads.map((lead) => (
-                  <tr key={lead.id} className="hover:bg-surface/30 transition-colors">
-                    <td className="px-6 py-4">
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full bg-teal/10 text-teal flex items-center justify-center font-bold text-xs">
-                          {lead.name[0]}
-                        </div>
-                        <span className="text-body-sm font-semibold text-text-primary">{lead.name}</span>
-                      </div>
-                    </td>
-                    <td className="px-6 py-4">
-                      <p className="text-body-sm text-text-primary font-medium">{lead.course}</p>
-                      <p className="text-[11px] text-text-tertiary uppercase tracking-tight">{lead.college}</p>
-                    </td>
-                    <td className="px-6 py-4">
-                      <span className={`text-badge font-bold px-2.5 py-1 rounded-full ${
-                        lead.status === 'Pending' ? 'bg-amber-50 text-amber-600' :
-                        lead.status === 'Contacted' ? 'bg-blue-50 text-blue-600' :
-                        'bg-green-50 text-green-600'
-                      }`}>
-                        {lead.status}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4">
-                      <div className="flex items-center gap-1.5 text-text-tertiary">
-                        <Clock className="w-3.5 h-3.5" />
-                        <span className="text-caption font-medium">{lead.time}</span>
-                      </div>
+                {isLoading ? (
+                  <tr>
+                    <td colSpan={4} className="px-6 py-12 text-center">
+                      <Loader2 className="w-8 h-8 animate-spin text-teal mx-auto" />
                     </td>
                   </tr>
-                ))}
+                ) : (
+                  recentLeads.map((lead) => (
+                    <tr key={lead.id} className="hover:bg-surface/30 transition-colors">
+                      <td className="px-6 py-4">
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 rounded-full bg-teal/10 text-teal flex items-center justify-center font-bold text-xs uppercase">
+                            {lead.name[0]}
+                          </div>
+                          <span className="text-body-sm font-semibold text-text-primary">{lead.name}</span>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4">
+                        <p className="text-body-sm text-text-primary font-medium">{lead.target_course || "General"}</p>
+                        <p className="text-[11px] text-text-tertiary uppercase tracking-tight">{lead.colleges?.name || "Multiple"}</p>
+                      </td>
+                      <td className="px-6 py-4">
+                        <span className={`text-badge font-bold px-2.5 py-1 rounded-full ${
+                          lead.status === 'Pending' ? 'bg-amber-50 text-amber-600' :
+                          lead.status === 'Contacted' ? 'bg-blue-50 text-blue-600' :
+                          lead.status === 'Converted' ? 'bg-green-50 text-green-600' :
+                          'bg-red-50 text-red-600'
+                        }`}>
+                          {lead.status}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="flex items-center gap-1.5 text-text-tertiary">
+                          <Clock className="w-3.5 h-3.5" />
+                          <span className="text-caption font-medium">{timeAgo(lead.created_at)}</span>
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
           </div>

@@ -92,11 +92,11 @@ export default function CounselorsPage() {
 
       {/* Counselor Cards */}
       <main className="container-mobile py-6 pb-24 flex-1">
-        <p className="text-label text-text-secondary mb-4">
+        <p className="text-label text-text-secondary mb-4 text-center">
           {counselors.length} counselors available
         </p>
 
-        <div className="space-y-4 max-w-2xl">
+        <div className="space-y-4 max-w-2xl mx-auto">
           {loading ? (
             <div className="space-y-4">
               {[1, 2].map(i => (
@@ -105,7 +105,7 @@ export default function CounselorsPage() {
             </div>
           ) : counselors.length > 0 ? (
             counselors.map((c) => {
-              const initials = c.name.split(" ").map((n: string) => n[0]).join("");
+              const initials = c.name.split(" ").map((n: string) => n[0]).join("")
               return (
                 <div
                   key={c.id}
@@ -127,7 +127,7 @@ export default function CounselorsPage() {
                     </div>
 
                     {/* Info */}
-                    <div className="flex-1 min-w-0">
+                    <div className="flex-1 min-w-0 text-left">
                       <div className="flex items-start justify-between gap-2">
                         <div>
                           <h3 className="text-body-sm font-semibold text-text-primary">{c.name}</h3>
@@ -201,7 +201,7 @@ export default function CounselorsPage() {
               </p>
               <button 
                 onClick={() => setIsMatchModalOpen(true)}
-                className="mt-8 h-12 px-8 bg-teal text-white font-bold rounded-xl btn-press"
+                className="mt-8 h-12 px-8 bg-teal text-white font-bold rounded-xl btn-press shadow-lg shadow-teal/20"
               >
                 Get Notified when Ready
               </button>
@@ -210,7 +210,7 @@ export default function CounselorsPage() {
         </div>
 
         {/* Trust Stats */}
-        <div className="grid grid-cols-3 gap-3 mt-8 max-w-2xl">
+        <div className="grid grid-cols-3 gap-3 mt-8 max-w-2xl mx-auto">
           {[
             { value: "500+", label: "Students Counseled" },
             { value: "100%", label: "Free Service" },

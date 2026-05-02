@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { Star, MapPin, GraduationCap, Stethoscope, Briefcase, Scale, Palette } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useState } from "react";
+import { ApplicationModal } from "./ApplicationModal";
 
 const streamConfig: Record<string, { bg: string; text: string; icon: React.ElementType }> = {
   Engineering: { bg: "bg-stream-engineering", text: "text-stream-engineering-text", icon: GraduationCap },
@@ -49,19 +51,22 @@ export function CollegeCard({
   const StreamIcon = streamStyle.icon;
   const initials = name.split(" ").map((n) => n[0]).join("").slice(0, 3);
 
+  const [isCounselingModalOpen, setIsCounselingModalOpen] = useState(false);
+
   const detailHref = id ? `/colleges/${id}` : "#";
 
   return (
-    <Link
-      href={detailHref}
-      className={cn(
-        "block bg-surface-card rounded-[14px] shadow-card overflow-hidden card-hover relative cursor-pointer",
-        isRecommended && "ring-2 ring-amber-400",
-        className
-      )}
-    >
-      {/* Banner Image Area */}
-      <div className="relative h-40 bg-surface-container overflow-hidden">
+    <>
+      <Link
+        href={detailHref}
+        className={cn(
+          "block bg-surface-card rounded-[14px] shadow-card overflow-hidden card-hover relative cursor-pointer",
+          isRecommended && "ring-2 ring-amber-400",
+          className
+        )}
+      >
+        {/* Banner Image Area */}
+        <div className="relative h-40 bg-surface-container overflow-hidden">
         {bannerUrl ? (
           <img src={bannerUrl} alt={`${name} campus`} className="w-full h-full object-cover" />
         ) : (
@@ -147,7 +152,11 @@ export function CollegeCard({
               View Details
             </span>
             <button
-              onClick={(e) => { e.preventDefault(); e.stopPropagation(); }}
+              onClick={(e) => { 
+                e.preventDefault(); 
+                e.stopPropagation(); 
+                setIsCounselingModalOpen(true);
+              }}
               className="flex-1 h-10 flex items-center justify-center text-sm font-semibold text-white bg-navy hover:bg-navy-dark rounded-[10px] transition-colors btn-press focus-ring"
             >
               Get Counseling
@@ -156,5 +165,16 @@ export function CollegeCard({
         </div>
       </div>
     </Link>
+
+      {/* Counseling Modal */}
+      <ApplicationModal
+        isOpen={isCounselingModalOpen}
+        onClose={() => setIsCounselingModalOpen(false)}
+        collegeId={id || "general"}
+        collegeName={name}
+        courses={[{ id: "1", name: stream }]}
+        mode="counseling"
+      />
+    </>
   );
 }

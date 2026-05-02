@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, School, GitCompareArrows, Headset, UserCircle } from "lucide-react";
+import { Home, School, GitCompareArrows, Headset, BookOpen } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const tabs = [
@@ -10,7 +10,7 @@ const tabs = [
   { name: "Colleges", href: "/colleges", icon: School },
   { name: "Compare", href: "/compare", icon: GitCompareArrows },
   { name: "Counselors", href: "/counselors", icon: Headset },
-  { name: "Profile", href: "/profile", icon: UserCircle },
+  { name: "Guides", href: "/guides", icon: BookOpen },
 ];
 
 export function BottomNav() {
