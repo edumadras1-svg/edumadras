@@ -26,6 +26,7 @@ const navItems = [
   { name: "Leads", href: "/admin/leads", icon: MessageSquare },
   { name: "Counselors", href: "/admin/counselors", icon: Users },
   { name: "Banners", href: "/admin/banners", icon: ImageIcon },
+  { name: "Popups", href: "/admin/popups", icon: Bell },
   { name: "Settings", href: "/admin/settings", icon: Settings },
 ];
 

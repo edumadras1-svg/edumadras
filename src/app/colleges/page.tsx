@@ -2,6 +2,7 @@
 
 import { TopNavBar } from "@/components/TopNavBar";
 import { CollegeCard } from "@/components/CollegeCard";
+import { PromoSection } from "@/components/PromoSection";
 import { StreamPills } from "@/components/StreamPills";
 import type { College } from "@/lib/mockData";
 import { supabase } from "@/lib/supabase/client";
@@ -344,23 +345,25 @@ function CollegesContent() {
           </div>
         ) : colleges.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-3">
-            {colleges.map((college) => (
-              <CollegeCard
-                key={college.id}
-                id={college.id}
-                name={college.name}
-                location={`${college.city || ""}, ${college.state || ""}`.replace(/^, |, $/g, "")}
-                rating={college.rating || 0}
-                fees={""}
-                package={formatPackage(college.avg_package)}
-                rank={college.rank || undefined}
-                stream={college.stream || "Engineering"}
-                approvals={college.approvals || []}
-                bannerUrl={college.banner_url || undefined}
-                logoUrl={college.logo_url || undefined}
-                totalStudents={formatStudents(college.total_students)}
-                isRecommended={college.is_recommended || false}
-              />
+            {colleges.map((college, index) => (
+              <div key={college.id} className="contents">
+                <CollegeCard
+                  id={college.id}
+                  name={college.name}
+                  location={`${college.city || ""}, ${college.state || ""}`.replace(/^, |, $/g, "")}
+                  rating={college.rating || 0}
+                  fees={""}
+                  package={formatPackage(college.avg_package)}
+                  rank={college.rank || undefined}
+                  stream={college.stream || "Engineering"}
+                  approvals={college.approvals || []}
+                  bannerUrl={college.banner_url || undefined}
+                  logoUrl={college.logo_url || undefined}
+                  totalStudents={formatStudents(college.total_students)}
+                  isRecommended={college.is_recommended || false}
+                />
+                {index === 2 && <PromoSection />}
+              </div>
             ))}
           </div>
         ) : (

@@ -1,7 +1,10 @@
 import { TopNavBar } from "@/components/TopNavBar";
+import { CtaButton } from "@/components/CtaButton";
+import { CounselorActions } from "@/components/CounselorActions";
 import { CollegeCard } from "@/components/CollegeCard";
 import { FAQAccordion } from "@/components/FAQAccordion";
 import { HeroSearch } from "@/components/HeroSearch";
+import { PromoBanner } from "@/components/PromoBanner";
 import { supabase } from "@/lib/supabase/client";
 import Link from "next/link";
 import {
@@ -114,12 +117,19 @@ export default async function Home() {
     .order("rank", { ascending: true })
     .limit(6);
 
+  const { data: realCounselors } = await supabase
+    .from("counselors")
+    .select("*")
+    .eq("is_active", true)
+    .order("created_at", { ascending: false })
+    .limit(2);
+
   return (
     <div className="flex flex-col min-h-screen">
       <JsonLd schema={homeSchema} />
       <TopNavBar />
 
-      {/* ==================== HERO SECTION ==================== */}
+      {/* ==================== HERO SECTION (Trigger Rebuild) ==================== */}
       <section className="gradient-hero relative overflow-hidden">
         {/* Decorative Elements */}
         <div className="absolute top-0 right-0 w-72 h-72 bg-white/5 rounded-full -mr-36 -mt-36 blur-3xl" />
@@ -168,27 +178,7 @@ export default async function Home() {
 
       {/* ==================== PROMOTIONAL BANNER ==================== */}
       <section className="container-mobile -mt-6 relative z-20">
-        <div className={`rounded-xl p-6 md:p-8 text-white relative overflow-hidden shadow-hover ${banner?.gradient || "bg-gradient-to-r from-navy-dark to-navy"}`}>
-          {banner?.image && (
-            <img 
-              src={banner.image} 
-              alt="" 
-              className="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-30"
-            />
-          )}
-          <div className="absolute top-0 right-0 w-40 h-40 bg-teal/20 rounded-full -mr-10 -mt-10 blur-2xl" />
-          <div className="relative z-10">
-            <span className="text-badge text-teal-light tracking-widest uppercase">{banner?.subtitle || "PROMOTIONAL OFFER"}</span>
-            <h2 className="text-h2 text-white mt-2">{banner?.title || "Upto 50% Scholarship for 2026"}</h2>
-            <p className="text-body-sm text-white/60 mt-1">{banner?.description || banner?.subtitle || "Limited seats available. Apply through EduMadras."}</p>
-            <Link 
-              href={banner?.cta_link || "/apply"}
-              className="mt-5 h-10 px-6 bg-teal hover:bg-teal/90 text-white text-sm font-semibold rounded-lg transition-colors btn-press flex items-center justify-center gap-2 w-fit"
-            >
-              {banner?.cta || "Check Eligibility"} <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
+        <PromoBanner banner={banner} />
       </section>
 
       {/* ==================== TOP ENGINEERING COLLEGES ==================== */}
@@ -303,17 +293,17 @@ export default async function Home() {
           </p>
 
           <div className="space-y-3 mt-8 max-w-lg mx-auto">
-            {counselors.map((c) => (
+            {realCounselors?.map((c) => (
               <div
-                key={c.name}
+                key={c.id}
                 className="bg-surface-card rounded-[14px] shadow-card p-4 flex items-center gap-4"
               >
                 {/* Avatar */}
                 <div className="relative shrink-0">
                   <div className="w-13 h-13 bg-stream-engineering rounded-full flex items-center justify-center text-lg font-bold text-navy">
-                    {c.name.split(" ").map((n) => n[0]).join("")}
+                    {c.name.split(" ").map((n: string) => n[0]).join("")}
                   </div>
-                  {c.isActive && (
+                  {c.is_active && (
                     <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full" />
                   )}
                 </div>
@@ -322,20 +312,13 @@ export default async function Home() {
                 <div className="flex-1 min-w-0">
                   <h3 className="text-body-sm font-semibold text-text-primary truncate">{c.name}</h3>
                   <p className="text-caption text-text-secondary truncate">{c.role}</p>
-                  {c.isActive && (
+                  {c.is_active && (
                     <span className="text-badge text-green-600 mt-0.5 inline-block">Available Now</span>
                   )}
                 </div>
 
                 {/* Actions */}
-                <div className="flex gap-2 shrink-0">
-                  <button className="w-10 h-10 bg-teal/10 text-teal rounded-lg flex items-center justify-center hover:bg-teal/20 transition-colors btn-press" aria-label="Call">
-                    <Phone className="w-4 h-4" />
-                  </button>
-                  <button className="w-10 h-10 bg-green-50 text-green-600 rounded-lg flex items-center justify-center hover:bg-green-100 transition-colors btn-press" aria-label="WhatsApp">
-                    <MessageCircle className="w-4 h-4" />
-                  </button>
-                </div>
+                <CounselorActions phone={c.phone} />
               </div>
             ))}
 
@@ -365,9 +348,10 @@ export default async function Home() {
         <div className="container-mobile text-center">
           <h2 className="text-h2 text-white">Ready to Find Your Dream College?</h2>
           <p className="text-body-sm text-white/60 mt-2">Get free personalized counseling from our experts</p>
-          <button className="mt-6 h-12 px-8 bg-teal hover:bg-teal/90 text-white text-base font-semibold rounded-xl transition-colors btn-press shadow-lg">
-            Get Free Counseling
-          </button>
+          <CtaButton 
+            text="Get Free Counseling" 
+            className="mt-6 h-12 px-8 bg-teal hover:bg-teal/90 text-white text-base font-semibold rounded-xl transition-colors btn-press shadow-lg" 
+          />
           <p className="text-caption text-white/40 mt-3">500+ students counseled · Free, no spam</p>
         </div>
       </section>
