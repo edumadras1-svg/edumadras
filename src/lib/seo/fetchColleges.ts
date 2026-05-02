@@ -17,7 +17,7 @@ export async function fetchCollegesByFilter(filters: {
   if (filters.state) query = query.ilike("state", filters.state);
   if (filters.type) query = query.eq("type", filters.type);
 
-  query = query.order(filters.orderBy || "rank", { ascending: true, nullsLast: true });
+  query = query.order(filters.orderBy || "rank", { ascending: true, nullsFirst: false });
 
   if (filters.limit) query = query.limit(filters.limit);
 

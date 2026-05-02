@@ -341,6 +341,8 @@ export function SEOCollegeListing({
         isOpen={isCounselingOpen}
         onClose={() => setIsCounselingOpen(false)}
         collegeName="EduMadras"
+        collegeId="edumadras-general"
+        courses={[]}
         mode="counseling"
       />
     </div>
