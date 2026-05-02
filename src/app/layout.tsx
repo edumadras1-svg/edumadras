@@ -23,8 +23,9 @@ export const metadata: Metadata = {
       { url: "/logo_icon.ico" },
       { url: "/edumadras-logo.ico" }
     ],
-    apple: "/edumadras-logo.png",
+    apple: "/apple-touch-icon.png",
   },
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({

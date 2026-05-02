@@ -1,0 +1,21 @@
+{
+  "name": "EduMadras",
+  "short_name": "EduMadras",
+  "description": "India's premier college discovery platform. Compare Engineering, Medical, Management, Law & Design colleges.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1B3A5C",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
