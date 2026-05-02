@@ -1,10 +1,10 @@
 "use client";
 
 import { TopNavBar } from "@/components/TopNavBar";
-import { mockCourses, mockColleges } from "@/lib/mockData";
-import { BookOpen, GraduationCap, Building2, TrendingUp, IndianRupee, Clock, Search } from "lucide-react";
+import { supabase } from "@/lib/supabase/client";
+import { BookOpen, GraduationCap, Building2, TrendingUp, IndianRupee, Clock, Search, Loader2 } from "lucide-react";
 import Link from "next/link";
-import { useState, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 function formatFee(val: number | null): string {
   if (!val) return "N/A";
@@ -15,28 +15,47 @@ function formatFee(val: number | null): string {
 
 export default function CoursesPage() {
   const [searchTerm, setSearchTerm] = useState("");
+  const [courses, setCourses] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const enrichedCourses = useMemo(() => {
-    return mockCourses.map(course => {
-      const college = mockColleges.find(c => c.id === course.college_id);
-      return {
-        ...course,
-        collegeName: college?.name || "Unknown College",
-        collegeCity: college?.city || "",
-        collegeState: college?.state || "",
-      };
-    });
+  useEffect(() => {
+    const fetchCourses = async () => {
+      setLoading(true);
+      const { data, error } = await supabase
+        .from('college_courses')
+        .select(`
+          *,
+          colleges (
+            id,
+            name,
+            city,
+            state
+          ),
+          master_courses (
+            id,
+            name,
+            stream
+          )
+        `);
+
+      if (data) {
+        setCourses(data);
+      }
+      setLoading(false);
+    };
+
+    fetchCourses();
   }, []);
 
   const filteredCourses = useMemo(() => {
-    if (!searchTerm) return enrichedCourses;
+    if (!searchTerm) return courses;
     const lower = searchTerm.toLowerCase();
-    return enrichedCourses.filter(c => 
-      c.master_courses.name.toLowerCase().includes(lower) ||
-      c.collegeName.toLowerCase().includes(lower) ||
-      c.master_courses.stream?.toLowerCase().includes(lower)
+    return courses.filter(c => 
+      c.master_courses?.name?.toLowerCase().includes(lower) ||
+      c.colleges?.name?.toLowerCase().includes(lower) ||
+      c.master_courses?.stream?.toLowerCase().includes(lower)
     );
-  }, [searchTerm, enrichedCourses]);
+  }, [searchTerm, courses]);
 
   return (
     <div className="min-h-screen bg-surface-container">
@@ -46,7 +65,7 @@ export default function CoursesPage() {
         {/* Header */}
         <div className="mb-10 text-center md:text-left animate-fade-in-up">
           <h1 className="text-4xl md:text-5xl font-extrabold text-navy tracking-tight mb-4 hidden-border">
-            Top <span className="text-teal">Courses</span> in Tamil Nadu 2026
+            Top <span className="text-teal">Courses</span> in India 2026
           </h1>
           <p className="text-lg text-text-secondary max-w-2xl">
             Discover the perfect academic program for your career goals. Filter through top courses from premium institutions.
@@ -69,7 +88,19 @@ export default function CoursesPage() {
 
         {/* Results Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredCourses.length > 0 ? (
+          {loading ? (
+            Array.from({ length: 6 }).map((_, i) => (
+              <div key={i} className="h-80 bg-white rounded-2xl p-6 card-shadow-sm animate-pulse border border-border-ghost">
+                <div className="h-4 bg-surface-low rounded w-1/4 mb-4" />
+                <div className="h-6 bg-surface-low rounded w-3/4 mb-6" />
+                <div className="h-10 bg-surface-low rounded w-full mb-6" />
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="h-12 bg-surface-low rounded-xl" />
+                  <div className="h-12 bg-surface-low rounded-xl" />
+                </div>
+              </div>
+            ))
+          ) : filteredCourses.length > 0 ? (
             filteredCourses.map((course, idx) => (
               <div 
                 key={course.id} 
@@ -79,10 +110,10 @@ export default function CoursesPage() {
                 <div className="flex justify-between items-start mb-4">
                   <div>
                     <span className="inline-block px-3 py-1 bg-teal/10 text-teal-dark font-semibold text-xs rounded-full mb-3 uppercase tracking-wider">
-                      {course.master_courses.stream || "General"}
+                      {course.master_courses?.stream || "General"}
                     </span>
                     <h3 className="text-xl font-bold text-text-primary leading-tight line-clamp-2">
-                      {course.master_courses.name}
+                      {course.master_courses?.name}
                     </h3>
                   </div>
                 </div>
@@ -91,10 +122,10 @@ export default function CoursesPage() {
                   <Building2 className="w-4 h-4 mt-1 flex-shrink-0 text-text-tertiary group-hover:text-teal" />
                   <div>
                     <p className="text-sm font-semibold text-text-secondary group-hover:text-teal line-clamp-1">
-                      {course.collegeName}
+                      {course.colleges?.name || "Unknown College"}
                     </p>
                     <p className="text-xs text-text-tertiary">
-                      {course.collegeCity}, {course.collegeState}
+                      {course.colleges?.city}, {course.colleges?.state}
                     </p>
                   </div>
                 </Link>
@@ -113,7 +144,7 @@ export default function CoursesPage() {
                       <Clock className="w-3.5 h-3.5" />
                       <span className="text-xs font-medium">Duration</span>
                     </div>
-                    <span className="text-sm font-bold text-navy">{course.duration}</span>
+                    <span className="text-sm font-bold text-navy">{course.duration || "N/A"}</span>
                   </div>
 
                   <div className="bg-surface-low rounded-xl p-3 flex flex-col gap-1">

@@ -2,7 +2,8 @@
 
 import { TopNavBar } from "@/components/TopNavBar";
 import { StreamPills } from "@/components/StreamPills";
-import { useState } from "react";
+import { supabase } from "@/lib/supabase/client";
+import { useState, useEffect } from "react";
 import {
   Phone,
   MessageCircle,
@@ -12,56 +13,32 @@ import {
   ShieldCheck,
   ArrowRight,
 } from "lucide-react";
+import { MatchingModal } from "@/components/MatchingModal";
+import { ApplicationModal } from "@/components/ApplicationModal";
+import { College } from "@/lib/mockData";
 
-const counselors = [
-  {
-    id: 1,
-    name: "Dr. Priya Sharma",
-    role: "Senior Counselor — Engineering",
-    experience: "12+ years",
-    studentsGuided: "5,000+",
-    rating: 4.9,
-    specialty: "Engineering",
-    isActive: true,
-    bio: "Former IIT admissions committee member with expertise in JEE counseling",
-  },
-  {
-    id: 2,
-    name: "Rajesh Kumar",
-    role: "Lead Counselor — Medical",
-    experience: "8+ years",
-    studentsGuided: "3,500+",
-    rating: 4.8,
-    specialty: "Medical",
-    isActive: true,
-    bio: "AIIMS graduate helping students navigate NEET counseling process",
-  },
-  {
-    id: 3,
-    name: "Anita Desai",
-    role: "Counselor — Management",
-    experience: "6+ years",
-    studentsGuided: "2,200+",
-    rating: 4.7,
-    specialty: "Management",
-    isActive: false,
-    bio: "IIM alumna specializing in MBA admission strategies and CAT preparation",
-  },
-  {
-    id: 4,
-    name: "Vikram Singh",
-    role: "Senior Counselor — Law",
-    experience: "10+ years",
-    studentsGuided: "4,000+",
-    rating: 4.9,
-    specialty: "Law",
-    isActive: true,
-    bio: "NLS Bangalore alumnus with deep knowledge of CLAT counseling",
-  },
-];
+const counselors: any[] = [];
 
 export default function CounselorsPage() {
   const [activeStream, setActiveStream] = useState("all");
+  const [isMatchModalOpen, setIsMatchModalOpen] = useState(false);
+  const [isCounselModalOpen, setIsCounselModalOpen] = useState(false);
+  const [selectedCounselor, setSelectedCounselor] = useState<{name: string, specialty: string} | null>(null);
+  
+  const [counselors, setCounselors] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchCounselors = async () => {
+      setLoading(true);
+      const { data, error } = await supabase.from("counselors").select("*").eq("is_active", true).order("created_at", { ascending: false });
+      if (data) {
+        setCounselors(data);
+      }
+      setLoading(false);
+    };
+    fetchCounselors();
+  }, []);
 
   return (
     <div className="flex flex-col min-h-screen bg-surface">
@@ -81,7 +58,10 @@ export default function CounselorsPage() {
             Our counselors are former admissions officers and education experts. Get guidance for free.
           </p>
 
-          <button className="mt-6 h-12 px-7 bg-teal hover:bg-teal/90 text-white font-semibold rounded-xl transition-colors btn-press inline-flex items-center gap-2 shadow-lg">
+          <button 
+            onClick={() => setIsMatchModalOpen(true)}
+            className="mt-6 h-12 px-7 bg-teal hover:bg-teal/90 text-white font-semibold rounded-xl transition-colors btn-press inline-flex items-center gap-2 shadow-lg"
+          >
             Get Matched <ArrowRight className="w-4 h-4" />
           </button>
 
@@ -117,84 +97,116 @@ export default function CounselorsPage() {
         </p>
 
         <div className="space-y-4 max-w-2xl">
-          {counselors.map((c) => {
-            const initials = c.name.split(" ").map((n) => n[0]).join("");
-            return (
-              <div
-                key={c.id}
-                className="bg-surface-card rounded-[14px] shadow-card p-5 animate-fade-in"
-              >
-                <div className="flex gap-4">
-                  {/* Avatar */}
-                  <div className="relative shrink-0">
-                    <div className="w-14 h-14 bg-stream-engineering rounded-full flex items-center justify-center text-lg font-bold text-navy">
-                      {initials}
-                    </div>
-                    {c.isActive && (
-                      <span className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-500 border-2 border-white rounded-full" />
-                    )}
-                  </div>
-
-                  {/* Info */}
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-start justify-between gap-2">
-                      <div>
-                        <h3 className="text-body-sm font-semibold text-text-primary">{c.name}</h3>
-                        <p className="text-caption text-text-secondary mt-0.5">{c.role}</p>
-                      </div>
-                      <div className="flex items-center gap-1 bg-amber-50 text-amber-600 text-badge px-2 py-1 rounded-full shrink-0">
-                        <Star className="w-3 h-3 fill-amber-500" />
-                        {c.rating}
-                      </div>
-                    </div>
-
-                    {/* Availability */}
-                    <div className="mt-2">
-                      {c.isActive ? (
-                        <span className="text-badge text-green-600 flex items-center gap-1">
-                          <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
-                          Available Now
-                        </span>
+          {loading ? (
+            <div className="space-y-4">
+              {[1, 2].map(i => (
+                <div key={i} className="h-40 bg-white rounded-[14px] shadow-card animate-pulse" />
+              ))}
+            </div>
+          ) : counselors.length > 0 ? (
+            counselors.map((c) => {
+              const initials = c.name.split(" ").map((n: string) => n[0]).join("");
+              return (
+                <div
+                  key={c.id}
+                  className="bg-surface-card rounded-[14px] shadow-card p-5 animate-fade-in"
+                >
+                  <div className="flex gap-4">
+                    {/* Avatar */}
+                    <div className="relative shrink-0">
+                      {c.avatar_url ? (
+                        <img src={c.avatar_url} alt={c.name} className="w-14 h-14 rounded-full object-cover" />
                       ) : (
-                        <span className="text-badge text-text-tertiary">Busy — Try later</span>
+                        <div className="w-14 h-14 bg-stream-engineering rounded-full flex items-center justify-center text-lg font-bold text-navy">
+                          {initials}
+                        </div>
+                      )}
+                      {c.is_active && (
+                        <span className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-500 border-2 border-white rounded-full" />
                       )}
                     </div>
 
-                    {/* Bio */}
-                    <p className="text-caption text-text-secondary mt-2 line-clamp-2">{c.bio}</p>
-
-                    {/* Stats */}
-                    <div className="flex gap-4 mt-3">
-                      <div className="bg-surface-low rounded-lg px-3 py-1.5">
-                        <p className="text-badge text-text-tertiary">EXPERIENCE</p>
-                        <p className="text-label font-semibold text-text-primary">{c.experience}</p>
+                    {/* Info */}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-start justify-between gap-2">
+                        <div>
+                          <h3 className="text-body-sm font-semibold text-text-primary">{c.name}</h3>
+                          <p className="text-caption text-text-secondary mt-0.5">{c.role || "Admission Expert"}</p>
+                        </div>
+                        <div className="flex items-center gap-1 bg-amber-50 text-amber-600 text-badge px-2 py-1 rounded-full shrink-0">
+                          <Star className="w-3 h-3 fill-amber-500" />
+                          4.9
+                        </div>
                       </div>
-                      <div className="bg-surface-low rounded-lg px-3 py-1.5">
-                        <p className="text-badge text-text-tertiary">GUIDED</p>
-                        <p className="text-label font-semibold text-text-primary">{c.studentsGuided}</p>
-                      </div>
-                    </div>
 
-                    {/* Actions */}
-                    <div className="flex gap-2.5 mt-4">
-                      <button
-                        className="h-10 px-4 bg-teal hover:bg-teal/90 text-white text-label font-semibold rounded-[10px] transition-colors btn-press flex items-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed"
-                        disabled={!c.isActive}
-                      >
-                        <Phone className="w-4 h-4" /> Call Now
-                      </button>
-                      <button
-                        className="h-10 px-4 text-green-600 text-label font-semibold rounded-[10px] transition-colors btn-press flex items-center gap-2 hover:bg-green-50"
-                        style={{ border: "1.5px solid #16a34a" }}
-                      >
-                        <MessageCircle className="w-4 h-4" /> WhatsApp
-                      </button>
+                      {/* Availability */}
+                      <div className="mt-2">
+                        {c.is_active ? (
+                          <span className="text-badge text-green-600 flex items-center gap-1">
+                            <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
+                            Available Now
+                          </span>
+                        ) : (
+                          <span className="text-badge text-text-tertiary">Busy — Try later</span>
+                        )}
+                      </div>
+
+                      {/* Stats (Placeholder as not in DB yet) */}
+                      <div className="flex gap-4 mt-4">
+                        <div className="bg-surface-low rounded-lg px-3 py-1.5">
+                          <p className="text-badge text-text-tertiary">EXPERIENCE</p>
+                          <p className="text-label font-semibold text-text-primary">8+ Years</p>
+                        </div>
+                        <div className="bg-surface-low rounded-lg px-3 py-1.5">
+                          <p className="text-badge text-text-tertiary">GUIDED</p>
+                          <p className="text-label font-semibold text-text-primary">2,000+</p>
+                        </div>
+                      </div>
+
+                      {/* Actions */}
+                      <div className="flex gap-2.5 mt-4">
+                        <button
+                          onClick={() => {
+                            setSelectedCounselor({ name: c.name, specialty: c.role || "" });
+                            setIsCounselModalOpen(true);
+                          }}
+                          className="h-10 px-4 bg-teal hover:bg-teal/90 text-white text-label font-semibold rounded-[10px] transition-colors btn-press flex items-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed"
+                          disabled={!c.is_active}
+                        >
+                          <Phone className="w-4 h-4" /> Connect Now
+                        </button>
+                        <a
+                          href={`https://wa.me/${c.phone.replace(/[^0-9]/g, "")}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="h-10 px-4 text-green-600 text-label font-semibold rounded-[10px] transition-colors btn-press flex items-center gap-2 hover:bg-green-50"
+                          style={{ border: "1.5px solid #16a34a" }}
+                        >
+                          <MessageCircle className="w-4 h-4" /> WhatsApp
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
+              );
+            })
+          ) : (
+            <div className="bg-white rounded-3xl p-12 text-center shadow-sm border border-slate-100">
+              <div className="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Users className="w-10 h-10 text-slate-300" />
               </div>
-            );
-          })}
+              <h3 className="text-xl font-bold text-slate-900">Expert Counseling Coming Soon</h3>
+              <p className="text-slate-500 mt-2 max-w-sm mx-auto">
+                We are currently onboarding top education experts to help you with your admission journey. Check back soon!
+              </p>
+              <button 
+                onClick={() => setIsMatchModalOpen(true)}
+                className="mt-8 h-12 px-8 bg-teal text-white font-bold rounded-xl btn-press"
+              >
+                Get Notified when Ready
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Trust Stats */}
@@ -211,6 +223,21 @@ export default function CounselorsPage() {
           ))}
         </div>
       </main>
+      <MatchingModal 
+        isOpen={isMatchModalOpen} 
+        onClose={() => setIsMatchModalOpen(false)} 
+      />
+
+      {selectedCounselor && (
+        <ApplicationModal
+          isOpen={isCounselModalOpen}
+          onClose={() => setIsCounselModalOpen(false)}
+          collegeId="" // No specific college
+          collegeName={`Counseling with ${selectedCounselor.name}`}
+          courses={[]} // No specific courses
+          mode="counseling"
+        />
+      )}
     </div>
   );
 }

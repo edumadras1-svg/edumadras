@@ -20,7 +20,7 @@ interface StreamPillsProps {
 
 export function StreamPills({ activeStream = "all", onSelect, className }: StreamPillsProps) {
   return (
-    <div className={cn("flex gap-2 overflow-x-auto no-scrollbar py-1", className)}>
+    <div className={cn("flex justify-center gap-2 overflow-x-auto no-scrollbar py-1", className)}>
       {streams.map((stream) => {
         const isActive = activeStream === stream.slug;
         return (

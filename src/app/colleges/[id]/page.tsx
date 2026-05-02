@@ -8,26 +8,10 @@ import type { College, CollegeCourse } from "@/lib/mockData";
 import { supabase } from "@/lib/supabase/client";
 import Link from "next/link";
 import { useEffect, useState, use } from "react";
-import {
-  ArrowLeft,
-  Share2,
-  Heart,
-  Star,
-  MapPin,
-  Award,
-  Users,
-  BookOpen,
-  Calendar,
-  ChevronRight,
-  Download,
-  GitCompareArrows,
-  Building2,
-  TrendingUp,
-  Loader2,
-  CheckCircle2,
-} from "lucide-react";
+import { CheckCircle2, Send, Loader2, GitCompareArrows, Download, Calendar, BookOpen, Users, Award, Star, MapPin, Heart, Share2, ArrowLeft, ChevronRight, Building2, TrendingUp, X } from "lucide-react";
 import { JsonLd } from "@/components/JsonLd";
 import { motion, AnimatePresence } from "framer-motion";
+import { ApplicationModal } from "@/components/ApplicationModal";
 
 function formatPkg(val: number | null): string {
   if (!val) return "N/A";
@@ -68,6 +52,8 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
   const [courses, setCourses] = useState<CollegeCourse[]>([]);
   const [similarColleges, setSimilarColleges] = useState<College[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
+  const [applyModalMode, setApplyModalMode] = useState<"apply" | "counseling">("apply");
 
   useEffect(() => {
     async function fetchData() {
@@ -290,7 +276,10 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-3 mt-8">
-            <button className="flex-1 h-12 bg-[#0F172A] hover:bg-[#1E293B] text-white font-bold rounded-xl transition-all shadow-xl shadow-slate-200 btn-press flex items-center justify-center gap-2">
+            <button 
+              onClick={() => { setApplyModalMode("apply"); setIsApplyModalOpen(true); }}
+              className="flex-1 h-12 bg-[#0F172A] hover:bg-[#1E293B] text-white font-bold rounded-xl transition-all shadow-xl shadow-slate-200 btn-press flex items-center justify-center gap-2"
+            >
               Apply Now Free
             </button>
             <button className="flex-1 h-12 bg-white border-2 border-slate-100 hover:border-blue-200 hover:bg-blue-50 text-slate-800 font-bold rounded-xl transition-all btn-press flex items-center justify-center gap-2">
@@ -394,7 +383,10 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
             <div className="bg-gradient-to-br from-navy to-navy-dark rounded-3xl p-6 text-white shadow-xl">
               <h3 className="text-xl font-bold mb-2">Interested in Admission?</h3>
               <p className="text-white/60 text-sm mb-6">Connect with our expert counselors for free personalized guidance.</p>
-              <button className="w-full h-12 bg-white text-navy font-bold rounded-xl mb-3 hover:bg-blue-50 transition-all">
+              <button 
+                onClick={() => { setApplyModalMode("counseling"); setIsApplyModalOpen(true); }}
+                className="w-full h-12 bg-white text-navy font-bold rounded-xl mb-3 hover:bg-blue-50 transition-all"
+              >
                 Talk to Expert
               </button>
               <button className="w-full h-12 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold rounded-xl transition-all">
@@ -514,14 +506,29 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
           animate={{ y: 0 }}
           className="fixed bottom-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-xl md:hidden p-4 pb-6 flex gap-3 border-t border-gray-100 shadow-[0_-8px_30px_rgba(0,0,0,0.04)]"
         >
-          <button className="flex-1 h-12 bg-navy text-white font-bold rounded-xl btn-press text-sm">
+          <button 
+            onClick={() => { setApplyModalMode("counseling"); setIsApplyModalOpen(true); }}
+            className="flex-1 h-12 bg-navy text-white font-bold rounded-xl btn-press text-sm"
+          >
             Talk to Experts
           </button>
-          <button className="flex-1 h-12 bg-teal text-white font-bold rounded-xl btn-press text-sm">
+          <button 
+            onClick={() => { setApplyModalMode("apply"); setIsApplyModalOpen(true); }}
+            className="flex-1 h-12 bg-teal text-white font-bold rounded-xl btn-press text-sm"
+          >
             Apply Online
           </button>
         </motion.div>
       </AnimatePresence>
+
+      <ApplicationModal 
+        isOpen={isApplyModalOpen}
+        onClose={() => setIsApplyModalOpen(false)}
+        collegeId={college.id}
+        collegeName={college.name}
+        courses={courses.map(c => ({ id: c.id, name: c.master_courses?.name || "Unknown Course" }))}
+        mode={applyModalMode}
+      />
     </div>
   );
 }
