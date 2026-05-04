@@ -76,7 +76,7 @@ export function SEOCollegeListing({
 
   const filtered = colleges.filter((c) => {
     const matchesSearch =
-      c.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (c.name || "").toLowerCase().includes(searchQuery.toLowerCase()) ||
       (c.city || "").toLowerCase().includes(searchQuery.toLowerCase());
     const matchesType = filterType === "All" || c.type === filterType;
     return matchesSearch && matchesType;

@@ -201,7 +201,31 @@ export default function AdminPopupsPage() {
               </button>
             </div>
 
-            <form onSubmit={handleSubmit} className="p-8 space-y-6 max-h-[70vh] overflow-y-auto">
+            <div className="px-8 py-4 bg-surface-low border-b border-border-ghost">
+               <p className="text-[10px] font-black text-text-tertiary uppercase tracking-[0.2em] mb-4">Real-time Preview</p>
+               <div className="w-full bg-white rounded-2xl shadow-lg border border-border-ghost overflow-hidden max-w-xs mx-auto">
+                 <div className="relative h-24 bg-gradient-to-br from-navy via-navy-dark to-black flex items-center justify-center">
+                   {formData.image_url && (
+                     <img src={formData.image_url} alt="" className="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-overlay" />
+                   )}
+                   <div className="relative z-10 text-center px-4">
+                     <div className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[8px] font-black uppercase tracking-wider mb-1 ${
+                       formData.type === 'offer' ? 'bg-teal/20 text-teal-light' : 
+                       formData.type === 'warning' ? 'bg-red-500/20 text-red-400' : 'bg-blue-500/20 text-blue-400'
+                     }`}>
+                       {formData.type === 'offer' ? 'Special Offer' : formData.type === 'warning' ? 'Urgent Alert' : 'Information'}
+                     </div>
+                     <h4 className="text-white text-sm font-bold truncate max-w-[200px]">{formData.title || "Popup Title"}</h4>
+                   </div>
+                 </div>
+                 <div className="p-4 text-center">
+                   <p className="text-[10px] text-text-secondary line-clamp-2 mb-3">{formData.message || "Message content will appear here..."}</p>
+                   <div className="h-8 bg-navy text-white text-[10px] font-bold rounded-lg flex items-center justify-center">Action Button</div>
+                 </div>
+               </div>
+            </div>
+
+            <form onSubmit={handleSubmit} className="p-8 space-y-6 max-h-[50vh] overflow-y-auto">
               <div className="space-y-2">
                 <label className="text-badge font-extrabold text-text-tertiary uppercase tracking-widest">Title</label>
                 <input 

@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase/client";
-import { Settings, Save, Loader2, ToggleLeft, ToggleRight, Globe, Phone, Mail, MapPin } from "lucide-react";
+import { Settings, Save, Loader2, ToggleLeft, ToggleRight, Globe, Phone, Mail, MapPin, Sparkles } from "lucide-react";
 
 interface AppSetting {
   key: string;
@@ -20,9 +21,12 @@ interface SiteConfig {
   maintenance_mode: boolean;
   show_engineering: boolean;
   show_medical: boolean;
+  hero_title: string;
+  hero_subtitle: string;
 }
 
 export default function AdminSettingsPage() {
+  const router = useRouter();
   const [config, setConfig] = useState<SiteConfig>({
     site_name: "EduMadras",
     site_tagline: "Your Gateway to Top Colleges in Chennai",
@@ -33,6 +37,8 @@ export default function AdminSettingsPage() {
     maintenance_mode: false,
     show_engineering: true,
     show_medical: true,
+    hero_title: "Find Your Dream College in Tamil Nadu",
+    hero_subtitle: "Compare 500+ top engineering, medical & management colleges with verified fees and placement data.",
   });
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
@@ -96,12 +102,13 @@ export default function AdminSettingsPage() {
     }
 
     if (hasError) {
-      setSaveMessage("Some settings failed to save. Check console.");
+      setSaveMessage("Some settings failed to save.");
     } else {
-      setSaveMessage("All settings saved successfully!");
+      setSaveMessage("Settings saved successfully!");
+      router.refresh();
+      setTimeout(() => setSaveMessage(""), 3000);
     }
     setIsSaving(false);
-    setTimeout(() => setSaveMessage(""), 3000);
   };
 
   if (isLoading) {
@@ -162,6 +169,32 @@ export default function AdminSettingsPage() {
           <div>
             <label className="block text-sm font-bold text-navy mb-1.5">Tagline</label>
             <input type="text" name="site_tagline" value={config.site_tagline} onChange={handleChange} className="w-full px-4 py-2.5 rounded-xl border border-border-ghost bg-surface-low focus:border-teal outline-none transition-all" />
+          </div>
+        </div>
+      </div>
+
+      {/* Hero Section Configuration */}
+      <div className="bg-white rounded-2xl shadow-sm border border-border-ghost overflow-hidden">
+        <div className="p-6 border-b border-border-ghost bg-surface-low/50">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-purple-500/10 rounded-xl flex items-center justify-center">
+              <Sparkles className="w-5 h-5 text-purple-600" />
+            </div>
+            <div>
+              <h2 className="text-lg font-bold text-navy">Hero Section</h2>
+              <p className="text-caption text-text-secondary">Manage the main headline and subtext on your homepage.</p>
+            </div>
+          </div>
+        </div>
+        <div className="p-6 space-y-5">
+          <div>
+            <label className="block text-sm font-bold text-navy mb-1.5">Hero Title</label>
+            <input type="text" name="hero_title" value={config.hero_title} onChange={handleChange} className="w-full px-4 py-2.5 rounded-xl border border-border-ghost bg-surface-low focus:border-teal outline-none transition-all font-bold" />
+            <p className="text-[10px] text-text-tertiary mt-1">Tip: Use &lt;span class="text-teal"&gt;Text&lt;/span&gt; for highlighted words.</p>
+          </div>
+          <div>
+            <label className="block text-sm font-bold text-navy mb-1.5">Hero Subtitle</label>
+            <textarea name="hero_subtitle" value={config.hero_subtitle} onChange={handleChange} rows={3} className="w-full px-4 py-2.5 rounded-xl border border-border-ghost bg-surface-low focus:border-teal outline-none transition-all resize-none" />
           </div>
         </div>
       </div>

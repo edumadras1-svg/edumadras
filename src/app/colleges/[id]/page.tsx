@@ -7,7 +7,7 @@ import { InlineCTABanner } from "@/components/InlineCTABanner";
 import type { College, CollegeCourse } from "@/lib/mockData";
 import { supabase } from "@/lib/supabase/client";
 import Link from "next/link";
-import { useEffect, useState, use } from "react";
+import { useEffect, useState, use, useRef } from "react";
 import { CheckCircle2, Send, Loader2, GitCompareArrows, Download, Calendar, BookOpen, Users, Award, Star, MapPin, Heart, Share2, ArrowLeft, ChevronRight, Building2, TrendingUp, X } from "lucide-react";
 import { JsonLd } from "@/components/JsonLd";
 import { motion, AnimatePresence } from "framer-motion";
@@ -54,6 +54,7 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
   const [loading, setLoading] = useState(true);
   const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
   const [applyModalMode, setApplyModalMode] = useState<"apply" | "counseling">("apply");
+  const [activeTab, setActiveTab] = useState("Overview");
 
   useEffect(() => {
     async function fetchData() {
@@ -100,6 +101,14 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
     }
     fetchData();
   }, [id]);
+
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (contentRef.current && activeTab !== "Overview") {
+      contentRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [activeTab]);
 
   if (loading) {
     return (
@@ -345,11 +354,23 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
           </div>
         </motion.div>
 
-        {/* Content Tabs Navigation - Placeholder for feel */}
-        <div className="flex gap-6 mt-12 overflow-x-auto no-scrollbar pb-2 border-b border-gray-100">
-          {["Overview", "Courses", "Placement", "Admission"].map((tab, i) => (
-            <button key={tab} className={`text-sm font-bold pb-2 transition-all whitespace-nowrap ${i === 0 ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-400 hover:text-gray-600"}`}>
+        {/* Content Tabs Navigation */}
+        <div ref={contentRef} className="flex gap-6 mt-12 overflow-x-auto no-scrollbar pb-2 border-b border-gray-100">
+          {["Overview", "Courses", "Placement", "Admission"].map((tab) => (
+            <button 
+              key={tab} 
+              onClick={() => setActiveTab(tab)}
+              className={`text-sm font-bold pb-2 transition-all whitespace-nowrap relative ${
+                activeTab === tab ? "text-blue-600" : "text-gray-400 hover:text-gray-600"
+              }`}
+            >
               {tab}
+              {activeTab === tab && (
+                <motion.div 
+                  layoutId="activeTab"
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600"
+                />
+              )}
             </button>
           ))}
         </div>
@@ -360,75 +381,177 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
           {/* Left Column (Main Info) */}
           <div className="lg:col-span-2 space-y-8">
             
-            {/* About */}
-            <motion.section {...fadeInUp} className="bg-white rounded-3xl p-6 md:p-8 shadow-sm">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 bg-indigo-50 rounded-xl flex items-center justify-center">
-                  <Building2 className="w-5 h-5 text-indigo-600" />
-                </div>
-                <h2 className="text-xl md:text-2xl font-bold text-slate-900">About the Institution</h2>
-              </div>
-              <p className="text-base md:text-lg text-slate-600 leading-relaxed">
-                {college.description || "Information about this college will be updated soon. Stay tuned for details about campus life, infrastructure, and unique features."}
-              </p>
-              
-              <div className="grid grid-cols-2 gap-4 mt-8">
-                {[
-                  { label: "Ownership", value: college.type },
-                  { label: "Approved By", value: college.approvals?.join(", ") },
-                  { label: "Campus Area", value: "250+ Acres" },
-                  { label: "Total Faculty", value: "450+" },
-                ].map((item, i) => (
-                  <div key={i} className="flex flex-col gap-1">
-                    <span className="text-xs text-slate-400 font-bold uppercase">{item.label}</span>
-                    <span className="text-sm font-semibold text-slate-700">{item.value || "Not available"}</span>
+            {/* About Section - Shown in Overview and Admission */}
+            {(activeTab === "Overview" || activeTab === "Admission") && (
+              <motion.section 
+                key="about"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="bg-white rounded-3xl p-6 md:p-8 shadow-sm"
+              >
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 bg-indigo-50 rounded-xl flex items-center justify-center">
+                    <Building2 className="w-5 h-5 text-indigo-600" />
                   </div>
-                ))}
-              </div>
-            </motion.section>
-
-            {/* Courses & Fees */}
-            <motion.section {...fadeInUp} className="bg-white rounded-3xl p-6 md:p-8 shadow-sm">
-              <div className="flex items-center justify-between mb-8">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-emerald-50 rounded-xl flex items-center justify-center">
-                    <BookOpen className="w-5 h-5 text-emerald-600" />
-                  </div>
-                  <h2 className="text-xl md:text-2xl font-bold text-slate-900">Popular Courses</h2>
+                  <h2 className="text-xl md:text-2xl font-bold text-slate-900">
+                    {activeTab === "Admission" ? "Admission Overview" : "About the Institution"}
+                  </h2>
                 </div>
-                <span className="text-xs font-bold bg-slate-100 text-slate-600 px-3 py-1.5 rounded-full">
-                  {courses.length} Programs
-                </span>
-              </div>
+                <p className="text-base md:text-lg text-slate-600 leading-relaxed">
+                  {college.description || "Information about this college will be updated soon. Stay tuned for details about campus life, infrastructure, and unique features."}
+                </p>
+                
+                <div className="grid grid-cols-2 gap-4 mt-8">
+                  {[
+                    { label: "Ownership", value: college.type },
+                    { label: "Approved By", value: college.approvals?.join(", ") },
+                    { label: "Campus Area", value: "250+ Acres" },
+                    { label: "Total Faculty", value: "450+" },
+                  ].map((item, i) => (
+                    <div key={i} className="flex flex-col gap-1">
+                      <span className="text-xs text-slate-400 font-bold uppercase">{item.label}</span>
+                      <span className="text-sm font-semibold text-slate-700">{item.value || "Not available"}</span>
+                    </div>
+                  ))}
+                </div>
+              </motion.section>
+            )}
 
-              <div className="space-y-4">
-                {courses.map((course, i) => (
-                  <div 
-                    key={course.id} 
-                    className="p-4 md:p-6 border border-gray-50 bg-slate-50/30 rounded-2xl hover:bg-slate-50 transition-colors group"
-                  >
-                    <div className="flex flex-col md:flex-row justify-between gap-4">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-2">
-                          <h3 className="text-base md:text-lg font-bold text-slate-800">{course.master_courses?.name}</h3>
-                          <CheckCircle2 className="w-4 h-4 text-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity" />
-                        </div>
-                        <div className="flex flex-wrap gap-x-4 gap-y-2 text-xs md:text-sm text-slate-500 font-medium">
-                          <span className="flex items-center gap-1"><BookOpen className="w-3.5 h-3.5" /> {course.duration}</span>
-                          <span className="flex items-center gap-1"><Users className="w-3.5 h-3.5" /> {course.seats} Seats</span>
-                          <span className="hidden sm:inline-block text-slate-300">|</span>
-                          <span className="text-slate-600">{course.eligibility}</span>
-                        </div>
+            {/* Admission Process Section - Only in Admission Tab */}
+            {activeTab === "Admission" && (
+              <motion.section 
+                key="admission-process"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="bg-white rounded-3xl p-6 md:p-8 shadow-sm"
+              >
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 bg-purple-50 rounded-xl flex items-center justify-center">
+                    <Calendar className="w-5 h-5 text-purple-600" />
+                  </div>
+                  <h2 className="text-xl md:text-2xl font-bold text-slate-900">Admission Process 2026</h2>
+                </div>
+                <div className="space-y-6">
+                  {[
+                    { title: "Application Submission", desc: "Submit your application through our portal or the college's official website." },
+                    { title: "Counseling / Interview", desc: "Qualified candidates will be called for counseling or personal interview rounds." },
+                    { title: "Document Verification", desc: "Original documents will be verified for eligibility and background check." },
+                    { title: "Seat Allocation & Fee Payment", desc: "Upon selection, confirm your seat by paying the initial admission fee." }
+                  ].map((step, i) => (
+                    <div key={i} className="flex gap-4">
+                      <div className="w-8 h-8 rounded-full bg-navy text-white flex items-center justify-center shrink-0 font-bold text-sm">
+                        {i + 1}
                       </div>
-                      <div className="flex flex-row md:flex-col justify-between md:text-right items-center md:items-end">
-                        <p className="text-lg md:text-xl font-extrabold text-[#111827]">{formatFee(course.fee)}</p>
-                        <p className="text-[10px] md:text-xs text-slate-400 font-bold uppercase">Estimated Annual Fee</p>
+                      <div>
+                        <h3 className="font-bold text-slate-800">{step.title}</h3>
+                        <p className="text-sm text-slate-500">{step.desc}</p>
                       </div>
                     </div>
+                  ))}
+                </div>
+              </motion.section>
+            )}
+
+            {/* Courses Section - Shown in Overview (some) and Courses (all) */}
+            {(activeTab === "Overview" || activeTab === "Courses") && (
+              <motion.section 
+                key="courses"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="bg-white rounded-3xl p-6 md:p-8 shadow-sm"
+              >
+                <div className="flex items-center justify-between mb-8">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-emerald-50 rounded-xl flex items-center justify-center">
+                      <BookOpen className="w-5 h-5 text-emerald-600" />
+                    </div>
+                    <h2 className="text-xl md:text-2xl font-bold text-slate-900">
+                      {activeTab === "Courses" ? "Available Programs & Fees" : "Popular Courses"}
+                    </h2>
                   </div>
-                ))}
-              </div>
-            </motion.section>
+                  <span className="text-xs font-bold bg-slate-100 text-slate-600 px-3 py-1.5 rounded-full">
+                    {courses.length} Programs
+                  </span>
+                </div>
+
+                <div className="space-y-4">
+                  {(activeTab === "Overview" ? courses.slice(0, 3) : courses).map((course) => (
+                    <div 
+                      key={course.id} 
+                      className="p-4 md:p-6 border border-gray-50 bg-slate-50/30 rounded-2xl hover:bg-slate-50 transition-colors group"
+                    >
+                      <div className="flex flex-col md:flex-row justify-between gap-4">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2 mb-2">
+                            <h3 className="text-base md:text-lg font-bold text-slate-800">{course.master_courses?.name}</h3>
+                            <CheckCircle2 className="w-4 h-4 text-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                          </div>
+                          <div className="flex flex-wrap gap-x-4 gap-y-2 text-xs md:text-sm text-slate-500 font-medium">
+                            <span className="flex items-center gap-1"><BookOpen className="w-3.5 h-3.5" /> {course.duration}</span>
+                            <span className="flex items-center gap-1"><Users className="w-3.5 h-3.5" /> {course.seats} Seats</span>
+                            <span className="hidden sm:inline-block text-slate-300">|</span>
+                            <span className="text-slate-600">{course.eligibility}</span>
+                          </div>
+                        </div>
+                        <div className="flex flex-row md:flex-col justify-between md:text-right items-center md:items-end">
+                          <p className="text-lg md:text-xl font-extrabold text-[#111827]">{formatFee(course.fee)}</p>
+                          <p className="text-[10px] md:text-xs text-slate-400 font-bold uppercase">Estimated Annual Fee</p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                  {activeTab === "Overview" && courses.length > 3 && (
+                    <button 
+                      onClick={() => setActiveTab("Courses")}
+                      className="w-full py-4 text-sm font-bold text-blue-600 hover:bg-blue-50 rounded-2xl transition-all border-2 border-dashed border-blue-100 mt-2"
+                    >
+                      View All {courses.length} Courses
+                    </button>
+                  )}
+                </div>
+              </motion.section>
+            )}
+
+            {/* Placement Section - Only in Placement Tab (Detailed) */}
+            {activeTab === "Placement" && (
+              <motion.section 
+                key="placement-detail"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="bg-white rounded-3xl p-6 md:p-8 shadow-sm"
+              >
+                <div className="flex items-center gap-3 mb-8">
+                  <div className="w-10 h-10 bg-rose-50 rounded-xl flex items-center justify-center">
+                    <TrendingUp className="w-5 h-5 text-rose-600" />
+                  </div>
+                  <h2 className="text-xl md:text-2xl font-bold text-slate-900">Placement Statistics</h2>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                   <div className="p-6 bg-rose-50 rounded-3xl text-center">
+                      <p className="text-3xl font-black text-rose-600">{formatPkg(college.highest_package)}</p>
+                      <p className="text-xs font-bold text-rose-400 uppercase tracking-wider mt-1">Highest Package</p>
+                   </div>
+                   <div className="p-6 bg-blue-50 rounded-3xl text-center">
+                      <p className="text-3xl font-black text-blue-600">{formatPkg(college.avg_package)}</p>
+                      <p className="text-xs font-bold text-blue-400 uppercase tracking-wider mt-1">Average Package</p>
+                   </div>
+                   <div className="p-6 bg-emerald-50 rounded-3xl text-center">
+                      <p className="text-3xl font-black text-emerald-600">95%</p>
+                      <p className="text-xs font-bold text-emerald-400 uppercase tracking-wider mt-1">Placement Ratio</p>
+                   </div>
+                </div>
+
+                <h3 className="font-bold text-slate-800 mb-4">Top Recruiters</h3>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                  {["Google", "Microsoft", "Amazon", "Goldman Sachs", "ITC", "TCS", "Infosys", "Wipro", "Accenture", "Deloitte"].map(c => (
+                    <div key={c} className="p-4 border border-slate-100 rounded-2xl flex items-center justify-center text-sm font-bold text-slate-500 hover:border-blue-200 hover:text-blue-600 transition-all">
+                      {c}
+                    </div>
+                  ))}
+                </div>
+              </motion.section>
+            )}
           </div>
 
           {/* Right Column (Sidebar) */}
@@ -448,61 +571,78 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
               </button>
             </div>
 
-            {/* Ranking Stats */}
-            <div className="bg-white rounded-3xl p-6 shadow-sm">
-              <h3 className="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
-                <Star className="w-5 h-5 text-amber-400" /> Ratings Breakdown
-              </h3>
-              <div className="space-y-4">
-                {[
-                  { label: "Academics", score: 4.8 },
-                  { label: "Infrastructure", score: 4.5 },
-                  { label: "Placement", score: 4.7 },
-                  { label: "Campus Life", score: 4.2 },
-                ].map((r) => (
-                  <div key={r.label}>
-                    <div className="flex justify-between text-sm mb-1">
-                      <span className="font-semibold text-slate-600">{r.label}</span>
-                      <span className="font-bold text-slate-900">{r.score}/5</span>
+            {/* Ratings Stats - Only in Overview */}
+            {activeTab === "Overview" && (
+              <motion.div 
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="bg-white rounded-3xl p-6 shadow-sm"
+              >
+                <h3 className="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
+                  <Star className="w-5 h-5 text-amber-400" /> Ratings Breakdown
+                </h3>
+                <div className="space-y-4">
+                  {[
+                    { label: "Academics", score: 4.8 },
+                    { label: "Infrastructure", score: 4.5 },
+                    { label: "Placement", score: 4.7 },
+                    { label: "Campus Life", score: 4.2 },
+                  ].map((r) => (
+                    <div key={r.label}>
+                      <div className="flex justify-between text-sm mb-1">
+                        <span className="font-semibold text-slate-600">{r.label}</span>
+                        <span className="font-bold text-slate-900">{r.score}/5</span>
+                      </div>
+                      <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
+                        <motion.div 
+                          initial={{ width: 0 }}
+                          animate={{ width: `${(r.score / 5) * 100}%` }}
+                          transition={{ duration: 1, delay: 0.5 }}
+                          className="h-full bg-blue-500 rounded-full"
+                        />
+                      </div>
                     </div>
-                    <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
-                      <motion.div 
-                        initial={{ width: 0 }}
-                        animate={{ width: `${(r.score / 5) * 100}%` }}
-                        transition={{ duration: 1, delay: 0.5 }}
-                        className="h-full bg-blue-500 rounded-full"
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+                  ))}
+                </div>
+              </motion.div>
+            )}
 
-            {/* Placement highlights */}
-            <div className="bg-white rounded-3xl p-6 shadow-sm overflow-hidden relative">
-              <div className="absolute -top-6 -right-6 w-24 h-24 bg-rose-50 rounded-full pointer-events-none" />
-              <h3 className="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2 relative">
-                <TrendingUp className="w-5 h-5 text-rose-500" /> Placement History
-              </h3>
-              <div className="space-y-6 relative">
-                 <div className="flex items-center justify-between p-3 bg-rose-50 rounded-2xl">
-                    <div>
-                      <p className="text-2xl font-black text-rose-600">{formatPkg(college.highest_package)}</p>
-                      <p className="text-[10px] font-bold text-rose-400 uppercase">Highest CTC</p>
-                    </div>
-                    <div className="text-right">
-                       <p className="text-xl font-bold text-slate-800">{formatPkg(college.avg_package)}</p>
-                       <p className="text-[10px] font-bold text-slate-400 uppercase">Average CTC</p>
-                    </div>
-                 </div>
-                 <div className="flex flex-wrap gap-2">
-                   {["Google", "Microsoft", "Amazon", "Goldman Sachs", "ITC"].map(c => (
-                     <span key={c} className="text-[10px] font-bold px-3 py-1 bg-slate-100 text-slate-500 rounded-full">{c}</span>
-                   ))}
-                   <span className="text-[10px] font-bold px-3 py-1 bg-slate-100 text-slate-500 rounded-full">200+ more</span>
-                 </div>
-              </div>
-            </div>
+            {/* Placement highlights - Only in Overview */}
+            {activeTab === "Overview" && (
+              <motion.div 
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="bg-white rounded-3xl p-6 shadow-sm overflow-hidden relative"
+              >
+                <div className="absolute -top-6 -right-6 w-24 h-24 bg-rose-50 rounded-full pointer-events-none" />
+                <h3 className="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2 relative">
+                  <TrendingUp className="w-5 h-5 text-rose-500" /> Placement History
+                </h3>
+                <div className="space-y-6 relative">
+                  <div className="flex items-center justify-between p-3 bg-rose-50 rounded-2xl">
+                      <div>
+                        <p className="text-2xl font-black text-rose-600">{formatPkg(college.highest_package)}</p>
+                        <p className="text-[10px] font-bold text-rose-400 uppercase">Highest CTC</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-xl font-bold text-slate-800">{formatPkg(college.avg_package)}</p>
+                        <p className="text-[10px] font-bold text-slate-400 uppercase">Average CTC</p>
+                      </div>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {["Google", "Microsoft", "Amazon", "Goldman Sachs", "ITC"].map(c => (
+                      <span key={c} className="text-[10px] font-bold px-3 py-1 bg-slate-100 text-slate-500 rounded-full">{c}</span>
+                    ))}
+                  </div>
+                  <button 
+                    onClick={() => setActiveTab("Placement")}
+                    className="w-full py-2 text-xs font-bold text-rose-600 hover:bg-rose-50 rounded-xl transition-all border border-dashed border-rose-100"
+                  >
+                    View Full Report
+                  </button>
+                </div>
+              </motion.div>
+            )}
           </div>
         </div>
 

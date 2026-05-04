@@ -120,7 +120,7 @@ export function MatchingModal({ isOpen, onClose }: MatchingModalProps) {
                         className="w-full h-16 pl-12 pr-10 bg-slate-50 border-2 border-slate-50 rounded-2xl focus:outline-none focus:border-teal focus:bg-white transition-all font-bold text-slate-700 appearance-none cursor-pointer shadow-sm"
                       >
                         <option value="">Select Your Stream</option>
-                        {["Engineering", "Medical", "Management", "Law", "Design", "Marine", "Arts & Science", "Agriculture", "Architecture", "Pharmacy", "Nursing"].map(s => (
+                        {["Engineering", "Medical", "Management", "Law", "Design", "Marine", "Arts & Science", "Agriculture", "Architecture", "Pharmacy"].map(s => (
                           <option key={s} value={s}>{s}</option>
                         ))}
                       </select>

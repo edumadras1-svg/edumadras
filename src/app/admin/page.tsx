@@ -41,6 +41,8 @@ export default function AdminDashboard() {
       const { count: collegesCount } = await supabase.from('colleges').select('*', { count: 'exact', head: true });
       const { count: leadsCount } = await supabase.from('leads').select('*', { count: 'exact', head: true });
       const { count: counselorsCount } = await supabase.from('counselors').select('*', { count: 'exact', head: true });
+      const { count: bannersCount } = await supabase.from('banners').select('*', { count: 'exact', head: true }).eq('is_active', true);
+      const { count: popupsCount } = await supabase.from('alerts').select('*', { count: 'exact', head: true }).eq('is_active', true);
       
       const { data: leads } = await supabase
         .from('leads')
@@ -52,7 +54,7 @@ export default function AdminDashboard() {
         { label: "Total Colleges", value: collegesCount?.toString() || "0", icon: GraduationCap, color: "bg-blue-50 text-blue-600", trend: "+12%" },
         { label: "Total Leads", value: leadsCount?.toString() || "0", icon: MessageSquare, color: "bg-teal-50 text-teal-600", trend: "+18%" },
         { label: "Counselors", value: counselorsCount?.toString() || "0", icon: Users, color: "bg-amber-50 text-amber-600", trend: "0%" },
-        { label: "Success Rate", value: "68%", icon: TrendingUp, color: "bg-purple-50 text-purple-600", trend: "+5%" },
+        { label: "Active Promos", value: ((bannersCount || 0) + (popupsCount || 0)).toString(), icon: TrendingUp, color: "bg-purple-50 text-purple-600", trend: "Live" },
       ]);
       
       setRecentLeads(leads || []);

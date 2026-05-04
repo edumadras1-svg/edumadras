@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase/client";
 import { X, Loader2, Plus, Edit2, Trash2, Eye, EyeOff, ExternalLink, ChevronRight, Sparkles } from "lucide-react";
 
@@ -18,6 +19,7 @@ interface Banner {
 }
 
 export default function AdminBannersPage() {
+  const router = useRouter();
   const [banners, setBanners] = React.useState<Banner[]>([]);
   const [loading, setLoading] = React.useState(true);
   const [isModalOpen, setIsModalOpen] = React.useState(false);
@@ -77,15 +79,28 @@ export default function AdminBannersPage() {
     e.preventDefault();
     setLoading(true);
 
+    // Prepare data by removing restricted fields
+    const { id, created_at, ...updateData } = formData as any;
+
     if (editingBanner) {
       const { error } = await supabase
         .from("banners")
-        .update(formData)
+        .update(updateData)
         .eq("id", editingBanner.id);
-      if (!error) fetchBanners();
+      if (error) {
+        alert("Error updating banner: " + error.message);
+      } else {
+        fetchBanners();
+        router.refresh();
+      }
     } else {
-      const { error } = await supabase.from("banners").insert([formData]);
-      if (!error) fetchBanners();
+      const { error } = await supabase.from("banners").insert([updateData]);
+      if (error) {
+        alert("Error creating banner: " + error.message);
+      } else {
+        fetchBanners();
+        router.refresh();
+      }
     }
 
     setLoading(false);
@@ -276,12 +291,43 @@ export default function AdminBannersPage() {
                 </div>
               </div>
 
+              <div className="space-y-4">
+                <label className="text-badge font-extrabold text-text-tertiary uppercase tracking-widest block">Background Gradient Preset</label>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                  {[
+                    { name: "Navy Blue", class: "bg-gradient-to-r from-navy to-navy-dark" },
+                    { name: "Teal Dreams", class: "bg-gradient-to-r from-teal-dark to-teal" },
+                    { name: "Indigo Night", class: "bg-gradient-to-r from-indigo-600 to-blue-700" },
+                    { name: "Royal Purple", class: "bg-gradient-to-r from-purple-700 to-indigo-800" },
+                    { name: "Sunset", class: "bg-gradient-to-r from-orange-500 to-red-600" },
+                    { name: "Deep Ocean", class: "bg-gradient-to-br from-blue-900 via-navy to-black" },
+                  ].map((g) => (
+                    <button
+                      key={g.class}
+                      type="button"
+                      onClick={() => setFormData({ ...formData, gradient: g.class })}
+                      className={`h-16 rounded-xl border-2 transition-all p-2 flex items-center justify-center text-center leading-tight ${
+                        formData.gradient === g.class ? "border-teal scale-95 shadow-inner" : "border-transparent"
+                      } ${g.class}`}
+                    >
+                      <span className="text-[10px] font-bold text-white drop-shadow-md">{g.name}</span>
+                    </button>
+                  ))}
+                </div>
+                <input 
+                  type="text" 
+                  value={formData.gradient || ""}
+                  onChange={(e) => setFormData({ ...formData, gradient: e.target.value })}
+                  className="w-full h-12 bg-surface-low border border-border-ghost rounded-xl px-4 text-navy font-mono text-xs focus:border-teal outline-none transition-all"
+                  placeholder="Custom Tailwind Classes..." 
+                />
+              </div>
+
               <div className="space-y-2">
-                <label className="text-badge font-extrabold text-text-tertiary uppercase tracking-widest">Image URL</label>
+                <label className="text-badge font-extrabold text-text-tertiary uppercase tracking-widest">Image URL (Optional)</label>
                 <input 
                   type="url" 
-                  required
-                  value={formData.image}
+                  value={formData.image || ""}
                   onChange={(e) => setFormData({ ...formData, image: e.target.value })}
                   className="w-full h-12 bg-surface-low border border-border-ghost rounded-xl px-4 text-navy font-bold focus:border-teal outline-none transition-all"
                   placeholder="https://images.unsplash.com/..." 

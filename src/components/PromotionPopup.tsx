@@ -15,21 +15,13 @@ export function PromotionPopup() {
         .from("alerts")
         .select("*")
         .eq("is_active", true)
-        .eq("type", "offer")
         .order("created_at", { ascending: false })
         .limit(1)
         .maybeSingle();
 
       if (data) {
         setPromo(data);
-        setTimeout(() => setIsOpen(true), 2000);
-      } else {
-        // Fallback for demo if no data in DB
-        setPromo({
-          title: "Year End Special!",
-          message: "Get up to 50% discount on premium college application processing. Valid for the next 48 hours only!",
-          image_url: "https://images.unsplash.com/photo-1523050335392-9bef867a4975?auto=format&fit=crop&q=80&w=1000"
-        });
+        // Show immediately for verification (session storage disabled for now)
         setTimeout(() => setIsOpen(true), 2000);
       }
     };
@@ -83,12 +75,21 @@ export function PromotionPopup() {
               )}
               
               <div className="relative z-10 text-center px-8">
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-teal/20 backdrop-blur-md border border-teal/30 text-teal-light text-[10px] font-black rounded-full uppercase tracking-[0.2em] mb-4">
-                  <BellRing className="w-3.5 h-3.5" /> Special Announcement
+                <div className={`inline-flex items-center gap-2 px-4 py-1.5 backdrop-blur-md border text-[10px] font-black rounded-full uppercase tracking-[0.2em] mb-4 ${
+                  promo.type === 'warning' ? 'bg-red-500/20 border-red-500/30 text-red-400' :
+                  promo.type === 'info' ? 'bg-blue-500/20 border-blue-500/30 text-blue-400' :
+                  'bg-teal/20 border-teal/30 text-teal-light'
+                }`}>
+                  <BellRing className="w-3.5 h-3.5" /> 
+                  {promo.type === 'warning' ? 'Urgent Alert' : promo.type === 'info' ? 'Important Info' : 'Special Announcement'}
                 </div>
                 <h2 className="text-3xl md:text-4xl font-black text-white leading-tight tracking-tight drop-shadow-xl">
                   {promo.title.split(" ").map((word: string, i: number) => (
-                    <span key={i} className={i === 0 ? "text-white" : "text-teal-light"}>
+                    <span key={i} className={
+                      i === 0 ? "text-white" : 
+                      promo.type === 'warning' ? "text-red-400" :
+                      promo.type === 'info' ? "text-blue-400" : "text-teal-light"
+                    }>
                       {word}{" "}
                     </span>
                   ))}

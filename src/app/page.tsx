@@ -1,10 +1,12 @@
+export const dynamic = "force-dynamic";
+
 import { TopNavBar } from "@/components/TopNavBar";
 import { CtaButton } from "@/components/CtaButton";
 import { CounselorActions } from "@/components/CounselorActions";
 import { CollegeCard } from "@/components/CollegeCard";
 import { FAQAccordion } from "@/components/FAQAccordion";
 import { HeroSearch } from "@/components/HeroSearch";
-import { PromoBanner } from "@/components/PromoBanner";
+import { PromoCarousel } from "@/components/PromoCarousel";
 import { supabase } from "@/lib/supabase/client";
 import Link from "next/link";
 import {
@@ -98,10 +100,14 @@ export default async function Home() {
     .from("banners")
     .select("*")
     .eq("is_active", true)
-    .order("created_at", { ascending: false })
-    .limit(1);
+    .order("created_at", { ascending: false });
 
-  const banner = banners?.[0];
+  const { data: settings } = await supabase.from("app_settings").select("*");
+  const getSetting = (key: string, fallback: string) => settings?.find(s => s.key === key)?.value || fallback;
+
+  const heroTitle = getSetting("hero_title", "Find Your Dream College in Tamil Nadu");
+  const heroSubtitle = getSetting("hero_subtitle", "Compare 500+ top engineering, medical & management colleges with verified fees and placement data.");
+
 
   const { data: engineeringColleges } = await supabase
     .from("colleges")
@@ -130,17 +136,19 @@ export default async function Home() {
       <TopNavBar />
 
       {/* ==================== HERO SECTION (Trigger Rebuild) ==================== */}
-      <section className="gradient-hero relative overflow-hidden">
-        {/* Decorative Elements */}
-        <div className="absolute top-0 right-0 w-72 h-72 bg-white/5 rounded-full -mr-36 -mt-36 blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-teal/10 rounded-full -ml-32 -mb-32 blur-3xl" />
-
-        <div className="container-mobile relative z-10 pt-12 pb-14 md:pt-20 md:pb-24 text-center">
-          <h1 className="text-hero text-white max-w-md mx-auto md:text-5xl">
-            Find the Best Colleges in Tamil Nadu 2026
-          </h1>
-          <p className="mt-4 text-white/70 text-body-sm max-w-sm mx-auto md:text-base">
-            Compare 500+ colleges · Free expert counseling · Apply online
+      <section className="bg-navy pt-16 pb-24 text-center relative overflow-hidden">
+        {/* Decorative background blobs */}
+        <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-teal/10 rounded-full blur-[120px] animate-pulse" />
+        <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-500/10 rounded-full blur-[120px]" />
+        
+        <div className="container-mobile relative z-10">
+          <span className="text-badge text-teal-light tracking-[0.2em] uppercase font-black mb-4 block">India's Trusted Discovery Platform</span>
+          <h1 
+            className="text-[32px] md:text-[56px] font-black text-white leading-[1.1] tracking-tight"
+            dangerouslySetInnerHTML={{ __html: heroTitle }}
+          />
+          <p className="text-body md:text-lg text-white/60 mt-4 max-w-xl mx-auto">
+            {heroSubtitle}
           </p>
 
           {/* Search Bar */}
@@ -176,9 +184,8 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* ==================== PROMOTIONAL BANNER ==================== */}
       <section className="container-mobile -mt-6 relative z-20">
-        <PromoBanner banner={banner} />
+        <PromoCarousel banners={banners || []} />
       </section>
 
       {/* ==================== TOP ENGINEERING COLLEGES ==================== */}

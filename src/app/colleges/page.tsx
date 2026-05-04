@@ -116,9 +116,9 @@ function CollegesContent() {
     if (searchQuery) {
       const q = searchQuery.toLowerCase();
       filtered = filtered.filter(c => 
-        c.name.toLowerCase().includes(q) || 
-        c.city.toLowerCase().includes(q) || 
-        c.state.toLowerCase().includes(q) ||
+        (c.name || "").toLowerCase().includes(q) || 
+        (c.city || "").toLowerCase().includes(q) || 
+        (c.state || "").toLowerCase().includes(q) ||
         (c.stream && c.stream.toLowerCase().includes(q))
       );
     }
@@ -174,12 +174,12 @@ function CollegesContent() {
     fetchColleges();
   }, [fetchColleges]);
 
-  // Sync stream from URL if it changes
+  // Sync stream and search from URL if it changes
   useEffect(() => {
     const s = searchParams.get("stream");
-    if (s) setActiveStream(s);
+    setActiveStream(s || "all");
     const q = searchParams.get("q");
-    if (q) setSearchQuery(q);
+    setSearchQuery(q || "");
   }, [searchParams]);
 
   // Reset page when filters change

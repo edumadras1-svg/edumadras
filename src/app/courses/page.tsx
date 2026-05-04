@@ -52,9 +52,9 @@ export default function CoursesPage() {
     if (!searchTerm) return courses;
     const lower = searchTerm.toLowerCase();
     return courses.filter(c => 
-      c.master_courses?.name?.toLowerCase().includes(lower) ||
-      c.colleges?.name?.toLowerCase().includes(lower) ||
-      c.master_courses?.stream?.toLowerCase().includes(lower)
+      (c.master_courses?.name || "").toLowerCase().includes(lower) ||
+      (c.colleges?.name || "").toLowerCase().includes(lower) ||
+      (c.master_courses?.stream || "").toLowerCase().includes(lower)
     );
   }, [searchTerm, courses]);
 

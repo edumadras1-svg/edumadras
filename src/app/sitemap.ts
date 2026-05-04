@@ -145,7 +145,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/architecture-colleges-tamilnadu',
     '/hotel-management-colleges-tamilnadu',
     '/law-colleges/tamilnadu',
-    '/nursing-colleges-tamilnadu',
     '/government-pharmacy-colleges-tamilnadu',
     '/engineering-colleges/chennai/avadi',
     '/engineering-colleges/chennai/omr',

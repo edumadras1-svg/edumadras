@@ -19,9 +19,12 @@ export const metadata: Metadata = {
   keywords: "colleges in India, IIT, AIIMS, engineering colleges, medical colleges, college comparison, free counseling, EduMadras",
   icons: {
     icon: [
-      { url: "/favicon.ico" },
-      { url: "/logo_icon.ico" },
-      { url: "/edumadras-logo.ico" }
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/edumadras-logo.png", type: "image/png", sizes: "32x32" },
+      { url: "/edumadras-logo.png", type: "image/png", sizes: "192x192" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     ],
   },
 };

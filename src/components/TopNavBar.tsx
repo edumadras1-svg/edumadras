@@ -50,7 +50,7 @@ export function TopNavBar() {
             alt="EduMadras Logo" 
             width={180} 
             height={50} 
-            className="object-contain w-24 md:w-36 h-auto"
+            className="object-contain w-28 md:w-44 h-auto"
             priority
           />
         </Link>
