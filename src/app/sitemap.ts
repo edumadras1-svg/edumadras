@@ -153,7 +153,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/engineering-colleges/kallakurichi',
     '/arts-science-colleges/kallakurichi',
     '/medical-colleges/kallakurichi',
-    '/colleges-in-kallakurichi',
+    '/kallakurichi',
   ];
   const regionalRoutes: MetadataRoute.Sitemap = regionalPages.map((slug) => ({
     url: `${BASE_URL}${slug}`,
