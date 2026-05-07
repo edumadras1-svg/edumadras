@@ -44,15 +44,18 @@ export function TopNavBar() {
           backdropFilter: scrolled ? "blur(20px)" : "none",
         }}
       >
-        <Link href="/" className="flex items-center focus-ring rounded-md">
+        <Link href="/" className="flex items-center gap-2 focus-ring rounded-md">
           <Image 
-            src="/edumadras-logo.png" 
+            src="/icon-192.png" 
             alt="EduMadras Logo" 
-            width={180} 
-            height={50} 
-            className="object-contain w-28 md:w-44 h-auto"
+            width={40} 
+            height={40} 
+            className="object-contain w-8 h-8 md:w-10 md:h-10"
             priority
           />
+          <span className="text-lg md:text-xl font-extrabold tracking-tight text-navy">
+            Edu<span className="text-teal">Madras</span>
+          </span>
         </Link>
 
         {/* Desktop Nav */}
