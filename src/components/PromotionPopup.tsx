@@ -71,6 +71,9 @@ export function PromotionPopup() {
                   src={promo.image_url} 
                   alt="" 
                   className="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-40 scale-105"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).style.display = 'none';
+                  }}
                 />
               )}
               

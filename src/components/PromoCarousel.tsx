@@ -85,6 +85,9 @@ export function PromoCarousel({ banners }: PromoCarouselProps) {
                   src={currentBanner.image} 
                   alt="" 
                   className="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-30"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).style.display = 'none';
+                  }}
                 />
               )}
               
