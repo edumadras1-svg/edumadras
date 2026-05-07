@@ -29,9 +29,9 @@ const PAGE_URL = "https://edumadras.com/kallakurichi";
 export const metadata: Metadata = {
   title: "Colleges in Kallakurichi 2026 — Engineering, Medical, Arts & Science | EduMadras",
   description:
-    "Complete guide to all colleges in Kallakurichi district 2026. Find engineering, medical, arts & science colleges with fees, courses, placements, and admission details.",
+    "Complete guide to all colleges in Kallakurichi district 2026. Find engineering, medical, arts & science colleges with fees, courses, placements. Visit EduMadras Kallakurichi office for free admission counseling.",
   keywords:
-    "colleges in kallakurichi, kallakurichi colleges list, engineering colleges in kallakurichi, medical college kallakurichi, arts and science colleges kallakurichi, best colleges in kallakurichi district",
+    "colleges in kallakurichi, kallakurichi colleges list, engineering colleges in kallakurichi, medical college kallakurichi, arts and science colleges kallakurichi, best colleges in kallakurichi district, EduMadras Kallakurichi office, education consultants in kallakurichi, free college counseling kallakurichi, admission guidance kallakurichi",
   alternates: { canonical: PAGE_URL },
   openGraph: {
     title: "Colleges in Kallakurichi 2026 — Engineering, Medical, Arts & Science | EduMadras",
@@ -250,6 +250,55 @@ export default async function KallakurichiCollegesPage() {
           </div>
         </section>
 
+        {/* ---- EduMadras Kallakurichi Office (Local SEO) ---- */}
+        <section className="mb-16 bg-white rounded-3xl border border-teal/20 p-8 md:p-12 shadow-sm relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-teal/5 rounded-full blur-3xl" />
+          <div className="relative z-10 flex flex-col md:flex-row gap-8 items-center">
+            <div className="flex-1">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-teal/10 text-teal rounded-full text-xs font-bold uppercase tracking-widest mb-4">
+                <MapPin className="w-3.5 h-3.5" /> Local Presence
+              </div>
+              <h2 className="text-2xl md:text-3xl font-extrabold text-[#1E293B] mb-4">
+                Visit the EduMadras Office in Kallakurichi
+              </h2>
+              <p className="text-gray-600 leading-relaxed mb-6">
+                Are you confused about which college to choose? EduMadras is now locally available in Kallakurichi! Our expert <strong>education consultants in Kallakurichi</strong> provide 100% free, unbiased admission guidance. Whether you are looking for local institutions or premium colleges in Chennai, we help you make the best choice based on your cut-off, budget, and career goals.
+              </p>
+              <ul className="space-y-3 mb-8">
+                {[
+                  "Free one-on-one career counseling",
+                  "Guidance for TNEA, NEET, and Arts & Science admissions",
+                  "Direct interaction with premium college representatives",
+                  "Assistance with scholarship and education loan applications"
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3 text-sm text-gray-700 font-medium">
+                    <CheckCircle2 className="w-5 h-5 text-teal shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="w-full md:w-1/3 bg-gray-50 rounded-2xl p-6 border border-gray-100">
+              <h3 className="text-lg font-bold text-[#1E293B] mb-4">Kallakurichi Office Details</h3>
+              <div className="space-y-4 text-sm text-gray-600">
+                <div className="flex items-start gap-3">
+                  <MapPin className="w-5 h-5 text-teal shrink-0" />
+                  <p><strong>EduMadras Kallakurichi</strong><br />No.88/17D,<br />MRN Nagar, Kallakurichi, Tamil Nadu 606202</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Home className="w-5 h-5 text-teal shrink-0" />
+                  <p><strong>Email:</strong> [EMAIL_ADDRESS]</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Phone className="w-5 h-5 text-teal shrink-0" />
+                  <p><strong>Phone:</strong> +91 88257 21496</p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* ---- Local Colleges Grid ---- */}
         <section className="mb-16">
           <div className="flex items-center gap-3 mb-8">
@@ -280,11 +329,10 @@ export default async function KallakurichiCollegesPage() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex flex-wrap gap-1.5 mb-1.5">
-                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider ${
-                        college.type === "Government"
-                          ? "bg-green-50 text-green-600"
-                          : "bg-purple-50 text-purple-600"
-                      }`}>
+                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider ${college.type === "Government"
+                        ? "bg-green-50 text-green-600"
+                        : "bg-purple-50 text-purple-600"
+                        }`}>
                         {college.type}
                       </span>
                       <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-blue-50 text-blue-600 uppercase tracking-wider">
