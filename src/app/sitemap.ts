@@ -39,27 +39,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  // 3. Stream Pages
-  const streams = ['engineering', 'medical', 'management', 'law', 'design'];
-  const streamRoutes: MetadataRoute.Sitemap = streams.map((stream) => ({
-    url: `${BASE_URL}/streams/${stream}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly',
-    priority: 0.8,
-  }));
+  // Stream pages removed from sitemap — they use mock data and show
+  // "No colleges found" empty states, which Google flags as soft 404s.
+  // Re-add when stream pages pull real data from Supabase.
 
   // 4. Guide Pages
+  // Only include guides that actually exist in guidesConfig.ts
   const guideSlugs = [
-    'admission-tips',
-    'scholarship-guide',
-    'entrance-exams-2026',
-    'top-engineering-colleges',
-    'medical-admission-process',
-    'choosing-the-right-stream',
-    'hostel-life-tips',
-    'preparing-for-counseling',
-    'documents-required-for-college',
-    'career-after-graduation',
+    'tnea-counselling-2026',
+    'neet-counselling-2026',
+    'josaa-counselling-2026',
   ];
   const guideRoutes: MetadataRoute.Sitemap = guideSlugs.map((slug) => ({
     url: `${BASE_URL}/guides/${slug}`,
@@ -173,5 +162,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.75,
   }));
 
-  return [...routes, ...seoRoutes, ...phase2Routes, ...phase3Routes, ...regionalRoutes, ...collegeRoutes, ...streamRoutes, ...guideRoutes];
+  return [...routes, ...seoRoutes, ...phase2Routes, ...phase3Routes, ...regionalRoutes, ...collegeRoutes, ...guideRoutes];
 }
