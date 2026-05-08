@@ -288,16 +288,6 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
             </div>
 
             <div className="flex-1">
-              <div className="flex flex-wrap items-center gap-2 mb-2">
-                <span className="bg-blue-50 text-blue-600 text-[10px] font-bold px-2 py-0.5 rounded tracking-wider uppercase">
-                  {college.stream}
-                </span>
-                {college.is_recommended && (
-                  <span className="bg-amber-50 text-amber-600 text-[10px] font-bold px-2 py-0.5 rounded tracking-wider uppercase flex items-center gap-1">
-                    <Star className="w-3 h-3 fill-amber-600" /> Recommended
-                  </span>
-                )}
-              </div>
               <h1 className="text-2xl md:text-4xl font-extrabold text-[#1E293B] leading-tight mb-2">
                 {college.name} Admission 2026
               </h1>
