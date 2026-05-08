@@ -101,7 +101,6 @@ export function ApplyPageClient({ colleges }: ApplyPageClientProps) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          college_id: "edumadras-general",
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
