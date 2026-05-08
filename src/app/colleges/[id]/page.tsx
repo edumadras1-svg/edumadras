@@ -656,7 +656,12 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
         {/* Similar Colleges (Horizontal Scroll) */}
         {similarColleges.length > 0 && (
           <section className="mt-16">
-            <h2 className="text-2xl font-bold text-slate-900 mb-8">Students Also Compared With</h2>
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="text-2xl font-bold text-slate-900">Students Also Compared With</h2>
+              <Link href="/colleges" className="text-sm font-bold text-teal hover:text-teal/80 flex items-center gap-1 transition-colors">
+                Browse All Colleges <ChevronRight className="w-4 h-4" />
+              </Link>
+            </div>
             <div className="flex gap-6 overflow-x-auto no-scrollbar pb-6 pl-1 -ml-1">
               {similarColleges.map((sc, i) => (
                 <motion.div 
