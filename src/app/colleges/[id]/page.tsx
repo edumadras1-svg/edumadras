@@ -316,8 +316,13 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
             </div>
           </div>
 
+          {/* Inline Lead Form — visible immediately */}
+          <div className="mt-6">
+            <InlineLeadForm collegeName={college.name} collegeId={college.id} />
+          </div>
+
           {/* Key Stats Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 pt-8 border-t border-gray-50">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 pt-6 border-t border-gray-50">
             {[
               { icon: Award, label: "NIRF Rank", value: `#${college.rank || "N/A"}`, color: "text-amber-500", bg: "bg-amber-50" },
               { icon: Star, label: "User Rating", value: `${college.rating || "N/A"}/5`, color: "text-emerald-500", bg: "bg-emerald-50" },
@@ -339,7 +344,7 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
           </div>
 
           {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3 mt-8">
+          <div className="flex flex-col sm:flex-row gap-3 mt-6">
             <button 
               onClick={() => { setApplyModalMode("apply"); setIsApplyModalOpen(true); }}
               className="flex-1 h-12 bg-[#0F172A] hover:bg-[#1E293B] text-white font-bold rounded-xl transition-all shadow-xl shadow-slate-200 btn-press flex items-center justify-center gap-2"
@@ -352,11 +357,6 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
             <button className="w-full sm:w-auto px-6 h-12 bg-slate-50 text-slate-600 font-bold rounded-xl hover:bg-slate-100 transition-all btn-press flex items-center justify-center gap-2">
               <GitCompareArrows className="w-4 h-4" /> Compare
             </button>
-          </div>
-
-          {/* Inline Lead Form — visible immediately */}
-          <div className="mt-6">
-            <InlineLeadForm collegeName={college.name} collegeId={college.id} />
           </div>
         </motion.div>
 
