@@ -275,9 +275,10 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
           transition={{ duration: 0.6, type: "spring" }}
           className="bg-white rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.08)] p-6 md:p-8"
         >
-          <div className="flex flex-col md:flex-row gap-6 md:items-end">
+          {/* Logo + Scholarship Badge Row */}
+          <div className="flex items-center gap-4 md:gap-6">
             {/* Logo */}
-            <div className="w-24 h-24 md:w-32 md:h-32 bg-white rounded-2xl shadow-xl flex items-center justify-center border border-gray-100 overflow-hidden shrink-0 -mt-2 md:-mt-0">
+            <div className="w-24 h-24 md:w-32 md:h-32 bg-white rounded-2xl shadow-xl flex items-center justify-center border border-gray-100 overflow-hidden shrink-0">
                {college.logo_url ? (
                 <img src={college.logo_url} alt={`${college.name} logo`} className="w-16 h-16 md:w-20 md:h-20 object-contain" />
               ) : (
@@ -287,44 +288,41 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
               )}
             </div>
 
-            <div className="flex-1">
-              <div className="flex flex-wrap items-start gap-3 md:gap-4">
-                <div className="flex-1 min-w-0">
-                  <h1 className="text-2xl md:text-4xl font-extrabold text-[#1E293B] leading-tight mb-2">
-                    {college.name} Admission 2026
-                  </h1>
-                  <div className="flex flex-wrap items-center gap-4 text-gray-500">
-                    <div className="flex items-center gap-1.5 text-sm md:text-base">
-                      <MapPin className="w-4 h-4 text-red-400" />
-                      <span>{college.city}, {college.state}</span>
-                    </div>
-                    {college.established_year && (
-                      <div className="flex items-center gap-1.5 text-sm md:text-base border-l border-gray-200 pl-4">
-                        <Calendar className="w-4 h-4 text-blue-400" />
-                        <span>Est. {college.established_year}</span>
-                      </div>
-                    )}
-                  </div>
-                </div>
+            {/* Scholarship Badge — right of logo, shown for Hindustan */}
+            {college.name.toLowerCase().includes("hindustan") && (
+              <motion.div
+                initial={{ scale: 0, rotate: -20 }}
+                animate={{ scale: 1, rotate: 0 }}
+                transition={{ type: "spring", stiffness: 200, damping: 12, delay: 0.3 }}
+                className="shrink-0 relative"
+              >
+                <div className="absolute inset-0 bg-amber-400/30 rounded-full blur-xl animate-pulse" />
+                <img
+                  src="/scholarship-badge.png"
+                  alt="Upto 50% Scholarship"
+                  className="w-28 h-28 md:w-36 md:h-36 object-contain relative z-10 drop-shadow-lg hover:scale-110 transition-transform duration-300 cursor-pointer"
+                  title="Upto 50% Scholarship Available!"
+                />
+              </motion.div>
+            )}
+          </div>
 
-                {/* Scholarship Badge — shown for Hindustan */}
-                {college.name.toLowerCase().includes("hindustan") && (
-                  <motion.div
-                    initial={{ scale: 0, rotate: -20 }}
-                    animate={{ scale: 1, rotate: 0 }}
-                    transition={{ type: "spring", stiffness: 200, damping: 12, delay: 0.3 }}
-                    className="shrink-0 relative"
-                  >
-                    <div className="absolute inset-0 bg-amber-400/30 rounded-full blur-xl animate-pulse" />
-                    <img
-                      src="/scholarship-badge.png"
-                      alt="Upto 50% Scholarship"
-                      className="w-24 h-24 md:w-32 md:h-32 object-contain relative z-10 drop-shadow-lg hover:scale-110 transition-transform duration-300 cursor-pointer"
-                      title="Upto 50% Scholarship Available!"
-                    />
-                  </motion.div>
-                )}
+          {/* College Name + Location */}
+          <div className="mt-5">
+            <h1 className="text-2xl md:text-4xl font-extrabold text-[#1E293B] leading-tight">
+              {college.name} Admission 2026
+            </h1>
+            <div className="flex flex-wrap items-center gap-4 text-gray-500 mt-2">
+              <div className="flex items-center gap-1.5 text-sm md:text-base">
+                <MapPin className="w-4 h-4 text-red-400" />
+                <span>{college.city}, {college.state}</span>
               </div>
+              {college.established_year && (
+                <div className="flex items-center gap-1.5 text-sm md:text-base border-l border-gray-200 pl-4">
+                  <Calendar className="w-4 h-4 text-blue-400" />
+                  <span>Est. {college.established_year}</span>
+                </div>
+              )}
             </div>
           </div>
 
