@@ -75,11 +75,7 @@ export function CollegeCard({
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
 
-        {/* Stream Badge */}
-        <div className={cn("absolute top-3 left-3 flex items-center gap-1 px-2.5 py-1 rounded-full text-badge", streamStyle.bg, streamStyle.text)}>
-          <StreamIcon className="w-3 h-3" />
-          {stream}
-        </div>
+
 
         {/* Rank Badge */}
         {rank && (
@@ -108,6 +104,11 @@ export function CollegeCard({
         </div>
 
         <div className="mt-8">
+          {/* Stream Badge */}
+          <div className={cn("inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-badge mb-2", streamStyle.bg, streamStyle.text)}>
+            <StreamIcon className="w-3 h-3" />
+            {stream}
+          </div>
           {/* Name & Location */}
           <h3 className="text-lg font-semibold text-text-primary leading-tight line-clamp-2">{name}</h3>
           <div className="flex items-center gap-1 mt-1 text-text-secondary">
