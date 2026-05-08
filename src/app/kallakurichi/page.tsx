@@ -22,6 +22,7 @@ import {
   Star,
   TrendingUp,
   Landmark,
+  Home,
 } from "lucide-react";
 
 const PAGE_URL = "https://edumadras.com/kallakurichi";
@@ -287,7 +288,7 @@ export default async function KallakurichiCollegesPage() {
                 </div>
                 <div className="flex items-start gap-3">
                   <Home className="w-5 h-5 text-teal shrink-0" />
-                  <p><strong>Email:</strong> [EMAIL_ADDRESS]</p>
+                  <p><strong>Email:</strong> edumadraskallakurichi@gmail.com  </p>
                 </div>
                 <div className="flex items-start gap-3">
                   <Phone className="w-5 h-5 text-teal shrink-0" />
