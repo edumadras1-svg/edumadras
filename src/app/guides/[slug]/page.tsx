@@ -161,9 +161,8 @@ export default async function GuidePage({ params }: PageProps) {
             {/* Inline CTA Form inserted naturally within the content flow */}
             <div className="my-10">
               <InlineCTABanner 
-                title={`Get Free Counseling for ${guide.title.includes('Engineering') ? 'Engineering' : 'Medical'} Admissions`}
-                subtitle="Our experts have helped 5000+ students secure their dream seats."
-                context={`Guide: ${guide.title}`}
+                headline={`Get Free Counseling for ${guide.title.includes('Engineering') ? 'Engineering' : 'Medical'} Admissions`}
+                subtext="Our experts have helped 5000+ students secure their dream seats."
               />
             </div>
 
