@@ -4,7 +4,6 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { TopNavBar } from "@/components/TopNavBar";
-import { supabase } from "@/lib/supabase/client";
 import {
   Send,
   CheckCircle2,
@@ -98,19 +97,21 @@ export function ApplyPageClient({ colleges }: ApplyPageClientProps) {
     setLoading(true);
 
     try {
-      const { error } = await supabase.from("leads").insert([
-        {
+      const res = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
           college_id: "edumadras-general",
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
           city: formData.city,
           target_course: formData.target_course,
-          status: "Pending",
-        },
-      ]);
+        }),
+      });
 
-      if (error) throw error;
+      const result = await res.json();
+      if (!res.ok) throw new Error(result.error || "Submission failed");
       setSuccess(true);
     } catch (err) {
       console.error("Error submitting application:", err);

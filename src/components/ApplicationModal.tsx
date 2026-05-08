@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { X, Send, CheckCircle2, Loader2, Phone, User, Mail, MapPin, BookOpen, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { supabase } from "@/lib/supabase/client";
 
 interface ApplicationModalProps {
   isOpen: boolean;
@@ -30,19 +29,21 @@ export function ApplicationModal({ isOpen, onClose, collegeId, collegeName, cour
     setLoading(true);
 
     try {
-      const { error } = await supabase.from("leads").insert([
-        {
+      const res = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
           college_id: collegeId,
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
           city: formData.city,
           target_course: formData.target_course,
-          status: "Pending",
-        },
-      ]);
+        }),
+      });
 
-      if (error) throw error;
+      const result = await res.json();
+      if (!res.ok) throw new Error(result.error || "Submission failed");
       setSuccess(true);
     } catch (err) {
       console.error("Error submitting application:", err);

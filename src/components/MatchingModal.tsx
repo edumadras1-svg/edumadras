@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { X, Send, CheckCircle2, Loader2, Sparkles, User, Phone, MapPin, GraduationCap, Star, ArrowRight, Mail, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { supabase } from "@/lib/supabase/client";
 
 interface MatchingModalProps {
   isOpen: boolean;
@@ -28,19 +27,20 @@ export function MatchingModal({ isOpen, onClose }: MatchingModalProps) {
     setLoading(true);
 
     try {
-      const { error } = await supabase.from("leads").insert([
-        {
+      const res = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
           city: formData.city,
           target_course: `${formData.stream} (Match Request)`,
-          qualification: `Marks: ${formData.marks}`,
-          status: "Pending",
-        },
-      ]);
+        }),
+      });
 
-      if (error) throw error;
+      const result = await res.json();
+      if (!res.ok) throw new Error(result.error || "Submission failed");
       setSuccess(true);
     } catch (err) {
       console.error("Error submitting match request:", err);
