@@ -186,7 +186,10 @@ export function MatchingModal({ isOpen, onClose }: MatchingModalProps) {
                           type="tel"
                           placeholder="Mobile Number"
                           value={formData.phone}
-                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                          onChange={(e) => setFormData({ ...formData, phone: e.target.value.replace(/\D/g, "") })}
+                          inputMode="numeric"
+                          pattern="[0-9]{10}"
+                          maxLength={10}
                           className="w-full h-14 pl-12 pr-4 bg-slate-50 border-2 border-slate-50 rounded-2xl focus:outline-none focus:border-teal transition-all font-bold"
                         />
                       </div>

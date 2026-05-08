@@ -119,7 +119,10 @@ export function HeroLeadForm() {
               type="tel"
               placeholder="Phone Number"
               value={formData.phone}
-              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+              onChange={(e) => setFormData({ ...formData, phone: e.target.value.replace(/\D/g, "") })}
+              inputMode="numeric"
+              pattern="[0-9]{10}"
+              maxLength={10}
               className="w-full h-12 pl-11 pr-4 bg-slate-50 border-2 border-slate-100 rounded-xl text-sm text-slate-800 font-medium placeholder:text-slate-300 focus:outline-none focus:border-teal focus:bg-white focus:shadow-md focus:shadow-teal/5 transition-all"
             />
           </div>

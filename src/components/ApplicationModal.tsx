@@ -137,7 +137,10 @@ export function ApplicationModal({ isOpen, onClose, collegeId, collegeName, cour
                       type="tel"
                       placeholder="Phone"
                       value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value.replace(/\D/g, "") })}
+                      inputMode="numeric"
+                      pattern="[0-9]{10}"
+                      maxLength={10}
                       className="w-full h-11 pl-10 pr-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 transition-all text-sm"
                     />
                   </div>
