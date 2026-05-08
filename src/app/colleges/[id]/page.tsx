@@ -276,30 +276,7 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
           className="bg-white rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.08)] p-6 md:p-8"
         >
           {/* Logo + Scholarship Badge */}
-          <div className="relative">
-            {/* Scholarship Badge — top right corner */}
-            {college.name.toLowerCase().includes("hindustan") && (
-              <motion.div
-                initial={{ scale: 0, rotate: -10 }}
-                animate={{ scale: 1, rotate: 0 }}
-                transition={{ type: "spring", stiffness: 200, damping: 14, delay: 0.3 }}
-                className="absolute -top-3 -right-3 md:-top-4 md:-right-4 z-10"
-              >
-                <div className="relative">
-                  <div className="absolute inset-0 bg-amber-400/25 rounded-2xl blur-lg animate-pulse" />
-                  <div className="relative bg-gradient-to-br from-amber-400 via-yellow-400 to-amber-500 rounded-2xl p-[2px] shadow-lg shadow-amber-300/40">
-                    <div className="bg-gradient-to-br from-amber-50 to-white rounded-[14px] px-4 py-3 text-center min-w-[110px] md:min-w-[130px]">
-                      <p className="text-[9px] md:text-[10px] font-extrabold text-amber-600 uppercase tracking-widest leading-none">Upto</p>
-                      <p className="text-3xl md:text-4xl font-black bg-gradient-to-b from-amber-500 to-amber-700 bg-clip-text text-transparent leading-none mt-0.5">50%</p>
-                      <div className="bg-gradient-to-r from-amber-500 to-amber-600 rounded-full px-3 py-0.5 mt-1.5">
-                        <p className="text-[8px] md:text-[9px] font-extrabold text-white uppercase tracking-wider">Scholarship</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            )}
-
+          <div className="flex items-center gap-4">
             {/* Logo */}
             <div className="w-24 h-24 md:w-32 md:h-32 bg-white rounded-2xl shadow-xl flex items-center justify-center border border-gray-100 overflow-hidden shrink-0">
                {college.logo_url ? (
@@ -310,6 +287,29 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
                 </span>
               )}
             </div>
+
+            {/* Scholarship Badge */}
+            {college.name.toLowerCase().includes("hindustan") && (
+              <motion.div
+                initial={{ scale: 0, rotate: -10 }}
+                animate={{ scale: 1, rotate: 0 }}
+                transition={{ type: "spring", stiffness: 200, damping: 14, delay: 0.3 }}
+                className="shrink-0"
+              >
+                <div className="relative">
+                  <div className="absolute inset-0 bg-amber-400/25 rounded-2xl blur-lg animate-pulse" />
+                  <div className="relative bg-gradient-to-br from-amber-400 via-yellow-400 to-amber-500 rounded-2xl p-[2.5px] shadow-xl shadow-amber-300/40">
+                    <div className="bg-gradient-to-br from-amber-50 to-white rounded-[14px] px-5 py-3.5 md:px-7 md:py-4 text-center">
+                      <p className="text-[10px] md:text-xs font-extrabold text-amber-600 uppercase tracking-widest leading-none">Upto</p>
+                      <p className="text-4xl md:text-5xl font-black bg-gradient-to-b from-amber-500 to-amber-700 bg-clip-text text-transparent leading-none mt-1">50%</p>
+                      <div className="bg-gradient-to-r from-amber-500 to-amber-600 rounded-full px-3.5 py-1 mt-2">
+                        <p className="text-[9px] md:text-[11px] font-extrabold text-white uppercase tracking-wider">Scholarship</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            )}
           </div>
 
           {/* College Name + Location */}
