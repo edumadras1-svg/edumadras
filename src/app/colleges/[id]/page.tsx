@@ -12,6 +12,7 @@ import { CheckCircle2, Send, Loader2, GitCompareArrows, Download, Calendar, Book
 import { JsonLd } from "@/components/JsonLd";
 import { motion, AnimatePresence } from "framer-motion";
 import { ApplicationModal } from "@/components/ApplicationModal";
+import { InlineLeadForm } from "@/components/InlineLeadForm";
 
 function formatPkg(val: number | null): string {
   if (!val) return "N/A";
@@ -352,6 +353,11 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
               <GitCompareArrows className="w-4 h-4" /> Compare
             </button>
           </div>
+
+          {/* Inline Lead Form — visible immediately */}
+          <div className="mt-6">
+            <InlineLeadForm collegeName={college.name} collegeId={college.id} />
+          </div>
         </motion.div>
 
         {/* Content Tabs Navigation */}
@@ -556,20 +562,8 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
 
           {/* Right Column (Sidebar) */}
           <div className="space-y-8">
-            {/* Quick Actions Card */}
-            <div className="bg-gradient-to-br from-navy to-navy-dark rounded-3xl p-6 text-white shadow-xl">
-              <h3 className="text-xl font-bold mb-2">Interested in Admission?</h3>
-              <p className="text-white/60 text-sm mb-6">Connect with our expert counselors for free personalized guidance.</p>
-              <button 
-                onClick={() => { setApplyModalMode("counseling"); setIsApplyModalOpen(true); }}
-                className="w-full h-12 bg-white text-navy font-bold rounded-xl mb-3 hover:bg-blue-50 transition-all"
-              >
-                Talk to Expert
-              </button>
-              <button className="w-full h-12 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold rounded-xl transition-all">
-                Check Cutoffs
-              </button>
-            </div>
+            {/* Sidebar Lead Form */}
+            <InlineLeadForm collegeName={college.name} collegeId={college.id} />
 
             {/* Ratings Stats - Only in Overview */}
             {activeTab === "Overview" && (

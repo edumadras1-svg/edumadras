@@ -146,7 +146,7 @@ export default async function Home() {
         }}
       >
         {/* Dark overlay for readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0F172A]/85 via-[#0F172A]/80 to-[#0F172A]/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0F172A]/70 via-[#0F172A]/65 to-[#0F172A]/80" />
         {/* Decorative background blobs */}
         <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-teal/10 rounded-full blur-[120px] animate-pulse" />
         <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-500/10 rounded-full blur-[120px]" />
