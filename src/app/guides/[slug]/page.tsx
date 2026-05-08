@@ -175,7 +175,7 @@ export default async function GuidePage({ params }: PageProps) {
                   </div>
                   <h2 className="text-h2 text-navy">Frequently Asked Questions</h2>
                 </div>
-                <FAQAccordion faqs={guide.faqs} />
+                <FAQAccordion items={guide.faqs} />
               </section>
             )}
           </div>
