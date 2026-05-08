@@ -16,6 +16,8 @@ export interface College {
   is_recommended: boolean | null;
   established_year: number | null;
   description: string | null;
+  scholarship_enabled: boolean | null;
+  scholarship_text: string | null;
 }
 
 export interface CollegeCourse {
