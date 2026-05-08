@@ -280,18 +280,23 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
             {/* Scholarship Badge — top right corner */}
             {college.name.toLowerCase().includes("hindustan") && (
               <motion.div
-                initial={{ scale: 0, rotate: -20 }}
+                initial={{ scale: 0, rotate: -10 }}
                 animate={{ scale: 1, rotate: 0 }}
-                transition={{ type: "spring", stiffness: 200, damping: 12, delay: 0.3 }}
-                className="absolute -top-2 -right-2 md:right-0 md:-top-3 z-10"
+                transition={{ type: "spring", stiffness: 200, damping: 14, delay: 0.3 }}
+                className="absolute -top-3 -right-3 md:-top-4 md:-right-4 z-10"
               >
-                <div className="absolute inset-0 bg-amber-400/30 rounded-full blur-xl animate-pulse" />
-                <img
-                  src="/scholarship-badge.png"
-                  alt="Upto 50% Scholarship"
-                  className="w-28 h-28 md:w-36 md:h-36 object-contain relative z-10 drop-shadow-lg hover:scale-110 transition-transform duration-300 cursor-pointer"
-                  title="Upto 50% Scholarship Available!"
-                />
+                <div className="relative">
+                  <div className="absolute inset-0 bg-amber-400/25 rounded-2xl blur-lg animate-pulse" />
+                  <div className="relative bg-gradient-to-br from-amber-400 via-yellow-400 to-amber-500 rounded-2xl p-[2px] shadow-lg shadow-amber-300/40">
+                    <div className="bg-gradient-to-br from-amber-50 to-white rounded-[14px] px-4 py-3 text-center min-w-[110px] md:min-w-[130px]">
+                      <p className="text-[9px] md:text-[10px] font-extrabold text-amber-600 uppercase tracking-widest leading-none">Upto</p>
+                      <p className="text-3xl md:text-4xl font-black bg-gradient-to-b from-amber-500 to-amber-700 bg-clip-text text-transparent leading-none mt-0.5">50%</p>
+                      <div className="bg-gradient-to-r from-amber-500 to-amber-600 rounded-full px-3 py-0.5 mt-1.5">
+                        <p className="text-[8px] md:text-[9px] font-extrabold text-white uppercase tracking-wider">Scholarship</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </motion.div>
             )}
 
