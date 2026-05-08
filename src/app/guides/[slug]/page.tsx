@@ -144,7 +144,18 @@ export default async function GuidePage({ params }: PageProps) {
 
             {/* Guide Body */}
             <article className="prose prose-slate max-w-none prose-headings:text-navy prose-h2:text-h2 prose-h2:mt-8 prose-h2:mb-4 prose-p:text-body-lg prose-p:text-text-secondary prose-p:leading-relaxed prose-li:text-text-secondary prose-a:text-teal hover:prose-a:text-teal-light">
-              <div dangerouslySetInnerHTML={{ __html: guide.content }} />
+              {guide.sections.map((section, index) => (
+                <div key={section.slug || index} className="mb-8">
+                  <h2 id={section.slug}>{section.title}</h2>
+                  <div dangerouslySetInnerHTML={{ __html: section.content }} />
+                  {section.subsections?.map((sub, subIndex) => (
+                    <div key={subIndex} className="mt-4 ml-4">
+                      <h3 className="text-h3 text-navy mb-2">{sub.title}</h3>
+                      <div dangerouslySetInnerHTML={{ __html: sub.content }} />
+                    </div>
+                  ))}
+                </div>
+              ))}
             </article>
 
             {/* Inline CTA Form inserted naturally within the content flow */}
