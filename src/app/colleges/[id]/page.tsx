@@ -320,14 +320,19 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
                 <p className="text-sm md:text-base font-extrabold text-amber-900 leading-tight">Upto 50% Scholarship Available</p>
                 <p className="text-xs text-amber-600/70 font-medium mt-0.5">Merit & need-based · Apply now for 2026 admission</p>
               </div>
-              <div className="shrink-0 hidden sm:block">
-                <span className="bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-bold px-4 py-2 rounded-lg shadow-sm">Apply</span>
+              <div className="shrink-0">
+                <button
+                  onClick={() => document.getElementById('lead-form')?.scrollIntoView({ behavior: 'smooth', block: 'center' })}
+                  className="bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-bold px-4 py-2 rounded-lg shadow-sm hover:shadow-md transition-all"
+                >
+                  Apply
+                </button>
               </div>
             </motion.div>
           )}
 
           {/* Inline Lead Form — visible immediately */}
-          <div className="mt-6">
+          <div id="lead-form" className="mt-6">
             <InlineLeadForm collegeName={college.name} collegeId={college.id} />
           </div>
 
