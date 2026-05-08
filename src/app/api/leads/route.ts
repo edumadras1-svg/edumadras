@@ -23,9 +23,12 @@ export async function POST(req: NextRequest) {
 
     const supabase = createClient(supabaseUrl, key);
 
+    // Only include college_id if it's a valid UUID (not a placeholder)
+    const isValidUuid = college_id && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(college_id);
+
     const { data, error } = await supabase.from("leads").insert([
       {
-        college_id: college_id || "edumadras-general",
+        college_id: isValidUuid ? college_id : null,
         name,
         email: email || null,
         phone,
