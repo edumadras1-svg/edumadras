@@ -275,26 +275,15 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
           transition={{ duration: 0.6, type: "spring" }}
           className="bg-white rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.08)] p-6 md:p-8"
         >
-          {/* Logo + Scholarship Badge Row */}
-          <div className="flex items-center gap-4 md:gap-6">
-            {/* Logo */}
-            <div className="w-24 h-24 md:w-32 md:h-32 bg-white rounded-2xl shadow-xl flex items-center justify-center border border-gray-100 overflow-hidden shrink-0">
-               {college.logo_url ? (
-                <img src={college.logo_url} alt={`${college.name} logo`} className="w-16 h-16 md:w-20 md:h-20 object-contain" />
-              ) : (
-                <span className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-navy to-teal">
-                  {college.name.split(" ").map(n => n[0]).join("").slice(0, 3)}
-                </span>
-              )}
-            </div>
-
-            {/* Scholarship Badge — right of logo, shown for Hindustan */}
+          {/* Logo + Scholarship Badge */}
+          <div className="relative">
+            {/* Scholarship Badge — top right corner */}
             {college.name.toLowerCase().includes("hindustan") && (
               <motion.div
                 initial={{ scale: 0, rotate: -20 }}
                 animate={{ scale: 1, rotate: 0 }}
                 transition={{ type: "spring", stiffness: 200, damping: 12, delay: 0.3 }}
-                className="shrink-0 relative"
+                className="absolute -top-2 -right-2 md:right-0 md:-top-3 z-10"
               >
                 <div className="absolute inset-0 bg-amber-400/30 rounded-full blur-xl animate-pulse" />
                 <img
@@ -305,6 +294,17 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
                 />
               </motion.div>
             )}
+
+            {/* Logo */}
+            <div className="w-24 h-24 md:w-32 md:h-32 bg-white rounded-2xl shadow-xl flex items-center justify-center border border-gray-100 overflow-hidden shrink-0">
+               {college.logo_url ? (
+                <img src={college.logo_url} alt={`${college.name} logo`} className="w-16 h-16 md:w-20 md:h-20 object-contain" />
+              ) : (
+                <span className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-navy to-teal">
+                  {college.name.split(" ").map(n => n[0]).join("").slice(0, 3)}
+                </span>
+              )}
+            </div>
           </div>
 
           {/* College Name + Location */}
