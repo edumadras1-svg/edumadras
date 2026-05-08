@@ -5,7 +5,7 @@ import { CtaButton } from "@/components/CtaButton";
 import { CounselorActions } from "@/components/CounselorActions";
 import { CollegeCard } from "@/components/CollegeCard";
 import { FAQAccordion } from "@/components/FAQAccordion";
-import { HeroSearch } from "@/components/HeroSearch";
+import { HeroLeadForm } from "@/components/HeroLeadForm";
 import { PromoCarousel } from "@/components/PromoCarousel";
 import { supabase } from "@/lib/supabase/client";
 import Link from "next/link";
@@ -151,8 +151,8 @@ export default async function Home() {
             {heroSubtitle}
           </p>
 
-          {/* Search Bar */}
-          <HeroSearch />
+          {/* Lead Capture Form */}
+          <HeroLeadForm />
 
           {/* Trust Stats */}
           <div className="mt-8 flex items-center justify-center gap-4 md:gap-8 flex-wrap">
