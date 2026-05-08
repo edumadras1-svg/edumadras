@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { X, Send, CheckCircle2, Loader2, Phone, User, Mail, MapPin, BookOpen, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { sendLeadEmails } from "@/lib/sendLeadEmails";
 
 interface ApplicationModalProps {
   isOpen: boolean;
@@ -45,6 +46,7 @@ export function ApplicationModal({ isOpen, onClose, collegeId, collegeName, cour
       const result = await res.json();
       if (!res.ok) throw new Error(result.error || "Submission failed");
       setSuccess(true);
+      sendLeadEmails(formData);
     } catch (err) {
       console.error("Error submitting application:", err);
       alert("Failed to submit application. Please try again.");

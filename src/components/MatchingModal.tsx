@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { X, Send, CheckCircle2, Loader2, Sparkles, User, Phone, MapPin, GraduationCap, Star, ArrowRight, Mail, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { sendLeadEmails } from "@/lib/sendLeadEmails";
 
 interface MatchingModalProps {
   isOpen: boolean;
@@ -42,6 +43,7 @@ export function MatchingModal({ isOpen, onClose }: MatchingModalProps) {
       const result = await res.json();
       if (!res.ok) throw new Error(result.error || "Submission failed");
       setSuccess(true);
+      sendLeadEmails(formData);
     } catch (err) {
       console.error("Error submitting match request:", err);
       alert("Failed to process matching. Please try again.");

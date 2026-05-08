@@ -13,6 +13,7 @@ import {
   ChevronDown,
   Sparkles,
 } from "lucide-react";
+import { sendLeadEmails } from "@/lib/sendLeadEmails";
 
 const courses = [
   { id: "btech-cse", name: "B.Tech / B.E. Computer Science" },
@@ -69,6 +70,7 @@ export function InlineLeadForm({ collegeName, collegeId }: InlineLeadFormProps) 
       const result = await res.json();
       if (!res.ok) throw new Error(result.error || "Submission failed");
       setSuccess(true);
+      sendLeadEmails(formData);
     } catch (err) {
       console.error("Error submitting:", err);
       alert("Something went wrong. Please try again.");

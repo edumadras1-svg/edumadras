@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { TopNavBar } from "@/components/TopNavBar";
+import { sendLeadEmails } from "@/lib/sendLeadEmails";
 import {
   Send,
   CheckCircle2,
@@ -112,6 +113,7 @@ export function ApplyPageClient({ colleges }: ApplyPageClientProps) {
       const result = await res.json();
       if (!res.ok) throw new Error(result.error || "Submission failed");
       setSuccess(true);
+      sendLeadEmails(formData);
     } catch (err) {
       console.error("Error submitting application:", err);
       alert("Something went wrong. Please try again.");
