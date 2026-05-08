@@ -11,7 +11,7 @@ import {
   MapPin,
   BookOpen,
   ChevronDown,
-  GraduationCap,
+  Sparkles,
 } from "lucide-react";
 
 const courses = [
@@ -79,7 +79,7 @@ export function InlineLeadForm({ collegeName, collegeId }: InlineLeadFormProps) 
 
   if (success) {
     return (
-      <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-6 text-center">
+      <div className="bg-emerald-50 border-2 border-emerald-200 rounded-2xl p-6 text-center">
         <CheckCircle2 className="w-10 h-10 text-emerald-500 mx-auto mb-3" />
         <h3 className="text-lg font-bold text-emerald-800">Application Submitted!</h3>
         <p className="text-emerald-600 text-sm mt-1">
@@ -90,104 +90,105 @@ export function InlineLeadForm({ collegeName, collegeId }: InlineLeadFormProps) 
   }
 
   return (
-    <div className="bg-gradient-to-br from-[#0F172A] to-[#1B3A5C] rounded-2xl p-5 md:p-6 relative overflow-hidden">
-      {/* Decorative glow */}
-      <div className="absolute top-0 right-0 w-32 h-32 bg-teal/10 rounded-full -mr-12 -mt-12 blur-2xl" />
-
-      <div className="relative z-10">
-        <div className="flex items-center gap-2 mb-3">
-          <div className="w-8 h-8 bg-teal/20 rounded-lg flex items-center justify-center">
-            <GraduationCap className="w-4 h-4 text-teal" />
-          </div>
-          <div>
-            <h3 className="text-white text-sm font-bold leading-tight">
-              {collegeName ? `Apply to ${collegeName}` : "Get Free Counseling"}
-            </h3>
-            <p className="text-white/40 text-[10px]">Our counselor will call you in 30 mins</p>
-          </div>
+    <div className="bg-white rounded-2xl border-2 border-slate-100 shadow-xl shadow-slate-100/50 overflow-hidden">
+      {/* Header Strip */}
+      <div className="bg-gradient-to-r from-teal to-emerald-400 px-5 py-3.5 flex items-center gap-2.5">
+        <div className="w-7 h-7 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm">
+          <Sparkles className="w-3.5 h-3.5 text-white" />
         </div>
+        <div>
+          <h3 className="text-white text-sm font-bold leading-tight">
+            {collegeName ? `Apply to ${collegeName}` : "Get Free Counseling"}
+          </h3>
+          <p className="text-white/60 text-[10px] font-medium">Counselor will call in 30 mins · 100% Free</p>
+        </div>
+      </div>
 
+      {/* Form Body */}
+      <div className="p-4 md:p-5">
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-2 gap-2.5">
-            <div className="relative">
-              <User className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/30" />
+            <div className="relative group">
+              <User className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-300 group-focus-within:text-teal transition-colors" />
               <input
                 required
                 type="text"
                 placeholder="Full Name"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full h-10 pl-8 pr-3 bg-white/10 border border-white/10 rounded-lg text-xs text-white placeholder:text-white/30 focus:outline-none focus:border-teal/50 transition-all"
+                className="w-full h-10 pl-9 pr-3 bg-slate-50 border-2 border-slate-100 rounded-xl text-xs text-slate-800 font-medium placeholder:text-slate-300 focus:outline-none focus:border-teal focus:bg-white focus:shadow-sm transition-all"
               />
             </div>
-            <div className="relative">
-              <Phone className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/30" />
+            <div className="relative group">
+              <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-300 group-focus-within:text-teal transition-colors" />
               <input
                 required
                 type="tel"
                 placeholder="Phone"
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                className="w-full h-10 pl-8 pr-3 bg-white/10 border border-white/10 rounded-lg text-xs text-white placeholder:text-white/30 focus:outline-none focus:border-teal/50 transition-all"
+                className="w-full h-10 pl-9 pr-3 bg-slate-50 border-2 border-slate-100 rounded-xl text-xs text-slate-800 font-medium placeholder:text-slate-300 focus:outline-none focus:border-teal focus:bg-white focus:shadow-sm transition-all"
               />
             </div>
-            <div className="relative">
-              <Mail className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/30" />
+          </div>
+
+          <div className="grid grid-cols-2 gap-2.5 mt-2.5">
+            <div className="relative group">
+              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-300 group-focus-within:text-teal transition-colors" />
               <input
                 required
                 type="email"
                 placeholder="Email"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full h-10 pl-8 pr-3 bg-white/10 border border-white/10 rounded-lg text-xs text-white placeholder:text-white/30 focus:outline-none focus:border-teal/50 transition-all"
+                className="w-full h-10 pl-9 pr-3 bg-slate-50 border-2 border-slate-100 rounded-xl text-xs text-slate-800 font-medium placeholder:text-slate-300 focus:outline-none focus:border-teal focus:bg-white focus:shadow-sm transition-all"
               />
             </div>
-            <div className="relative">
-              <MapPin className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/30" />
+            <div className="relative group">
+              <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-300 group-focus-within:text-teal transition-colors" />
               <input
                 required
                 type="text"
                 placeholder="City"
                 value={formData.city}
                 onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                className="w-full h-10 pl-8 pr-3 bg-white/10 border border-white/10 rounded-lg text-xs text-white placeholder:text-white/30 focus:outline-none focus:border-teal/50 transition-all"
+                className="w-full h-10 pl-9 pr-3 bg-slate-50 border-2 border-slate-100 rounded-xl text-xs text-slate-800 font-medium placeholder:text-slate-300 focus:outline-none focus:border-teal focus:bg-white focus:shadow-sm transition-all"
               />
             </div>
           </div>
 
-          <div className="grid grid-cols-[1fr_auto] gap-2.5 mt-2.5">
-            <div className="relative">
-              <BookOpen className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/30" />
-              <select
-                required
-                value={formData.target_course}
-                onChange={(e) => setFormData({ ...formData, target_course: e.target.value })}
-                className="w-full h-10 pl-8 pr-8 bg-white/10 border border-white/10 rounded-lg text-xs text-white appearance-none cursor-pointer focus:outline-none focus:border-teal/50 transition-all [&>option]:text-slate-900"
-              >
-                <option value="">Select Course</option>
-                {courses.map((c) => (
-                  <option key={c.id} value={c.name}>{c.name}</option>
-                ))}
-              </select>
-              <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/30 pointer-events-none" />
-            </div>
-            <button
-              disabled={loading}
-              type="submit"
-              className="h-10 px-5 bg-teal hover:bg-teal/90 text-white text-xs font-bold rounded-lg flex items-center gap-1.5 transition-all btn-press whitespace-nowrap shadow-lg shadow-teal/20"
+          <div className="relative group mt-2.5">
+            <BookOpen className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-300 group-focus-within:text-teal transition-colors" />
+            <select
+              required
+              value={formData.target_course}
+              onChange={(e) => setFormData({ ...formData, target_course: e.target.value })}
+              className="w-full h-10 pl-9 pr-9 bg-slate-50 border-2 border-slate-100 rounded-xl text-xs text-slate-800 font-medium appearance-none cursor-pointer focus:outline-none focus:border-teal focus:bg-white focus:shadow-sm transition-all"
             >
-              {loading ? (
-                <Loader2 className="w-4 h-4 animate-spin" />
-              ) : (
-                <>
-                  <Send className="w-3.5 h-3.5" /> Apply Free
-                </>
-              )}
-            </button>
+              <option value="">Select Course</option>
+              {courses.map((c) => (
+                <option key={c.id} value={c.name}>{c.name}</option>
+              ))}
+            </select>
+            <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-300 pointer-events-none" />
           </div>
 
-          <p className="text-[9px] text-center text-white/25 mt-2.5">
-            100% Free · No spam · Callback within 30 mins
+          <button
+            disabled={loading}
+            type="submit"
+            className="w-full h-11 mt-3 bg-gradient-to-r from-teal to-emerald-400 hover:from-teal/90 hover:to-emerald-400/90 text-white text-sm font-bold rounded-xl shadow-lg shadow-teal/20 flex items-center justify-center gap-2 transition-all btn-press"
+          >
+            {loading ? (
+              <Loader2 className="w-4 h-4 animate-spin" />
+            ) : (
+              <>
+                <Send className="w-3.5 h-3.5" /> Apply Free — Get Callback
+              </>
+            )}
+          </button>
+
+          <p className="text-[9px] text-center text-slate-300 mt-2 font-medium">
+            ✅ No charges · No spam · Trusted by 10,000+ students
           </p>
         </form>
       </div>

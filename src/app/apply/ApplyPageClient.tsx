@@ -164,10 +164,10 @@ export function ApplyPageClient({ colleges }: ApplyPageClientProps) {
 
             {/* Right — Form Card */}
             <div className="w-full lg:w-[420px] shrink-0">
-              <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
-                <div className="bg-[#0F172A] px-6 py-5 text-center">
+              <div className="bg-white rounded-3xl shadow-2xl border-2 border-slate-100 overflow-hidden">
+                <div className="bg-gradient-to-r from-teal to-emerald-400 px-6 py-5 text-center">
                   <h2 className="text-white text-lg font-bold">Apply for Free Counseling</h2>
-                  <p className="text-white/40 text-xs mt-1">2026 Admissions Open — Limited Seats</p>
+                  <p className="text-white/60 text-xs mt-1 font-medium">2026 Admissions Open — Limited Seats</p>
                 </div>
 
                 <div className="p-6">
@@ -182,87 +182,82 @@ export function ApplyPageClient({ colleges }: ApplyPageClientProps) {
                       </p>
                       <Link
                         href="/"
-                        className="mt-8 h-12 w-full bg-[#0F172A] text-white font-bold rounded-xl flex items-center justify-center gap-2"
+                        className="mt-8 h-12 w-full bg-gradient-to-r from-teal to-emerald-400 text-white font-bold rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-teal/20"
                       >
                         Explore Colleges
                       </Link>
                     </div>
                   ) : (
-                    <form onSubmit={handleSubmit} className="space-y-4">
-                      {/* Name */}
-                      <div className="relative">
-                        <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                    <form onSubmit={handleSubmit} className="space-y-3.5">
+                      <div className="relative group">
+                        <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-300 group-focus-within:text-teal transition-colors" />
                         <input
                           required
                           type="text"
                           placeholder="Full Name"
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          className="w-full h-12 pl-10 pr-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-teal focus:ring-2 focus:ring-teal/10 transition-all text-sm text-slate-800"
+                          className="w-full h-12 pl-11 pr-4 bg-slate-50 border-2 border-slate-100 rounded-xl focus:outline-none focus:border-teal focus:bg-white focus:shadow-md focus:shadow-teal/5 transition-all text-sm text-slate-800 font-medium placeholder:text-slate-300"
                         />
                       </div>
 
-                      {/* Email + Phone */}
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div className="relative">
-                          <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                        <div className="relative group">
+                          <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-300 group-focus-within:text-teal transition-colors" />
                           <input
                             required
                             type="email"
                             placeholder="Email"
                             value={formData.email}
                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                            className="w-full h-12 pl-10 pr-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-teal focus:ring-2 focus:ring-teal/10 transition-all text-sm text-slate-800"
+                            className="w-full h-12 pl-11 pr-4 bg-slate-50 border-2 border-slate-100 rounded-xl focus:outline-none focus:border-teal focus:bg-white focus:shadow-md focus:shadow-teal/5 transition-all text-sm text-slate-800 font-medium placeholder:text-slate-300"
                           />
                         </div>
-                        <div className="relative">
-                          <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                        <div className="relative group">
+                          <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-300 group-focus-within:text-teal transition-colors" />
                           <input
                             required
                             type="tel"
                             placeholder="Phone Number"
                             value={formData.phone}
                             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                            className="w-full h-12 pl-10 pr-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-teal focus:ring-2 focus:ring-teal/10 transition-all text-sm text-slate-800"
+                            className="w-full h-12 pl-11 pr-4 bg-slate-50 border-2 border-slate-100 rounded-xl focus:outline-none focus:border-teal focus:bg-white focus:shadow-md focus:shadow-teal/5 transition-all text-sm text-slate-800 font-medium placeholder:text-slate-300"
                           />
                         </div>
                       </div>
 
-                      {/* City */}
-                      <div className="relative">
-                        <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                      <div className="relative group">
+                        <MapPin className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-300 group-focus-within:text-teal transition-colors" />
                         <input
                           required
                           type="text"
                           placeholder="Your City / District"
                           value={formData.city}
                           onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                          className="w-full h-12 pl-10 pr-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-teal focus:ring-2 focus:ring-teal/10 transition-all text-sm text-slate-800"
+                          className="w-full h-12 pl-11 pr-4 bg-slate-50 border-2 border-slate-100 rounded-xl focus:outline-none focus:border-teal focus:bg-white focus:shadow-md focus:shadow-teal/5 transition-all text-sm text-slate-800 font-medium placeholder:text-slate-300"
                         />
                       </div>
 
-                      {/* Course */}
                       <div className="relative group">
-                        <BookOpen className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                        <BookOpen className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-300 group-focus-within:text-teal transition-colors" />
                         <select
                           required
                           value={formData.target_course}
                           onChange={(e) => setFormData({ ...formData, target_course: e.target.value })}
-                          className="w-full h-12 pl-10 pr-10 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-teal focus:ring-2 focus:ring-teal/10 appearance-none text-sm font-semibold text-slate-700 cursor-pointer transition-all"
+                          className="w-full h-12 pl-11 pr-10 bg-slate-50 border-2 border-slate-100 rounded-xl focus:outline-none focus:border-teal focus:bg-white focus:shadow-md focus:shadow-teal/5 appearance-none text-sm font-semibold text-slate-700 cursor-pointer transition-all"
                         >
                           <option value="">Select Preferred Course</option>
                           {courses.map((c) => (
                             <option key={c.id} value={c.name}>{c.name}</option>
                           ))}
                         </select>
-                        <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
+                        <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-300 pointer-events-none" />
                       </div>
 
-                      {/* Submit */}
                       <button
                         disabled={loading}
                         type="submit"
-                        className="w-full h-12 bg-teal hover:bg-teal/90 text-white font-bold rounded-xl shadow-lg shadow-teal/20 flex items-center justify-center gap-2 mt-2 transition-all btn-press"
+                        className="w-full h-12 bg-gradient-to-r from-teal to-emerald-400 hover:from-teal/90 hover:to-emerald-400/90 text-white font-bold rounded-xl shadow-lg shadow-teal/25 flex items-center justify-center gap-2 mt-1 transition-all btn-press"
                       >
                         {loading ? (
                           <Loader2 className="w-5 h-5 animate-spin" />
@@ -273,8 +268,8 @@ export function ApplyPageClient({ colleges }: ApplyPageClientProps) {
                         )}
                       </button>
 
-                      <p className="text-[10px] text-center text-slate-400 mt-3 leading-tight px-4">
-                        By clicking submit, you agree to our Terms of Use and Privacy Policy. You may receive a call from our counselors.
+                      <p className="text-[10px] text-center text-slate-300 mt-2 leading-tight px-4 font-medium">
+                        ✅ 100% Free · No spam · Callback within 30 minutes
                       </p>
                     </form>
                   )}
