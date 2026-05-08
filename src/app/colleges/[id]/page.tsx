@@ -305,8 +305,8 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
             </div>
           </div>
 
-          {/* Scholarship Banner */}
-          {college.name.toLowerCase().includes("hindustan") && (
+          {/* Scholarship Banner — controlled via admin panel */}
+          {college.scholarship_enabled && (
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -318,7 +318,7 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
                 <span className="text-white text-lg md:text-xl font-black">%</span>
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm md:text-base font-extrabold text-amber-900 leading-tight">Upto 50% Scholarship Available</p>
+                <p className="text-sm md:text-base font-extrabold text-amber-900 leading-tight">{college.scholarship_text || "Upto 50% Scholarship Available"}</p>
                 <p className="text-xs text-amber-600/70 font-medium mt-0.5">Merit & need-based · Apply now for 2026 admission</p>
               </div>
               <div className="shrink-0">

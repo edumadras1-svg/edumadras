@@ -45,6 +45,8 @@ export default function AdminCollegeFormPage({ params }: { params: Promise<{ id:
     banner_url: "",
     fee_structure_url: "",
     is_recommended: false,
+    scholarship_enabled: false,
+    scholarship_text: "Upto 50% Scholarship Available",
   });
 
   useEffect(() => {
@@ -84,6 +86,8 @@ export default function AdminCollegeFormPage({ params }: { params: Promise<{ id:
         banner_url: data.banner_url || "",
         fee_structure_url: data.fee_structure_url || "",
         is_recommended: data.is_recommended || false,
+        scholarship_enabled: data.scholarship_enabled || false,
+        scholarship_text: data.scholarship_text || "Upto 50% Scholarship Available",
       });
     }
     setIsLoading(false);
@@ -125,6 +129,8 @@ export default function AdminCollegeFormPage({ params }: { params: Promise<{ id:
       banner_url: formData.banner_url,
       fee_structure_url: formData.fee_structure_url,
       is_recommended: formData.is_recommended,
+      scholarship_enabled: formData.scholarship_enabled,
+      scholarship_text: formData.scholarship_text,
     };
 
     if (isNew) {
@@ -303,7 +309,7 @@ export default function AdminCollegeFormPage({ params }: { params: Promise<{ id:
                        <textarea name="description" value={formData.description} onChange={handleChange} rows={4} className="w-full px-4 py-2.5 rounded-xl border border-border-ghost bg-surface-low focus:border-teal outline-none transition-all resize-none"></textarea>
                     </div>
 
-                    <div className="md:col-span-2 pt-4">
+                    <div className="md:col-span-2 pt-4 space-y-4">
                       <label className="flex items-center gap-3 cursor-pointer p-4 border border-border-ghost rounded-xl bg-surface-low/50">
                         <div className="relative flex items-center shrink-0">
                           <input type="checkbox" name="is_recommended" checked={formData.is_recommended} onChange={handleChange} className="peer sr-only" />
@@ -314,6 +320,31 @@ export default function AdminCollegeFormPage({ params }: { params: Promise<{ id:
                           <span className="text-caption text-text-secondary">This college will appear in the "Recommended Courses & Top Exams" featured sections.</span>
                         </div>
                       </label>
+
+                      <label className="flex items-center gap-3 cursor-pointer p-4 border border-border-ghost rounded-xl bg-amber-50/50">
+                        <div className="relative flex items-center shrink-0">
+                          <input type="checkbox" name="scholarship_enabled" checked={formData.scholarship_enabled} onChange={handleChange} className="peer sr-only" />
+                          <div className="w-11 h-6 bg-border-ghost rounded-full peer peer-checked:after:translate-x-full peer-checked:bg-amber-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
+                        </div>
+                        <div className="flex-1">
+                          <span className="text-sm font-bold text-navy block">🎓 Enable Scholarship Banner</span>
+                          <span className="text-caption text-text-secondary">Show a scholarship promotion banner on this college&apos;s page.</span>
+                        </div>
+                      </label>
+
+                      {formData.scholarship_enabled && (
+                        <div className="ml-14">
+                          <label className="block text-sm font-bold text-navy mb-1.5">Scholarship Text</label>
+                          <input
+                            type="text"
+                            name="scholarship_text"
+                            value={formData.scholarship_text}
+                            onChange={handleChange}
+                            placeholder="e.g. Upto 50% Scholarship Available"
+                            className="w-full px-4 py-2.5 rounded-xl border border-amber-200 bg-white focus:border-amber-400 outline-none transition-all"
+                          />
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
