@@ -171,46 +171,48 @@ export default function AdminCollegeFormPage({ params }: { params: Promise<{ id:
   }
 
   return (
-    <div className="max-w-5xl mx-auto space-y-6 animate-fade-in relative pb-20">
+    <div className="max-w-5xl mx-auto space-y-4 lg:space-y-6 animate-fade-in relative pb-20">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3 lg:gap-4">
           <Link href="/admin/colleges" className="p-2 text-text-tertiary hover:text-navy transition-colors bg-white rounded-xl shadow-sm border border-border-ghost">
             <ArrowLeft className="w-5 h-5" />
           </Link>
           <div>
-            <h1 className="text-2xl font-bold text-navy tracking-tight">
+            <h1 className="text-lg lg:text-2xl font-bold text-navy tracking-tight">
               {isNew ? "Add New College" : "Edit College"}
             </h1>
-            <p className="text-text-secondary text-caption font-medium">
+            <p className="text-text-secondary text-xs lg:text-caption font-medium truncate max-w-[200px] lg:max-w-none">
               {isNew ? "Enter the details for the new institution." : formData.name}
             </p>
           </div>
         </div>
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-6">
-        {/* Navigation Sidebar */}
-        <div className="w-full lg:w-64 shrink-0 space-y-2">
-          {['details', 'metrics', 'media', 'promotions', 'courses'].map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`w-full text-left px-5 py-3.5 rounded-xl text-sm font-bold transition-all flex items-center gap-3 ${
-                activeTab === tab 
-                  ? "bg-[#1a7a6e] text-white shadow-md" 
-                  : "bg-white text-[#374151] hover:bg-gray-50 border border-gray-200"
-              }`}
-            >
-              {tab === 'details' && <Building className="w-4 h-4" />}
-              {tab === 'metrics' && <Trophy className="w-4 h-4" />}
-              {tab === 'media' && <ImageIcon className="w-4 h-4" />}
-              {tab === 'promotions' && <Gift className="w-4 h-4" />}
-              {tab === 'courses' && <BookOpen className="w-4 h-4" />}
-              <span className="capitalize">{tab}</span>
-              {activeTab === tab && <CheckCircle2 className="w-4 h-4 ml-auto opacity-70" />}
-            </button>
-          ))}
+      <div className="flex flex-col lg:flex-row gap-4 lg:gap-6">
+        {/* Navigation — horizontal scroll on mobile, vertical sidebar on desktop */}
+        <div className="w-full lg:w-64 shrink-0">
+          <div className="flex lg:flex-col gap-2 overflow-x-auto pb-2 lg:pb-0 lg:space-y-2 scrollbar-hide">
+            {['details', 'metrics', 'media', 'promotions', 'courses'].map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`shrink-0 text-left px-4 py-2.5 lg:px-5 lg:py-3.5 rounded-xl text-xs lg:text-sm font-bold transition-all flex items-center gap-2 lg:gap-3 lg:w-full ${
+                  activeTab === tab 
+                    ? "bg-[#1a7a6e] text-white shadow-md" 
+                    : "bg-white text-[#374151] hover:bg-gray-50 border border-gray-200"
+                }`}
+              >
+                {tab === 'details' && <Building className="w-4 h-4" />}
+                {tab === 'metrics' && <Trophy className="w-4 h-4" />}
+                {tab === 'media' && <ImageIcon className="w-4 h-4" />}
+                {tab === 'promotions' && <Gift className="w-4 h-4" />}
+                {tab === 'courses' && <BookOpen className="w-4 h-4" />}
+                <span className="capitalize whitespace-nowrap">{tab}</span>
+                {activeTab === tab && <CheckCircle2 className="w-4 h-4 ml-auto opacity-70 hidden lg:block" />}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Form Container */}
