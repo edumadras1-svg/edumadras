@@ -1,6 +1,6 @@
 import { TopNavBar } from "@/components/TopNavBar";
 import { CollegeCard } from "@/components/CollegeCard";
-import { mockColleges } from "@/lib/mockData";
+import { supabase } from "@/lib/supabase/client";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -17,9 +17,13 @@ export async function generateMetadata({ params }: { params: Promise<{ stream: s
 export default async function StreamPage({ params }: { params: Promise<{ stream: string }> }) {
   const { stream: streamParam } = await params;
   const streamName = streamParam.charAt(0).toUpperCase() + streamParam.slice(1);
-  const streamColleges = mockColleges.filter(
-    (c) => c.stream?.toLowerCase() === streamParam.toLowerCase()
-  );
+
+  const { data: streamColleges } = await supabase
+    .from("colleges")
+    .select("*")
+    .ilike("stream", `%${streamName}%`);
+
+  const colleges = streamColleges || [];
 
   return (
     <div className="flex flex-col min-h-screen bg-surface">
@@ -45,16 +49,16 @@ export default async function StreamPage({ params }: { params: Promise<{ stream:
           </p>
         </div>
 
-        {streamColleges.length > 0 ? (
+        {colleges.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {streamColleges.map((college) => (
+            {colleges.map((college) => (
               <CollegeCard
                 key={college.id}
                 id={college.id}
                 name={college.name}
                 location={`${college.city}, ${college.state}`}
                 rating={college.rating || 0}
-                fees={`${college.id === '1' ? '₹2.1L' : '₹1.5L'}/yr`} // Simplified for brevity
+                fees={college.avg_package ? `₹${college.avg_package}L/yr` : "N/A"}
                 package={`${college.avg_package} LPA`}
                 rank={college.rank || undefined}
                 stream={college.stream || ""}
