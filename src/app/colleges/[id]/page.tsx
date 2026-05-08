@@ -311,7 +311,8 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.4 }}
-              className="mt-5 bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-xl px-4 py-3 md:px-5 md:py-3.5 flex items-center gap-3 md:gap-4"
+              className="mt-5 bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-xl px-4 py-3 md:px-5 md:py-3.5 flex items-center gap-3 md:gap-4 cursor-pointer hover:border-amber-300 hover:shadow-md transition-all"
+              onClick={() => document.getElementById('lead-form')?.scrollIntoView({ behavior: 'smooth', block: 'center' })}
             >
               <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-amber-400 to-amber-600 rounded-xl flex items-center justify-center shrink-0 shadow-md shadow-amber-200">
                 <span className="text-white text-lg md:text-xl font-black">%</span>
