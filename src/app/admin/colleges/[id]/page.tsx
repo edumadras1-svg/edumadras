@@ -13,7 +13,8 @@ import {
   Users,
   Image as ImageIcon,
   CheckCircle2,
-  BookOpen
+  BookOpen,
+  Gift
 } from "lucide-react";
 import Link from "next/link";
 import CollegeCoursesManager from "@/components/admin/CollegeCoursesManager";
@@ -191,7 +192,7 @@ export default function AdminCollegeFormPage({ params }: { params: Promise<{ id:
       <div className="flex flex-col lg:flex-row gap-6">
         {/* Navigation Sidebar */}
         <div className="w-full lg:w-64 shrink-0 space-y-2">
-          {['details', 'metrics', 'media', 'courses'].map((tab) => (
+          {['details', 'metrics', 'media', 'promotions', 'courses'].map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
@@ -204,6 +205,7 @@ export default function AdminCollegeFormPage({ params }: { params: Promise<{ id:
               {tab === 'details' && <Building className="w-4 h-4" />}
               {tab === 'metrics' && <Trophy className="w-4 h-4" />}
               {tab === 'media' && <ImageIcon className="w-4 h-4" />}
+              {tab === 'promotions' && <Gift className="w-4 h-4" />}
               {tab === 'courses' && <BookOpen className="w-4 h-4" />}
               <span className="capitalize">{tab}</span>
               {activeTab === tab && <CheckCircle2 className="w-4 h-4 ml-auto opacity-70" />}
@@ -328,7 +330,7 @@ export default function AdminCollegeFormPage({ params }: { params: Promise<{ id:
                         </div>
                         <div className="flex-1">
                           <span className="text-sm font-bold text-navy block">🎓 Enable Scholarship Banner</span>
-                          <span className="text-caption text-text-secondary">Show a scholarship promotion banner on this college&apos;s page.</span>
+                          <span className="text-caption text-text-secondary">Show a scholarship promotion banner on this college{"'"}s page.</span>
                         </div>
                       </label>
 
@@ -415,6 +417,54 @@ export default function AdminCollegeFormPage({ params }: { params: Promise<{ id:
                         </div>
                       )}
                     </div>
+                  </div>
+                </div>
+              )}
+
+              {/* PROMOTIONS TAB */}
+              {activeTab === "promotions" && (
+                <div className="space-y-6 animate-fade-in">
+                  <div>
+                    <h3 className="text-lg font-bold text-navy">Scholarship & Promotions</h3>
+                    <p className="text-caption text-text-secondary">Control promotional banners shown on this college page.</p>
+                  </div>
+
+                  <div className="space-y-5">
+                    <label className="flex items-center gap-4 cursor-pointer p-5 border-2 border-amber-200 rounded-2xl bg-amber-50/50 hover:bg-amber-50 transition-all">
+                      <div className="relative flex items-center shrink-0">
+                        <input type="checkbox" name="scholarship_enabled" checked={formData.scholarship_enabled} onChange={handleChange} className="peer sr-only" />
+                        <div className="w-12 h-7 bg-gray-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:bg-amber-500 after:content-[''] after:absolute after:top-[3px] after:left-[3px] after:bg-white after:rounded-full after:h-[22px] after:w-[22px] after:transition-all after:shadow-sm"></div>
+                      </div>
+                      <div className="flex-1">
+                        <span className="text-base font-bold text-navy block">🎓 Enable Scholarship Banner</span>
+                        <span className="text-sm text-text-secondary mt-0.5 block">Shows a scholarship promotion banner on the college detail page.</span>
+                      </div>
+                    </label>
+
+                    {formData.scholarship_enabled && (
+                      <div className="p-5 bg-white border border-amber-200 rounded-2xl space-y-4">
+                        <label className="block">
+                          <span className="text-sm font-bold text-navy block mb-1.5">Banner Text</span>
+                          <input
+                            type="text"
+                            name="scholarship_text"
+                            value={formData.scholarship_text}
+                            onChange={handleChange}
+                            placeholder="e.g. Upto 50% Scholarship Available"
+                            className="w-full px-4 py-3 rounded-xl border-2 border-amber-200 bg-amber-50/30 focus:border-amber-400 outline-none transition-all text-base font-medium"
+                          />
+                        </label>
+                        <div className="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-xl px-4 py-3 flex items-center gap-3">
+                          <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-amber-600 rounded-xl flex items-center justify-center shrink-0">
+                            <span className="text-white text-lg font-black">%</span>
+                          </div>
+                          <div>
+                            <p className="text-sm font-extrabold text-amber-900">{formData.scholarship_text || "Upto 50% Scholarship Available"}</p>
+                            <p className="text-xs text-amber-600/70">Preview of how it will look on the page</p>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               )}
