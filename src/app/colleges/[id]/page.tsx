@@ -311,20 +311,20 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.4 }}
-              className="mt-5 bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-xl px-4 py-3 md:px-5 md:py-3.5 flex items-center gap-3 md:gap-4 cursor-pointer hover:border-amber-300 hover:shadow-md transition-all"
+              className="mt-4 bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 rounded-xl px-3 py-2 md:px-5 md:py-3.5 flex items-center gap-2.5 md:gap-4 cursor-pointer hover:border-amber-300 hover:shadow-md transition-all"
               onClick={() => document.getElementById('lead-form')?.scrollIntoView({ behavior: 'smooth', block: 'center' })}
             >
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-amber-400 to-amber-600 rounded-xl flex items-center justify-center shrink-0 shadow-md shadow-amber-200">
-                <span className="text-white text-lg md:text-xl font-black">%</span>
+              <div className="w-8 h-8 md:w-12 md:h-12 bg-gradient-to-br from-amber-400 to-amber-600 rounded-lg md:rounded-xl flex items-center justify-center shrink-0 shadow-md shadow-amber-200">
+                <span className="text-white text-sm md:text-xl font-black">%</span>
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm md:text-base font-extrabold text-amber-900 leading-tight">{college.scholarship_text || "Upto 50% Scholarship Available"}</p>
-                <p className="text-xs text-amber-600/70 font-medium mt-0.5">Merit & need-based · Apply now for 2026 admission</p>
+                <p className="text-xs md:text-base font-extrabold text-amber-900 leading-tight">{college.scholarship_text || "Upto 50% Scholarship Available"}</p>
+                <p className="text-[10px] md:text-xs text-amber-600/70 font-medium">Merit & need-based · Apply now</p>
               </div>
               <div className="shrink-0">
                 <button
                   onClick={() => document.getElementById('lead-form')?.scrollIntoView({ behavior: 'smooth', block: 'center' })}
-                  className="bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-bold px-4 py-2 rounded-lg shadow-sm hover:shadow-md transition-all"
+                  className="bg-gradient-to-r from-amber-500 to-orange-500 text-white text-[10px] md:text-xs font-bold px-3 py-1.5 md:px-4 md:py-2 rounded-lg shadow-sm hover:shadow-md transition-all"
                 >
                   Apply
                 </button>
