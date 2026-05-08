@@ -288,19 +288,41 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
             </div>
 
             <div className="flex-1">
-              <h1 className="text-2xl md:text-4xl font-extrabold text-[#1E293B] leading-tight mb-2">
-                {college.name} Admission 2026
-              </h1>
-              <div className="flex flex-wrap items-center gap-4 text-gray-500">
-                <div className="flex items-center gap-1.5 text-sm md:text-base">
-                  <MapPin className="w-4 h-4 text-red-400" />
-                  <span>{college.city}, {college.state}</span>
-                </div>
-                {college.established_year && (
-                  <div className="flex items-center gap-1.5 text-sm md:text-base border-l border-gray-200 pl-4">
-                    <Calendar className="w-4 h-4 text-blue-400" />
-                    <span>Est. {college.established_year}</span>
+              <div className="flex flex-wrap items-start gap-3 md:gap-4">
+                <div className="flex-1 min-w-0">
+                  <h1 className="text-2xl md:text-4xl font-extrabold text-[#1E293B] leading-tight mb-2">
+                    {college.name} Admission 2026
+                  </h1>
+                  <div className="flex flex-wrap items-center gap-4 text-gray-500">
+                    <div className="flex items-center gap-1.5 text-sm md:text-base">
+                      <MapPin className="w-4 h-4 text-red-400" />
+                      <span>{college.city}, {college.state}</span>
+                    </div>
+                    {college.established_year && (
+                      <div className="flex items-center gap-1.5 text-sm md:text-base border-l border-gray-200 pl-4">
+                        <Calendar className="w-4 h-4 text-blue-400" />
+                        <span>Est. {college.established_year}</span>
+                      </div>
+                    )}
                   </div>
+                </div>
+
+                {/* Scholarship Badge — shown for Hindustan */}
+                {college.name.toLowerCase().includes("hindustan") && (
+                  <motion.div
+                    initial={{ scale: 0, rotate: -20 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    transition={{ type: "spring", stiffness: 200, damping: 12, delay: 0.3 }}
+                    className="shrink-0 relative"
+                  >
+                    <div className="absolute inset-0 bg-amber-400/30 rounded-full blur-xl animate-pulse" />
+                    <img
+                      src="/scholarship-badge.png"
+                      alt="Upto 50% Scholarship"
+                      className="w-24 h-24 md:w-32 md:h-32 object-contain relative z-10 drop-shadow-lg hover:scale-110 transition-transform duration-300 cursor-pointer"
+                      title="Upto 50% Scholarship Available!"
+                    />
+                  </motion.div>
                 )}
               </div>
             </div>
