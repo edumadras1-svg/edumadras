@@ -46,7 +46,7 @@ export function ApplicationModal({ isOpen, onClose, collegeId, collegeName, cour
       const result = await res.json();
       if (!res.ok) throw new Error(result.error || "Submission failed");
       setSuccess(true);
-      sendLeadEmails(formData);
+      sendLeadEmails({ ...formData, college_name: collegeName });
     } catch (err) {
       console.error("Error submitting application:", err);
       alert("Failed to submit application. Please try again.");

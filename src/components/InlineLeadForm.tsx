@@ -70,7 +70,7 @@ export function InlineLeadForm({ collegeName, collegeId }: InlineLeadFormProps) 
       const result = await res.json();
       if (!res.ok) throw new Error(result.error || "Submission failed");
       setSuccess(true);
-      sendLeadEmails(formData);
+      sendLeadEmails({ ...formData, college_name: collegeName });
     } catch (err) {
       console.error("Error submitting:", err);
       alert("Something went wrong. Please try again.");

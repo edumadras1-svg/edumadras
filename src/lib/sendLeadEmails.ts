@@ -5,6 +5,7 @@ export async function sendLeadEmails(params: {
   phone: string;
   city?: string;
   target_course?: string;
+  college_name?: string;
 }) {
   const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
   const adminTemplateId = process.env.NEXT_PUBLIC_EMAILJS_ADMIN_TEMPLATE_ID;
@@ -19,6 +20,7 @@ export async function sendLeadEmails(params: {
     phone: params.phone,
     city: params.city || "Not provided",
     course: params.target_course || "Not specified",
+    college_name: params.college_name || "General Inquiry (Homepage)",
     to_email: params.email,
   };
 
