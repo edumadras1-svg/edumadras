@@ -58,10 +58,13 @@ export default function SaveethaTeluguPage() {
       <TopNavBar />
 
       <JsonLd
-        type="CollegeOrUniversity"
-        name="Saveetha University (SIMATS)"
-        description="సవీతా ఇన్స్టిట్యూట్ ఆఫ్ మెడికల్ అండ్ టెక్నికల్ సైన్సెస్ (SIMATS) చెన్నైలో ఉన్న ప్రముఖ డీమ్డ్ విశ్వవిద్యాలయం."
-        url="https://edumadras.com/saveetha-university-telugu"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "CollegeOrUniversity",
+          "name": "Saveetha University (SIMATS)",
+          "description": "సవీతా ఇన్స్టిట్యూట్ ఆఫ్ మెడికల్ అండ్ టెక్నికల్ సైన్సెస్ (SIMATS) చెన్నైలో ఉన్న ప్రముఖ డీమ్డ్ విశ్వవిద్యాలయం.",
+          "url": "https://edumadras.com/saveetha-university-telugu"
+        }}
       />
 
       {/* Breadcrumb */}

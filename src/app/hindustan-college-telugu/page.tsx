@@ -144,10 +144,13 @@ export default function HindustanTeluguPage() {
       <TopNavBar />
 
       <JsonLd
-        type="CollegeOrUniversity"
-        name="Hindustan Institute of Technology and Science"
-        description="హిందుస్థాన్ ఇన్స్టిట్యూట్ ఆఫ్ టెక్నాలజీ అండ్ సైన్స్ (HITS) చెన్నైలో ఒక ప్రముఖ డీమ్డ్ విశ్వవిద్యాలయం."
-        url="https://edumadras.com/hindustan-institute-of-technology-science-telugu"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "CollegeOrUniversity",
+          "name": "Hindustan Institute of Technology and Science",
+          "description": "హిందుస్థాన్ ఇన్స్టిట్యూట్ ఆఫ్ టెక్నాలజీ అండ్ సైన్స్ (HITS) చెన్నైలో ఒక ప్రముఖ డీమ్డ్ విశ్వవిద్యాలయం.",
+          "url": "https://edumadras.com/hindustan-college-telugu"
+        }}
       />
 
       {/* Breadcrumb */}
