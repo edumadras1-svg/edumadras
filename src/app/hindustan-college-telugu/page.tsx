@@ -204,14 +204,14 @@ export default function HindustanTeluguPage() {
 
                   {/* Phone CTA */}
                   <div className="mt-6 flex items-center">
-                    <a href="tel:+919363699095" className="group relative inline-flex items-center gap-3 bg-gradient-to-r from-teal-500 to-emerald-600 p-1.5 pr-6 rounded-full shadow-lg shadow-teal-500/20 transition-all hover:shadow-teal-500/30 hover:-translate-y-0.5">
+                    <a href="tel:+917339329264" className="group relative inline-flex items-center gap-3 bg-gradient-to-r from-teal-500 to-emerald-600 p-1.5 pr-6 rounded-full shadow-lg shadow-teal-500/20 transition-all hover:shadow-teal-500/30 hover:-translate-y-0.5">
                       <div className="bg-white rounded-full p-2.5 shadow-inner flex items-center justify-center relative">
                         <div className="absolute inset-0 bg-teal-500/20 rounded-full animate-ping"></div>
                         <Phone className="w-5 h-5 text-teal-600 fill-teal-600/20 relative z-10" />
                       </div>
                       <div className="flex flex-col">
                         <span className="text-[10px] uppercase tracking-widest font-extrabold text-white/90 leading-none">తెలుగులో అడ్మిషన్ సహాయం (Telugu Helpline)</span>
-                        <span className="text-lg font-black text-white leading-tight mt-0.5">+91 93636 99095</span>
+                        <span className="text-lg font-black text-white leading-tight mt-0.5">+91 7339329264</span>
                       </div>
                     </a>
                   </div>
