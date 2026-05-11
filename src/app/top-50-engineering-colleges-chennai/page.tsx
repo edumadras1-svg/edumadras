@@ -17,8 +17,25 @@ export const metadata: Metadata = {
   openGraph: { title: "Top 50 Engineering Colleges in Chennai 2025 | EduMadras", url: "https://edumadras.com/top-50-engineering-colleges-chennai", siteName: "EduMadras", type: "website", locale: "en_IN" },
 };
 
+import { createServerSupabaseClient } from "@/lib/supabase/server";
+
 export default async function Page() {
-  const colleges = await fetchCollegesByFilter({ stream: "Engineering", city: "Chennai", limit: 50 });
+  const supabase = createServerSupabaseClient();
+  
+  // 1. Fetch Top 50
+  const baseColleges = await fetchCollegesByFilter({ stream: "Engineering", city: "Chennai", limit: 50 });
+  
+  // 2. Fetch Hindustan and AVIT specifically to ensure they are present
+  const { data: specificColleges } = await supabase
+    .from("colleges")
+    .select("*")
+    .or('name.ilike.%Hindustan Institute%,name.ilike.%Aarupadai Veedu%');
+
+  // 3. Merge and remove duplicates
+  const allColleges = [...(specificColleges || []), ...baseColleges];
+  const uniqueColleges = Array.from(new Map(allColleges.map(c => [c.id, c])).values());
+  const colleges = uniqueColleges.slice(0, 52); // Keep them and the top 50
+
   const jsonLdSchemas = buildListingJsonLd({ h1: H1, pageUrl: PAGE_URL, colleges, breadcrumbs: BREADCRUMBS, faqItems: FAQ_ITEMS });
   return (
     <>
