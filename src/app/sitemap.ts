@@ -148,7 +148,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  // 8. Regional Strategy Pages
+  // 8. Telugu Landing Pages
+  const teluguPages = [
+    '/hindustan-college-telugu',
+    '/avit-telugu',
+    '/saveetha-university-telugu',
+  ];
+  const teluguRoutes: MetadataRoute.Sitemap = teluguPages.map((slug) => ({
+    url: `${BASE_URL}${slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly',
+    priority: 0.8,
+  }));
+
+  // 9. Regional Strategy Pages
   const regionalPages = [
     '/engineering-colleges/kallakurichi',
     '/arts-science-colleges/kallakurichi',
@@ -162,5 +175,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.75,
   }));
 
-  return [...routes, ...seoRoutes, ...phase2Routes, ...phase3Routes, ...regionalRoutes, ...collegeRoutes, ...guideRoutes];
+  return [...routes, ...seoRoutes, ...phase2Routes, ...phase3Routes, ...teluguRoutes, ...regionalRoutes, ...collegeRoutes, ...guideRoutes];
 }
