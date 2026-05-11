@@ -32,6 +32,9 @@ import { JsonLd } from "@/components/JsonLd";
 export const metadata: Metadata = {
   title: "Find the Best Colleges in Tamil Nadu 2026 | EduMadras",
   description: "Discover top engineering, medical, arts and science colleges in Tamil Nadu. Compare fees, placements, and cutoffs.",
+  alternates: {
+    canonical: "https://edumadras.com",
+  },
 };
 
 const homeSchema = {
