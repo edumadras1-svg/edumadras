@@ -8,7 +8,7 @@ import type { College, CollegeCourse } from "@/lib/mockData";
 import { supabase } from "@/lib/supabase/client";
 import Link from "next/link";
 import { useEffect, useState, use, useRef } from "react";
-import { CheckCircle2, Send, Loader2, GitCompareArrows, Download, Calendar, BookOpen, Users, Award, Star, MapPin, Heart, Share2, ArrowLeft, ChevronRight, Building2, TrendingUp, X } from "lucide-react";
+import { CheckCircle2, Send, Loader2, GitCompareArrows, Download, Calendar, BookOpen, Users, Award, Star, MapPin, Heart, Share2, ArrowLeft, ChevronRight, Building2, TrendingUp, X, Phone } from "lucide-react";
 import { JsonLd } from "@/components/JsonLd";
 import { motion, AnimatePresence } from "framer-motion";
 import { ApplicationModal } from "@/components/ApplicationModal";
@@ -302,6 +302,20 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
                   <span>Est. {college.established_year}</span>
                 </div>
               )}
+            </div>
+
+            {/* Phone CTA */}
+            <div className="mt-5 flex items-center">
+              <a href="tel:+919363699095" className="group relative inline-flex items-center gap-3 bg-gradient-to-r from-teal to-emerald-600 p-1 pr-6 rounded-full shadow-lg shadow-teal/20 transition-all hover:shadow-teal/30 hover:-translate-y-0.5">
+                <div className="bg-white rounded-full p-2 md:p-2.5 shadow-inner flex items-center justify-center relative">
+                  <div className="absolute inset-0 bg-teal/20 rounded-full animate-ping"></div>
+                  <Phone className="w-4 h-4 md:w-5 md:h-5 text-teal fill-teal/20 relative z-10" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[9px] md:text-[10px] uppercase tracking-widest font-extrabold text-white/90 leading-none">Admission Helpline</span>
+                  <span className="text-sm md:text-lg font-black text-white leading-tight mt-0.5">+91 93636 99095</span>
+                </div>
+              </a>
             </div>
           </div>
 
