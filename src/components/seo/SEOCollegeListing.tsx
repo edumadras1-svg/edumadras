@@ -138,7 +138,7 @@ export function SEOCollegeListing({
       </section>
 
       {/* Filters Bar */}
-      <div className="sticky top-14 md:top-16 z-30 bg-white/80 backdrop-blur-xl border-b border-gray-100">
+      <div className="sticky top-14 md:top-16 z-30 bg-white border-b border-gray-100">
         <div className="container-mobile flex items-center gap-4 py-3">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
@@ -203,7 +203,7 @@ export function SEOCollegeListing({
                   )}
                   <div className="w-16 h-16 md:w-20 md:h-20 bg-white rounded-2xl border border-gray-100 flex items-center justify-center overflow-hidden shrink-0 shadow-sm group-hover:shadow-md transition-shadow">
                     {college.logo_url ? (
-                      <img src={college.logo_url} alt={college.name} className="w-12 h-12 md:w-14 md:h-14 object-contain" />
+                      <img src={college.logo_url} alt={college.name} width={56} height={56} loading="lazy" decoding="async" className="w-12 h-12 md:w-14 md:h-14 object-contain" />
                     ) : (
                       <span className="text-xl font-bold text-navy">
                         {college.name.split(" ").map(n => n[0]).join("").slice(0, 3)}

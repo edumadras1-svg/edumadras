@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/top-50-engineering-colleges-chennai";
+const PAGE_URL = "https://www.edumadras.com/top-50-engineering-colleges-chennai";
 const H1 = "Top 50 Engineering Colleges in Chennai 2025";
 const BREADCRUMBS = [{ label: "Engineering Colleges", href: "/engineering-colleges/chennai" }, { label: "Top 50 Chennai", href: "/top-50-engineering-colleges-chennai" }];
 const FAQ_ITEMS = [{ question: "How many engineering colleges are there in Chennai?", answer: "Chennai has approximately 100+ engineering colleges including government, government-aided, and self-financing institutions affiliated to Anna University." }, { question: "What is the cheapest engineering college in Chennai?", answer: "Government engineering colleges like CEG Anna University and MIT Anna University offer the most affordable engineering education at ₹25,000-50,000/year." }];
@@ -13,8 +13,8 @@ export const metadata: Metadata = {
   title: "Top 50 Engineering Colleges in Chennai 2025 — Complete List | EduMadras",
   description: "Complete list of top 50 engineering colleges in Chennai with NIRF rankings, fees, placements & cutoffs. Compare govt & private colleges. Free admission counseling.",
   keywords: "top 50 engineering colleges in chennai, engineering colleges in chennai list, all engineering colleges chennai",
-  alternates: { canonical: "https://edumadras.com/top-50-engineering-colleges-chennai" },
-  openGraph: { title: "Top 50 Engineering Colleges in Chennai 2025 | EduMadras", url: "https://edumadras.com/top-50-engineering-colleges-chennai", siteName: "EduMadras", type: "website", locale: "en_IN" },
+  alternates: { canonical: "https://www.edumadras.com/top-50-engineering-colleges-chennai" },
+  openGraph: { title: "Top 50 Engineering Colleges in Chennai 2025 | EduMadras", url: "https://www.edumadras.com/top-50-engineering-colleges-chennai", siteName: "EduMadras", type: "website", locale: "en_IN" },
 };
 
 import { createServerSupabaseClient } from "@/lib/supabase/server";
