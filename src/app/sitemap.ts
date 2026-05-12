@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 import { createServerSupabaseClient } from '@/lib/supabase/server';
 
-const BASE_URL = 'https://edumadras.com';
+const BASE_URL = 'https://www.edumadras.com';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const supabase = createServerSupabaseClient();

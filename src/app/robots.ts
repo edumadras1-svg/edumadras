@@ -20,6 +20,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/', '/admin/'],
       },
     ],
-    sitemap: 'https://edumadras.com/sitemap.xml',
+    sitemap: 'https://www.edumadras.com/sitemap.xml',
   };
 }
