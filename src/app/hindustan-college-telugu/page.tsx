@@ -254,7 +254,7 @@ export default function HindustanTeluguPage() {
             {/* Tabs */}
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden sticky top-[60px] z-30">
               <div className="flex overflow-x-auto scrollbar-hide">
-                {["అవలోకనం", "కోర్సులు", "ప్లేస్‌మెంట్స్"].map((tab) => (
+                {["అవలోకనం", "కోర్సులు", "ప్లేస్‌మెంట్స్", "హాస్టల్"].map((tab) => (
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab)}
@@ -347,6 +347,29 @@ export default function HindustanTeluguPage() {
                       <p className="text-3xl font-black text-blue-700">4.5 LPA</p>
                       <p className="text-sm font-medium text-blue-800 mt-1">సగటు ప్యాకేజీ (Average Package)</p>
                     </div>
+                  </div>
+                </motion.div>
+              )}
+
+              {activeTab === "హాస్టల్" && (
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
+                  <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                    <Building2 className="w-6 h-6 text-teal-600" /> హాస్టల్ సౌకర్యాలు (Hostel Facilities)
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {[
+                      ["హాస్టల్ రకం", "బాలురు & బాలికలకు వేర్వేరు హాస్టళ్ళు"],
+                      ["గదులు", "2–3 మంది షేరింగ్ (AC/Non-AC ఎంపికలు)"],
+                      ["హాస్టల్ ఫీజు", "₹1,00,000 – ₹1,30,000/సంవత్సరం (ఆహారంతో సహా)"],
+                      ["సౌకర్యాలు", "Wi-Fi, CCTV, జిమ్, రీడింగ్ రూమ్, వైద్య సౌకర్యం"],
+                      ["భోజనం", "శాఖాహార & మాంసాహార మెస్"],
+                      ["క్యాంపస్", "165+ ఎకరాలు, OMR"],
+                    ].map(([l, v], i) => (
+                      <div key={i} className="p-4 rounded-2xl border border-gray-100 bg-gray-50/50">
+                        <span className="text-xs text-gray-400 font-bold uppercase">{l}</span>
+                        <p className="font-semibold text-gray-800 mt-1">{v}</p>
+                      </div>
+                    ))}
                   </div>
                 </motion.div>
               )}

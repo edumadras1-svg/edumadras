@@ -48,6 +48,25 @@ const SAVEETHA_COURSES = [
   { name: "BA LLB (Hons)", duration: "5 Years", fee: "₹1.5L/yr", eligibility: "10+2 Any Stream" },
   { name: "BBA LLB (Hons)", duration: "5 Years", fee: "₹1.5L/yr", eligibility: "10+2 Any Stream" },
   { name: "LLB", duration: "3 Years", fee: "₹1.5L/yr", eligibility: "Any UG Degree" },
+  // Medical (Management Quota)
+  { name: "Medical", duration: "N/A", fee: "₹20L", eligibility: "No eligibility specified" },
+  // B.Tech Programs
+  { name: "B.Tech AI & DS", duration: "4 Years", fee: "₹4.6L", eligibility: "50% in 10+2" },
+  { name: "B.Tech - Artificial Intelligence and Machine Learning", duration: "4 Years", fee: "₹4.6L", eligibility: "50% in 10+2" },
+  { name: "B.Tech Computer Science and Engineering", duration: "4 Years", fee: "₹4.6L", eligibility: "50% in 10+2" },
+  { name: "B.Tech - Computer Science and BioSciences", duration: "4 Years", fee: "₹4.6L", eligibility: "50% in 10+2" },
+  { name: "B.Tech - CSE (Artificial Intelligence)", duration: "4 Years", fee: "₹4.6L", eligibility: "50% in 10+2" },
+  { name: "B.Tech - CSE (Data Science)", duration: "4 Years", fee: "₹4.6L", eligibility: "50% in 10+2" },
+  { name: "B.Tech CSE (Cyber Security)", duration: "4 Years", fee: "₹4.6L", eligibility: "50% in 10+2" },
+  { name: "B.Tech - Electronics and Communication Engineering", duration: "4 Years", fee: "₹3.2L", eligibility: "50% in 10+2" },
+  { name: "B.Tech - Information Technology", duration: "4 Years", fee: "₹3.35L", eligibility: "50% in 10+2" },
+  { name: "B.Tech - Bioinformatics", duration: "4 Years", fee: "₹3.2L", eligibility: "50% in 10+2" },
+  { name: "B.Tech - Biotechnology", duration: "4 Years", fee: "₹3.2L", eligibility: "50% in 10+2" },
+  { name: "B.Tech - Biomedical Engineering", duration: "4 Years", fee: "₹3.2L", eligibility: "50% in 10+2" },
+  { name: "B.Tech - Dental Technology", duration: "4 Years", fee: "₹1.6L", eligibility: "50% in 10+2" },
+  { name: "B.Tech - Electrical and Electronics Engineering", duration: "4 Years", fee: "₹1.6L", eligibility: "50% in 10+2" },
+  { name: "B.Tech - Civil Engineering", duration: "4 Years", fee: "₹1.6L", eligibility: "50% in 10+2" },
+  { name: "B.Tech - Mechanical Engineering", duration: "4 Years", fee: "₹1.6L", eligibility: "50% in 10+2" },
 ];
 
 export default function SaveethaTeluguPage() {
@@ -163,7 +182,7 @@ export default function SaveethaTeluguPage() {
             {/* Tabs */}
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden sticky top-[60px] z-30">
               <div className="flex overflow-x-auto scrollbar-hide">
-                {["అవలోకనం", "కోర్సులు", "ప్లేస్‌మెంట్స్"].map((tab) => (
+                {["అవలోకనం", "కోర్సులు", "ప్లేస్‌మెంట్స్", "హాస్టల్"].map((tab) => (
                   <button key={tab} onClick={() => setActiveTab(tab)}
                     className={`flex-1 min-w-[120px] px-6 py-4 text-sm font-bold transition-all relative ${activeTab === tab ? "text-teal-700 bg-teal-50/50" : "text-gray-500 hover:text-gray-900 hover:bg-gray-50"}`}>
                     {tab}
@@ -272,6 +291,29 @@ export default function SaveethaTeluguPage() {
                         </span>
                       ))}
                     </div>
+                  </div>
+                </motion.div>
+              )}
+
+              {activeTab === "హాస్టల్" && (
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-6">
+                  <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                    <Building2 className="w-6 h-6 text-teal-600" /> హాస్టల్ సౌకర్యాలు (Hostel Facilities)
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {[
+                      ["హాస్టల్ రకం", "బాలురు & బాలికలకు వేర్వేరు హాస్టళ్ళు"],
+                      ["గదులు", "2–4 మంది షేరింగ్ రూమ్‌లు"],
+                      ["హాస్టల్ ఫీజు", "₹70,000 – ₹1,10,000/సంవత్సరం (ఆహారంతో సహా)"],
+                      ["సౌకర్యాలు", "Wi-Fi, 24/7 సెక్యూరిటీ, రీడింగ్ రూమ్, లాండ్రీ, మెస్"],
+                      ["భోజనం", "శాఖాహార & మాంసాహార ఎంపికలు"],
+                      ["సంప్రదించండి", "+91-44-26810600"],
+                    ].map(([l, v], i) => (
+                      <div key={i} className="p-4 rounded-2xl border border-gray-100 bg-gray-50/50">
+                        <span className="text-xs text-gray-400 font-bold uppercase">{l}</span>
+                        <p className="font-semibold text-gray-800 mt-1">{v}</p>
+                      </div>
+                    ))}
                   </div>
                 </motion.div>
               )}

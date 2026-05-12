@@ -75,6 +75,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/arts-science-colleges/tamilnadu',
     '/aeronautical-engineering-colleges-tamilnadu',
     '/marine-engineering-colleges-tamilnadu',
+    // College-specific SEO pages (high-volume keywords)
+    '/colleges/saveetha-engineering-college-chennai',
+    '/colleges/avit-chennai',
+    '/colleges/hindustan-institute-of-technology-science-chennai',
   ];
   const seoRoutes: MetadataRoute.Sitemap = seoPages.map((slug) => ({
     url: `${BASE_URL}${slug}`,
