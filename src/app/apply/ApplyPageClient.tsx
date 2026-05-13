@@ -11,6 +11,7 @@ import {
   Loader2,
   Phone,
   User,
+  UserPlus,
   Mail,
   MapPin,
   BookOpen,
@@ -85,10 +86,12 @@ function formatPkg(val: number | null): string {
 export function ApplyPageClient({ colleges }: ApplyPageClientProps) {
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
     phone: "",
-    city: "",
     target_course: "",
+    father_name: "",
+    father_phone: "",
+    email: "",
+    city: "",
   });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -103,10 +106,12 @@ export function ApplyPageClient({ colleges }: ApplyPageClientProps) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: formData.name,
-          email: formData.email,
           phone: formData.phone,
-          city: formData.city,
           target_course: formData.target_course,
+          father_name: formData.father_name,
+          father_phone: formData.father_phone,
+          email: formData.email || undefined,
+          city: formData.city,
         }),
       });
 
@@ -190,59 +195,37 @@ export function ApplyPageClient({ colleges }: ApplyPageClientProps) {
                       </Link>
                     </div>
                   ) : (
-                    <form onSubmit={handleSubmit} className="space-y-3.5">
+                    <form onSubmit={handleSubmit} className="space-y-3">
+                      {/* Name */}
                       <div className="relative group">
                         <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-300 group-focus-within:text-teal transition-colors" />
                         <input
                           required
                           type="text"
-                          placeholder="Full Name"
+                          placeholder="Full Name *"
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           className="w-full h-12 pl-11 pr-4 bg-slate-50 border-2 border-slate-100 rounded-xl focus:outline-none focus:border-teal focus:bg-white focus:shadow-md focus:shadow-teal/5 transition-all text-sm text-slate-800 font-medium placeholder:text-slate-300"
                         />
                       </div>
 
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                        <div className="relative group">
-                          <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-300 group-focus-within:text-teal transition-colors" />
-                          <input
-                            required
-                            type="email"
-                            placeholder="Email"
-                            value={formData.email}
-                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                            className="w-full h-12 pl-11 pr-4 bg-slate-50 border-2 border-slate-100 rounded-xl focus:outline-none focus:border-teal focus:bg-white focus:shadow-md focus:shadow-teal/5 transition-all text-sm text-slate-800 font-medium placeholder:text-slate-300"
-                          />
-                        </div>
-                        <div className="relative group">
-                          <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-300 group-focus-within:text-teal transition-colors" />
-                          <input
-                            required
-                            type="tel"
-                            placeholder="Phone Number"
-                            value={formData.phone}
-                            onChange={(e) => setFormData({ ...formData, phone: e.target.value.replace(/\D/g, "") })}
-                            inputMode="numeric"
-                            pattern="[0-9]{10}"
-                            maxLength={10}
-                            className="w-full h-12 pl-11 pr-4 bg-slate-50 border-2 border-slate-100 rounded-xl focus:outline-none focus:border-teal focus:bg-white focus:shadow-md focus:shadow-teal/5 transition-all text-sm text-slate-800 font-medium placeholder:text-slate-300"
-                          />
-                        </div>
-                      </div>
-
+                      {/* Phone */}
                       <div className="relative group">
-                        <MapPin className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-300 group-focus-within:text-teal transition-colors" />
+                        <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-300 group-focus-within:text-teal transition-colors" />
                         <input
                           required
-                          type="text"
-                          placeholder="Your City / District"
-                          value={formData.city}
-                          onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                          type="tel"
+                          placeholder="Phone Number *"
+                          value={formData.phone}
+                          onChange={(e) => setFormData({ ...formData, phone: e.target.value.replace(/\D/g, "") })}
+                          inputMode="numeric"
+                          pattern="[0-9]{10}"
+                          maxLength={10}
                           className="w-full h-12 pl-11 pr-4 bg-slate-50 border-2 border-slate-100 rounded-xl focus:outline-none focus:border-teal focus:bg-white focus:shadow-md focus:shadow-teal/5 transition-all text-sm text-slate-800 font-medium placeholder:text-slate-300"
                         />
                       </div>
 
+                      {/* Course */}
                       <div className="relative group">
                         <BookOpen className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-300 group-focus-within:text-teal transition-colors" />
                         <select
@@ -251,12 +234,66 @@ export function ApplyPageClient({ colleges }: ApplyPageClientProps) {
                           onChange={(e) => setFormData({ ...formData, target_course: e.target.value })}
                           className="w-full h-12 pl-11 pr-10 bg-slate-50 border-2 border-slate-100 rounded-xl focus:outline-none focus:border-teal focus:bg-white focus:shadow-md focus:shadow-teal/5 appearance-none text-sm font-semibold text-slate-700 cursor-pointer transition-all"
                         >
-                          <option value="">Select Preferred Course</option>
+                          <option value="">Select Preferred Course *</option>
                           {courses.map((c) => (
                             <option key={c.id} value={c.name}>{c.name}</option>
                           ))}
                         </select>
                         <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-300 pointer-events-none" />
+                      </div>
+
+                      {/* Father Name + Father Phone */}
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="relative group">
+                          <UserPlus className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-300 group-focus-within:text-teal transition-colors" />
+                          <input
+                            required
+                            type="text"
+                            placeholder="Father Name *"
+                            value={formData.father_name}
+                            onChange={(e) => setFormData({ ...formData, father_name: e.target.value })}
+                            className="w-full h-12 pl-11 pr-4 bg-slate-50 border-2 border-slate-100 rounded-xl focus:outline-none focus:border-teal focus:bg-white focus:shadow-md focus:shadow-teal/5 transition-all text-sm text-slate-800 font-medium placeholder:text-slate-300"
+                          />
+                        </div>
+                        <div className="relative group">
+                          <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-300 group-focus-within:text-teal transition-colors" />
+                          <input
+                            required
+                            type="tel"
+                            placeholder="Father Phone *"
+                            value={formData.father_phone}
+                            onChange={(e) => setFormData({ ...formData, father_phone: e.target.value.replace(/\D/g, "") })}
+                            inputMode="numeric"
+                            pattern="[0-9]{10}"
+                            maxLength={10}
+                            className="w-full h-12 pl-11 pr-4 bg-slate-50 border-2 border-slate-100 rounded-xl focus:outline-none focus:border-teal focus:bg-white focus:shadow-md focus:shadow-teal/5 transition-all text-sm text-slate-800 font-medium placeholder:text-slate-300"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Email (optional) + City */}
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="relative group">
+                          <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-300 group-focus-within:text-teal transition-colors" />
+                          <input
+                            type="email"
+                            placeholder="Email (Optional)"
+                            value={formData.email}
+                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                            className="w-full h-12 pl-11 pr-4 bg-slate-50 border-2 border-slate-100 rounded-xl focus:outline-none focus:border-teal focus:bg-white focus:shadow-md focus:shadow-teal/5 transition-all text-sm text-slate-800 font-medium placeholder:text-slate-300"
+                          />
+                        </div>
+                        <div className="relative group">
+                          <MapPin className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-300 group-focus-within:text-teal transition-colors" />
+                          <input
+                            required
+                            type="text"
+                            placeholder="City / District *"
+                            value={formData.city}
+                            onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                            className="w-full h-12 pl-11 pr-4 bg-slate-50 border-2 border-slate-100 rounded-xl focus:outline-none focus:border-teal focus:bg-white focus:shadow-md focus:shadow-teal/5 transition-all text-sm text-slate-800 font-medium placeholder:text-slate-300"
+                          />
+                        </div>
                       </div>
 
                       <button

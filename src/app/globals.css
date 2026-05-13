@@ -319,3 +319,14 @@ body {
     display: none;
   }
 }
+
+/* === Lead Form Highlight Animations === */
+@keyframes formShimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes formGlow {
+  0% { box-shadow: 0 4px 30px rgba(249, 115, 22, 0.15); }
+  100% { box-shadow: 0 4px 40px rgba(249, 115, 22, 0.35); }
+}

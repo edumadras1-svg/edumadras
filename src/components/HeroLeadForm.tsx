@@ -7,6 +7,7 @@ import {
   Loader2,
   Phone,
   User,
+  UserPlus,
   Mail,
   MapPin,
   BookOpen,
@@ -36,10 +37,12 @@ const courses = [
 export function HeroLeadForm() {
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
     phone: "",
-    city: "",
     target_course: "",
+    father_name: "",
+    father_phone: "",
+    email: "",
+    city: "",
   });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -54,10 +57,12 @@ export function HeroLeadForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: formData.name,
-          email: formData.email,
           phone: formData.phone,
-          city: formData.city,
           target_course: formData.target_course,
+          father_name: formData.father_name,
+          father_phone: formData.father_phone,
+          email: formData.email || undefined,
+          city: formData.city,
         }),
       });
 
@@ -109,7 +114,7 @@ export function HeroLeadForm() {
             <input
               required
               type="text"
-              placeholder="Full Name"
+              placeholder="Full Name *"
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               className="w-full h-12 pl-11 pr-4 bg-slate-50 border-2 border-slate-100 rounded-xl text-sm text-slate-800 font-medium placeholder:text-slate-300 focus:outline-none focus:border-teal focus:bg-white focus:shadow-md focus:shadow-teal/5 transition-all"
@@ -120,7 +125,7 @@ export function HeroLeadForm() {
             <input
               required
               type="tel"
-              placeholder="Phone Number"
+              placeholder="Phone Number *"
               value={formData.phone}
               onChange={(e) => setFormData({ ...formData, phone: e.target.value.replace(/\D/g, "") })}
               inputMode="numeric"
@@ -131,14 +136,59 @@ export function HeroLeadForm() {
           </div>
         </div>
 
-        {/* Row 2: Email + City */}
+        {/* Row 2: Course (full width) */}
+        <div className="relative group mt-3">
+          <BookOpen className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-300 group-focus-within:text-teal transition-colors" />
+          <select
+            required
+            value={formData.target_course}
+            onChange={(e) => setFormData({ ...formData, target_course: e.target.value })}
+            className="w-full h-12 pl-11 pr-10 bg-slate-50 border-2 border-slate-100 rounded-xl text-sm text-slate-800 font-medium appearance-none cursor-pointer focus:outline-none focus:border-teal focus:bg-white focus:shadow-md focus:shadow-teal/5 transition-all"
+          >
+            <option value="">Select Preferred Course *</option>
+            {courses.map((c) => (
+              <option key={c.id} value={c.name}>{c.name}</option>
+            ))}
+          </select>
+          <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-300 pointer-events-none" />
+        </div>
+
+        {/* Row 3: Father Name + Father Phone */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
+          <div className="relative group">
+            <UserPlus className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-300 group-focus-within:text-teal transition-colors" />
+            <input
+              required
+              type="text"
+              placeholder="Father Name *"
+              value={formData.father_name}
+              onChange={(e) => setFormData({ ...formData, father_name: e.target.value })}
+              className="w-full h-12 pl-11 pr-4 bg-slate-50 border-2 border-slate-100 rounded-xl text-sm text-slate-800 font-medium placeholder:text-slate-300 focus:outline-none focus:border-teal focus:bg-white focus:shadow-md focus:shadow-teal/5 transition-all"
+            />
+          </div>
+          <div className="relative group">
+            <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-300 group-focus-within:text-teal transition-colors" />
+            <input
+              required
+              type="tel"
+              placeholder="Father Phone *"
+              value={formData.father_phone}
+              onChange={(e) => setFormData({ ...formData, father_phone: e.target.value.replace(/\D/g, "") })}
+              inputMode="numeric"
+              pattern="[0-9]{10}"
+              maxLength={10}
+              className="w-full h-12 pl-11 pr-4 bg-slate-50 border-2 border-slate-100 rounded-xl text-sm text-slate-800 font-medium placeholder:text-slate-300 focus:outline-none focus:border-teal focus:bg-white focus:shadow-md focus:shadow-teal/5 transition-all"
+            />
+          </div>
+        </div>
+
+        {/* Row 4: Email (optional) + City */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
           <div className="relative group">
             <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-300 group-focus-within:text-teal transition-colors" />
             <input
-              required
               type="email"
-              placeholder="Email Address"
+              placeholder="Email (Optional)"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               className="w-full h-12 pl-11 pr-4 bg-slate-50 border-2 border-slate-100 rounded-xl text-sm text-slate-800 font-medium placeholder:text-slate-300 focus:outline-none focus:border-teal focus:bg-white focus:shadow-md focus:shadow-teal/5 transition-all"
@@ -149,7 +199,7 @@ export function HeroLeadForm() {
             <input
               required
               type="text"
-              placeholder="Your City / District"
+              placeholder="City / District *"
               value={formData.city}
               onChange={(e) => setFormData({ ...formData, city: e.target.value })}
               className="w-full h-12 pl-11 pr-4 bg-slate-50 border-2 border-slate-100 rounded-xl text-sm text-slate-800 font-medium placeholder:text-slate-300 focus:outline-none focus:border-teal focus:bg-white focus:shadow-md focus:shadow-teal/5 transition-all"
@@ -157,27 +207,12 @@ export function HeroLeadForm() {
           </div>
         </div>
 
-        {/* Row 3: Course + Submit */}
-        <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-3 mt-3">
-          <div className="relative group">
-            <BookOpen className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-300 group-focus-within:text-teal transition-colors" />
-            <select
-              required
-              value={formData.target_course}
-              onChange={(e) => setFormData({ ...formData, target_course: e.target.value })}
-              className="w-full h-12 pl-11 pr-10 bg-slate-50 border-2 border-slate-100 rounded-xl text-sm text-slate-800 font-medium appearance-none cursor-pointer focus:outline-none focus:border-teal focus:bg-white focus:shadow-md focus:shadow-teal/5 transition-all"
-            >
-              <option value="">Select Preferred Course</option>
-              {courses.map((c) => (
-                <option key={c.id} value={c.name}>{c.name}</option>
-              ))}
-            </select>
-            <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-300 pointer-events-none" />
-          </div>
+        {/* Submit Button */}
+        <div className="mt-3">
           <button
             disabled={loading}
             type="submit"
-            className="h-12 px-8 bg-gradient-to-r from-teal to-emerald-400 hover:from-teal/90 hover:to-emerald-400/90 text-white font-bold rounded-xl shadow-lg shadow-teal/25 flex items-center justify-center gap-2 transition-all btn-press whitespace-nowrap"
+            className="w-full h-12 bg-gradient-to-r from-teal to-emerald-400 hover:from-teal/90 hover:to-emerald-400/90 text-white font-bold rounded-xl shadow-lg shadow-teal/25 flex items-center justify-center gap-2 transition-all btn-press"
           >
             {loading ? (
               <Loader2 className="w-5 h-5 animate-spin" />

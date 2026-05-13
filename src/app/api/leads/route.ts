@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { name, email, phone, city, target_course, college_id } = body;
+    const { name, email, phone, city, target_course, college_id, father_name, father_phone } = body;
 
     // Validate required fields
     if (!name || !phone) {
@@ -31,6 +31,8 @@ export async function POST(req: NextRequest) {
         phone,
         city: city || null,
         target_course: target_course || null,
+        father_name: father_name || null,
+        father_phone: father_phone || null,
         status: "Pending",
       },
     ]).select();

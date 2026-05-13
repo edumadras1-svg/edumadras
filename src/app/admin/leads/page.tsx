@@ -14,10 +14,12 @@ import {
   XCircle,
   Clock,
   User,
+  UserPlus,
   Loader2,
   Trash2,
   Check,
   ChevronRight,
+  BookOpen,
 } from "lucide-react";
 import { supabase } from "@/lib/supabase/client";
 
@@ -28,6 +30,8 @@ interface Lead {
   phone: string | null;
   city: string | null;
   target_course: string | null;
+  father_name: string | null;
+  father_phone: string | null;
   status: string;
   created_at: string;
   colleges?: {
@@ -160,27 +164,34 @@ export default function AdminLeadsPage() {
             <table className="w-full">
               <thead className="bg-surface-low/50 border-b border-border-ghost text-[10px] text-text-tertiary font-bold uppercase tracking-widest">
                 <tr>
-                  <th className="px-6 py-4 text-left">Student Information</th>
-                  <th className="px-6 py-4 text-left">Academic interest</th>
-                  <th className="px-6 py-4 text-left">Status</th>
-                  <th className="px-6 py-4 text-right">Actions</th>
+                  <th className="px-5 py-4 text-left">Student Info</th>
+                  <th className="px-5 py-4 text-left">Parent Info</th>
+                  <th className="px-5 py-4 text-left">Academic Interest</th>
+                  <th className="px-5 py-4 text-left">Status</th>
+                  <th className="px-5 py-4 text-right">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border-ghost">
                 {filteredLeads.map((lead) => (
                   <tr key={lead.id} className="hover:bg-surface/30 transition-all group">
-                    <td className="px-6 py-5">
-                      <div className="flex items-center gap-4">
+                    {/* Student Info */}
+                    <td className="px-5 py-4">
+                      <div className="flex items-center gap-3">
                         <div className="w-10 h-10 rounded-full bg-teal/10 text-teal flex items-center justify-center font-bold text-sm shrink-0 uppercase">
                           {lead.name[0]}
                         </div>
                         <div className="min-w-0">
                           <p className="text-body-sm font-bold text-navy truncate">{lead.name}</p>
-                          <div className="flex flex-col gap-1 mt-1">
+                          <div className="flex flex-col gap-0.5 mt-1">
                             {lead.phone && (
-                              <div className="flex items-center gap-1.5 text-[11px] text-text-tertiary">
+                              <a href={`tel:${lead.phone}`} className="flex items-center gap-1.5 text-[11px] text-text-tertiary hover:text-teal transition-colors">
                                 <Phone className="w-3 h-3" /> {lead.phone}
-                              </div>
+                              </a>
+                            )}
+                            {lead.email && (
+                              <a href={`mailto:${lead.email}`} className="flex items-center gap-1.5 text-[11px] text-text-tertiary hover:text-teal transition-colors">
+                                <Mail className="w-3 h-3" /> {lead.email}
+                              </a>
                             )}
                             {lead.city && (
                               <div className="flex items-center gap-1.5 text-[11px] text-text-tertiary">
@@ -191,13 +202,37 @@ export default function AdminLeadsPage() {
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-5">
+
+                    {/* Parent Info */}
+                    <td className="px-5 py-4">
+                      {lead.father_name || lead.father_phone ? (
+                        <div className="min-w-0">
+                          {lead.father_name && (
+                            <div className="flex items-center gap-1.5 text-body-sm font-bold text-navy">
+                              <UserPlus className="w-3.5 h-3.5 text-amber-500" /> {lead.father_name}
+                            </div>
+                          )}
+                          {lead.father_phone && (
+                            <a href={`tel:${lead.father_phone}`} className="flex items-center gap-1.5 text-[11px] text-text-tertiary hover:text-teal transition-colors mt-1">
+                              <Phone className="w-3 h-3" /> {lead.father_phone}
+                            </a>
+                          )}
+                        </div>
+                      ) : (
+                        <span className="text-[11px] text-text-tertiary italic">Not provided</span>
+                      )}
+                    </td>
+
+                    {/* Academic Interest */}
+                    <td className="px-5 py-4">
                       <div className="bg-surface-low p-2.5 rounded-xl border border-border-ghost/50">
                         <p className="text-body-sm font-bold text-navy">{lead.target_course || "General Inquiry"}</p>
                         <p className="text-[11px] text-text-tertiary font-medium uppercase tracking-tight">{lead.colleges?.name || "Multiple Colleges"}</p>
                       </div>
                     </td>
-                    <td className="px-6 py-5">
+
+                    {/* Status */}
+                    <td className="px-5 py-4">
                       <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-extrabold uppercase tracking-widest ${
                         lead.status === 'Pending' ? 'bg-amber-50 text-amber-600 border border-amber-200/50' :
                         lead.status === 'Contacted' ? 'bg-blue-50 text-blue-600 border border-blue-200/50' :
@@ -214,7 +249,9 @@ export default function AdminLeadsPage() {
                          <Calendar className="w-3 h-3" /> {formatDate(lead.created_at)}
                       </div>
                     </td>
-                    <td className="px-6 py-5 text-right relative">
+
+                    {/* Actions */}
+                    <td className="px-5 py-4 text-right relative">
                       <div className="flex items-center justify-end gap-1.5">
                         <button 
                           onClick={() => handleContact(lead.phone)}

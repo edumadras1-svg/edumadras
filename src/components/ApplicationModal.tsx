@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { X, Send, CheckCircle2, Loader2, Phone, User, Mail, MapPin, BookOpen, ChevronDown } from "lucide-react";
+import { X, Send, CheckCircle2, Loader2, Phone, User, UserPlus, Mail, MapPin, BookOpen, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { sendLeadEmails } from "@/lib/sendLeadEmails";
 
@@ -17,10 +17,12 @@ interface ApplicationModalProps {
 export function ApplicationModal({ isOpen, onClose, collegeId, collegeName, courses, mode = "apply" }: ApplicationModalProps) {
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
     phone: "",
-    city: "",
     target_course: "",
+    father_name: "",
+    father_phone: "",
+    email: "",
+    city: "",
   });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -36,10 +38,12 @@ export function ApplicationModal({ isOpen, onClose, collegeId, collegeName, cour
         body: JSON.stringify({
           college_id: collegeId,
           name: formData.name,
-          email: formData.email,
           phone: formData.phone,
-          city: formData.city,
           target_course: formData.target_course,
+          father_name: formData.father_name,
+          father_phone: formData.father_phone,
+          email: formData.email || undefined,
+          city: formData.city,
         }),
       });
 
@@ -107,59 +111,37 @@ export function ApplicationModal({ isOpen, onClose, collegeId, collegeName, cour
                 </button>
               </motion.div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-3">
+                {/* Name */}
                 <div className="relative">
                   <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                   <input
                     required
                     type="text"
-                    placeholder="Full Name"
+                    placeholder="Full Name *"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="w-full h-11 pl-10 pr-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 transition-all text-sm"
                   />
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="relative">
-                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-                    <input
-                      required
-                      type="email"
-                      placeholder="Email"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full h-11 pl-10 pr-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 transition-all text-sm"
-                    />
-                  </div>
-                  <div className="relative">
-                    <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-                    <input
-                      required
-                      type="tel"
-                      placeholder="Phone"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value.replace(/\D/g, "") })}
-                      inputMode="numeric"
-                      pattern="[0-9]{10}"
-                      maxLength={10}
-                      className="w-full h-11 pl-10 pr-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 transition-all text-sm"
-                    />
-                  </div>
-                </div>
-
+                {/* Phone */}
                 <div className="relative">
-                  <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                  <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
                   <input
                     required
-                    type="text"
-                    placeholder="Current City"
-                    value={formData.city}
-                    onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                    type="tel"
+                    placeholder="Phone *"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value.replace(/\D/g, "") })}
+                    inputMode="numeric"
+                    pattern="[0-9]{10}"
+                    maxLength={10}
                     className="w-full h-11 pl-10 pr-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 transition-all text-sm"
                   />
                 </div>
 
+                {/* Course */}
                 <div className="relative group">
                   <BookOpen className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-blue-500 transition-colors" />
                   <select
@@ -168,13 +150,67 @@ export function ApplicationModal({ isOpen, onClose, collegeId, collegeName, cour
                     onChange={(e) => setFormData({ ...formData, target_course: e.target.value })}
                     className="w-full h-12 pl-10 pr-10 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 transition-all appearance-none text-sm font-semibold text-slate-700 cursor-pointer"
                   >
-                    <option value="">Select Preferred Course</option>
+                    <option value="">Select Preferred Course *</option>
                     {courses.map((c) => (
                       <option key={c.id} value={c.name}>{c.name}</option>
                     ))}
                     <option value="Other">Other / Not Listed</option>
                   </select>
                   <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none group-focus-within:rotate-180 transition-transform" />
+                </div>
+
+                {/* Father Name + Father Phone */}
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="relative">
+                    <UserPlus className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                    <input
+                      required
+                      type="text"
+                      placeholder="Father Name *"
+                      value={formData.father_name}
+                      onChange={(e) => setFormData({ ...formData, father_name: e.target.value })}
+                      className="w-full h-11 pl-10 pr-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 transition-all text-sm"
+                    />
+                  </div>
+                  <div className="relative">
+                    <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                    <input
+                      required
+                      type="tel"
+                      placeholder="Father Phone *"
+                      value={formData.father_phone}
+                      onChange={(e) => setFormData({ ...formData, father_phone: e.target.value.replace(/\D/g, "") })}
+                      inputMode="numeric"
+                      pattern="[0-9]{10}"
+                      maxLength={10}
+                      className="w-full h-11 pl-10 pr-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 transition-all text-sm"
+                    />
+                  </div>
+                </div>
+
+                {/* Email (optional) + City */}
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="relative">
+                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                    <input
+                      type="email"
+                      placeholder="Email (Optional)"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full h-11 pl-10 pr-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 transition-all text-sm"
+                    />
+                  </div>
+                  <div className="relative">
+                    <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                    <input
+                      required
+                      type="text"
+                      placeholder="City *"
+                      value={formData.city}
+                      onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                      className="w-full h-11 pl-10 pr-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-blue-500 transition-all text-sm"
+                    />
+                  </div>
                 </div>
 
                 <button

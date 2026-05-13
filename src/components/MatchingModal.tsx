@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { X, Send, CheckCircle2, Loader2, Sparkles, User, Phone, MapPin, GraduationCap, Star, ArrowRight, Mail, ChevronDown } from "lucide-react";
+import { X, Send, CheckCircle2, Loader2, Sparkles, User, UserPlus, Phone, MapPin, GraduationCap, Star, ArrowRight, Mail, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { sendLeadEmails } from "@/lib/sendLeadEmails";
 
@@ -14,11 +14,13 @@ export function MatchingModal({ isOpen, onClose }: MatchingModalProps) {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
     phone: "",
-    city: "",
     stream: "",
     marks: "",
+    father_name: "",
+    father_phone: "",
+    email: "",
+    city: "",
   });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -33,10 +35,12 @@ export function MatchingModal({ isOpen, onClose }: MatchingModalProps) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: formData.name,
-          email: formData.email,
           phone: formData.phone,
-          city: formData.city,
           target_course: `${formData.stream} (Match Request)`,
+          father_name: formData.father_name,
+          father_phone: formData.father_phone,
+          email: formData.email || undefined,
+          city: formData.city,
         }),
       });
 
@@ -175,7 +179,7 @@ export function MatchingModal({ isOpen, onClose }: MatchingModalProps) {
                         <input
                           required
                           type="text"
-                          placeholder="Your Name"
+                          placeholder="Your Name *"
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           className="w-full h-14 pl-12 pr-4 bg-slate-50 border-2 border-slate-50 rounded-2xl focus:outline-none focus:border-teal transition-all font-bold"
@@ -186,7 +190,7 @@ export function MatchingModal({ isOpen, onClose }: MatchingModalProps) {
                         <input
                           required
                           type="tel"
-                          placeholder="Mobile Number"
+                          placeholder="Mobile Number *"
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value.replace(/\D/g, "") })}
                           inputMode="numeric"
@@ -195,27 +199,55 @@ export function MatchingModal({ isOpen, onClose }: MatchingModalProps) {
                           className="w-full h-14 pl-12 pr-4 bg-slate-50 border-2 border-slate-50 rounded-2xl focus:outline-none focus:border-teal transition-all font-bold"
                         />
                       </div>
-                      <div className="relative">
-                        <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-300" />
-                        <input
-                          required
-                          type="email"
-                          placeholder="Email Address"
-                          value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          className="w-full h-14 pl-12 pr-4 bg-slate-50 border-2 border-slate-50 rounded-2xl focus:outline-none focus:border-teal transition-all font-bold"
-                        />
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="relative">
+                          <UserPlus className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-300" />
+                          <input
+                            required
+                            type="text"
+                            placeholder="Father Name *"
+                            value={formData.father_name}
+                            onChange={(e) => setFormData({ ...formData, father_name: e.target.value })}
+                            className="w-full h-14 pl-12 pr-4 bg-slate-50 border-2 border-slate-50 rounded-2xl focus:outline-none focus:border-teal transition-all font-bold text-sm"
+                          />
+                        </div>
+                        <div className="relative">
+                          <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-300" />
+                          <input
+                            required
+                            type="tel"
+                            placeholder="Father Phone *"
+                            value={formData.father_phone}
+                            onChange={(e) => setFormData({ ...formData, father_phone: e.target.value.replace(/\D/g, "") })}
+                            inputMode="numeric"
+                            pattern="[0-9]{10}"
+                            maxLength={10}
+                            className="w-full h-14 pl-12 pr-4 bg-slate-50 border-2 border-slate-50 rounded-2xl focus:outline-none focus:border-teal transition-all font-bold text-sm"
+                          />
+                        </div>
                       </div>
-                      <div className="relative">
-                        <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-300" />
-                        <input
-                          required
-                          type="text"
-                          placeholder="Your City"
-                          value={formData.city}
-                          onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                          className="w-full h-14 pl-12 pr-4 bg-slate-50 border-2 border-slate-50 rounded-2xl focus:outline-none focus:border-teal transition-all font-bold"
-                        />
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="relative">
+                          <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-300" />
+                          <input
+                            type="email"
+                            placeholder="Email (Optional)"
+                            value={formData.email}
+                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                            className="w-full h-14 pl-12 pr-4 bg-slate-50 border-2 border-slate-50 rounded-2xl focus:outline-none focus:border-teal transition-all font-bold text-sm"
+                          />
+                        </div>
+                        <div className="relative">
+                          <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-300" />
+                          <input
+                            required
+                            type="text"
+                            placeholder="City *"
+                            value={formData.city}
+                            onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                            className="w-full h-14 pl-12 pr-4 bg-slate-50 border-2 border-slate-50 rounded-2xl focus:outline-none focus:border-teal transition-all font-bold text-sm"
+                          />
+                        </div>
                       </div>
                     </div>
                     <button
