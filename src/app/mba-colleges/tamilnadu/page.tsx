@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/mba-colleges/tamilnadu";
+const PAGE_URL = "https://www.edumadras.com/mba-colleges/tamilnadu";
 const H1 = "MBA Colleges in Tamil Nadu 2025";
 const BREADCRUMBS = [{ label: "MBA Colleges TN", href: "/mba-colleges/tamilnadu" }];
 const FAQ_ITEMS = [{ question: "Which are the best MBA colleges in Tamil Nadu?", answer: "IIM Trichy, Great Lakes (Chennai), LIBA (Chennai), Anna University DoMS, and PSG IM (Coimbatore) are top MBA institutions." }, { question: "What is the average MBA package in TN?", answer: "Top B-schools: ₹12-20 LPA. Mid-tier colleges: ₹5-10 LPA. Average across all colleges: ₹4-8 LPA." }];

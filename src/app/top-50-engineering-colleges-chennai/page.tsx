@@ -40,7 +40,7 @@ export default async function Page() {
   return (
     <>
       <HeadJsonLd schemas={jsonLdSchemas} />
-      <SEOCollegeListing colleges={colleges} title="Top 50 Engineering Colleges in Chennai" h1={H1} subtitle="The most comprehensive rank-wise list of engineering colleges in Chennai — covering all 50 top institutions." introText="Looking beyond just the top 10? This expanded list of 50 engineering colleges in Chennai covers everything from elite NIRF-ranked institutions to quality colleges with strong industry connections and affordable fees. Whether you're a high-scorer aiming for IIT Madras or looking for a solid college with good placement support, this list has you covered with verified data on fees, placements, and admission criteria." breadcrumbs={BREADCRUMBS} faqItems={FAQ_ITEMS} pageUrl="https://edumadras.com/top-50-engineering-colleges-chennai" filterLabel="Top 50" />
+      <SEOCollegeListing colleges={colleges} title="Top 50 Engineering Colleges in Chennai" h1={H1} subtitle="The most comprehensive rank-wise list of engineering colleges in Chennai — covering all 50 top institutions." introText="Looking beyond just the top 10? This expanded list of 50 engineering colleges in Chennai covers everything from elite NIRF-ranked institutions to quality colleges with strong industry connections and affordable fees. Whether you're a high-scorer aiming for IIT Madras or looking for a solid college with good placement support, this list has you covered with verified data on fees, placements, and admission criteria." breadcrumbs={BREADCRUMBS} faqItems={FAQ_ITEMS} pageUrl="https://www.edumadras.com/top-50-engineering-colleges-chennai" filterLabel="Top 50" />
     </>
   );
 }

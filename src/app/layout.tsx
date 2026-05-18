@@ -13,7 +13,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://edumadras.com"),
+  metadataBase: new URL("https://www.edumadras.com"),
   title: "EduMadras — Discover Your Dream College in India | Fees, Rankings, Counseling",
   description:
     "India's premier college discovery platform. Compare 500+ Engineering, Medical, Management, Law & Design colleges. Get free expert counseling. Verified fees & placement data.",

@@ -25,7 +25,7 @@ import {
   Home,
 } from "lucide-react";
 
-const PAGE_URL = "https://edumadras.com/kallakurichi";
+const PAGE_URL = "https://www.edumadras.com/kallakurichi";
 
 export const metadata: Metadata = {
   title: "Colleges in Kallakurichi 2026 — Engineering, Medical, Arts & Science | EduMadras",
@@ -161,7 +161,7 @@ const pageSchema = {
   name: "Colleges in Kallakurichi 2026",
   description: "Complete guide to all colleges in Kallakurichi district 2026.",
   url: PAGE_URL,
-  isPartOf: { "@type": "WebSite", name: "EduMadras", url: "https://edumadras.com" },
+  isPartOf: { "@type": "WebSite", name: "EduMadras", url: "https://www.edumadras.com" },
 };
 
 const faqSchema = {

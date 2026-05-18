@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/biomedical-engineering-colleges-chennai";
+const PAGE_URL = "https://www.edumadras.com/biomedical-engineering-colleges-chennai";
 const H1 = "Biomedical Engineering Colleges in Chennai 2025";
 const BREADCRUMBS = [{ label: "Biomedical Chennai", href: "/biomedical-engineering-colleges-chennai" }];
 const FAQ_ITEMS = [{ question: "Which Chennai colleges offer biomedical engineering?", answer: "SSN College, SRM Institute, Rajalakshmi Engineering College, and Sairam Engineering College offer B.E Biomedical Engineering." }, { question: "What is the career scope of biomedical engineering?", answer: "Growing field with opportunities in medical devices, healthcare IT, hospitals, and pharma companies. Average packages: ₹4-8 LPA." }];

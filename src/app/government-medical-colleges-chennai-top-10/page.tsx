@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/government-medical-colleges-chennai-top-10";
+const PAGE_URL = "https://www.edumadras.com/government-medical-colleges-chennai-top-10";
 const H1 = "Top 10 Government Medical Colleges in Chennai 2025";
 const BREADCRUMBS = [{ label: "Top 10 Govt Medical", href: "/government-medical-colleges-chennai-top-10" }];
 const FAQ_ITEMS = [{ question: "How many government medical colleges are in Chennai?", answer: "Chennai has 4 major government medical colleges: Madras Medical College, Stanley, Kilpauk, and Omandurar." }, { question: "What is the NEET cutoff for government medical colleges?", answer: "General category requires 600+ NEET marks. OBC: 550+. SC/ST: 450+. Cutoffs vary year to year." }];

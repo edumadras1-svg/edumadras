@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/government-medical-colleges-chennai";
+const PAGE_URL = "https://www.edumadras.com/government-medical-colleges-chennai";
 const H1 = "Government Medical Colleges in Chennai 2025 — NEET Cutoff & Fees";
 const BREADCRUMBS = [{ label: "Govt. Medical Chennai", href: "/government-medical-colleges-chennai" }];
 const FAQ_ITEMS = [{ question: "Which government medical colleges are in Chennai?", answer: "Madras Medical College, Stanley Medical College, Kilpauk Medical College, and Omandurar Government Medical College are the main government institutions." }, { question: "What is the MBBS fee in government medical colleges?", answer: "Government medical college fees are approximately ₹13,000-30,000 per year — significantly cheaper than private colleges." }];

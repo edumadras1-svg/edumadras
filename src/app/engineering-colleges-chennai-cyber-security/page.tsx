@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/engineering-colleges-chennai-cyber-security";
+const PAGE_URL = "https://www.edumadras.com/engineering-colleges-chennai-cyber-security";
 const H1 = "Best Engineering Colleges in Chennai for Cyber Security 2025";
 const BREADCRUMBS = [{ label: "Cyber Security", href: "/engineering-colleges-chennai-cyber-security" }];
 const FAQ_ITEMS = [{ question: "Which Chennai colleges offer cyber security engineering?", answer: "SRM, VIT Chennai, Sathyabama, and select Anna University-affiliated colleges offer B.Tech/B.E in Cyber Security or Information Security." }, { question: "What is the career scope of cyber security?", answer: "Extremely high demand with starting packages of ₹6-15 LPA. Companies like TCS, Infosys, Wipro, and specialized security firms actively recruit." }];

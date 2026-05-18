@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/medical-colleges/kallakurichi";
+const PAGE_URL = "https://www.edumadras.com/medical-colleges/kallakurichi";
 const H1 = "Medical Colleges in Kallakurichi & Top Alternatives 2025";
 const BREADCRUMBS = [{ label: "Kallakurichi", href: "/medical-colleges/kallakurichi" }];
 const FAQ_ITEMS = [{ question: "What is the cutoff for Govt Medical College Kallakurichi?", answer: "The NEET cutoff for Govt Medical College Kallakurichi typically ranges between 580-620 for the general category, varying by specific quotas." }, { question: "What are the best alternative medical colleges?", answer: "Top private medical colleges and deemed universities in Chennai and Pondicherry are popular alternatives offering world-class hospital infrastructure and clinical exposure." }];

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { fetchCollegesByFilter } from "@/lib/seo/fetchColleges";
 import { ApplyPageClient } from "./ApplyPageClient";
 
-const PAGE_URL = "https://edumadras.com/apply";
+const PAGE_URL = "https://www.edumadras.com/apply";
 
 export const metadata: Metadata = {
   title: "Apply Now — Free College Admission Counseling 2026 | EduMadras",

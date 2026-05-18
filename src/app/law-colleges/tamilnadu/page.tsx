@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/law-colleges/tamilnadu";
+const PAGE_URL = "https://www.edumadras.com/law-colleges/tamilnadu";
 const H1 = "Law Colleges in Tamil Nadu 2025";
 const BREADCRUMBS = [{ label: "Law Colleges TN", href: "/law-colleges/tamilnadu" }];
 const FAQ_ITEMS = [{ question: "Which are the best law colleges in Tamil Nadu?", answer: "Dr. Ambedkar Government Law College (Chennai), TNDALU affiliated colleges, SASTRA School of Law, and VIT School of Law." }, { question: "What is the admission process for law in TN?", answer: "5-year integrated law: Through CLAT or university-level entrance. 3-year LLB: Based on graduation marks and TNDALU counseling." }];

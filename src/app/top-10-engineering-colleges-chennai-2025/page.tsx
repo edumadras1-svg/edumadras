@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/top-10-engineering-colleges-chennai-2025";
+const PAGE_URL = "https://www.edumadras.com/top-10-engineering-colleges-chennai-2025";
 const H1 = "Top 10 Engineering Colleges in Chennai 2025 — Updated Rankings";
 const BREADCRUMBS = [{ label: "2025 Rankings", href: "/top-10-engineering-colleges-chennai-2025" }];
 const FAQ_ITEMS = [{ question: "Has the 2025 ranking changed from 2024?", answer: "Rankings may shift slightly year-to-year based on updated NIRF scores, but the top institutions (IIT Madras, CEG, SSN) consistently hold top positions." }, { question: "When are the 2025 NIRF rankings released?", answer: "NIRF rankings are typically released in June-July by the Ministry of Education. This page will be updated accordingly." }];

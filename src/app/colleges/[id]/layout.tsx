@@ -1,7 +1,7 @@
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import type { Metadata } from "next";
 
-const BASE_URL = "https://edumadras.com";
+const BASE_URL = "https://www.edumadras.com";
 
 export async function generateMetadata(
   { params }: { params: Promise<{ id: string }> }

@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/arts-science-colleges/tamilnadu";
+const PAGE_URL = "https://www.edumadras.com/arts-science-colleges/tamilnadu";
 const H1 = "Best Arts and Science Colleges in Tamil Nadu 2025";
 const BREADCRUMBS = [{ label: "Arts & Science Colleges", href: "/arts-science-colleges/tamilnadu" }, { label: "Tamil Nadu", href: "/arts-science-colleges/tamilnadu" }];
 const FAQ_ITEMS = [

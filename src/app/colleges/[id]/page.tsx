@@ -173,7 +173,7 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
     "@type": "EducationalOrganization",
     "name": college.name,
     "description": college.description || `${college.name} is a ${college.type || ""} institution located in ${college.city}, ${college.state}.`,
-    "url": `https://edumadras.com/colleges/${id}`,
+    "url": `https://www.edumadras.com/colleges/${id}`,
     "logo": college.logo_url || undefined,
     "image": college.banner_url || college.logo_url || undefined,
     "address": {
@@ -197,9 +197,9 @@ export default function CollegeDetailPage({ params }: { params: Promise<{ id: st
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://edumadras.com" },
-      { "@type": "ListItem", "position": 2, "name": college.stream || "Colleges", "item": `https://edumadras.com/colleges?stream=${streamSlug}` },
-      { "@type": "ListItem", "position": 3, "name": college.name, "item": `https://edumadras.com/colleges/${id}` }
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.edumadras.com" },
+      { "@type": "ListItem", "position": 2, "name": college.stream || "Colleges", "item": `https://www.edumadras.com/colleges?stream=${streamSlug}` },
+      { "@type": "ListItem", "position": 3, "name": college.name, "item": `https://www.edumadras.com/colleges/${id}` }
     ]
   };
 

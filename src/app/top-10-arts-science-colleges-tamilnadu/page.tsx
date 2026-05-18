@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/top-10-arts-science-colleges-tamilnadu";
+const PAGE_URL = "https://www.edumadras.com/top-10-arts-science-colleges-tamilnadu";
 const H1 = "Top 10 Arts and Science Colleges in Tamil Nadu 2025";
 const BREADCRUMBS = [{ label: "Top 10 A&S TN", href: "/top-10-arts-science-colleges-tamilnadu" }];
 const FAQ_ITEMS = [{ question: "What are the top 10 arts colleges in Tamil Nadu?", answer: "Loyola College, PSG CAS (Coimbatore), The American College (Madurai), Presidency College, Stella Maris, and others form the top 10." }, { question: "Which university affiliation is best for arts colleges in TN?", answer: "Madras University, Bharathiar University (Coimbatore), and Bharathidasan University (Trichy) are the top affiliating universities." }];

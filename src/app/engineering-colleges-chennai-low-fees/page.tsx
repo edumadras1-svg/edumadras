@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/engineering-colleges-chennai-low-fees";
+const PAGE_URL = "https://www.edumadras.com/engineering-colleges-chennai-low-fees";
 const H1 = "Engineering Colleges in Chennai with Low Fees 2025";
 const BREADCRUMBS = [{ label: "Low Fees", href: "/engineering-colleges-chennai-low-fees" }];
 const FAQ_ITEMS = [{ question: "Which engineering colleges in Chennai have the lowest fees?", answer: "Government colleges like CEG Anna University (₹25K/yr), MIT Anna University (₹25K/yr), and ACT (₹30K/yr) have the lowest fees." }, { question: "Can I get quality education at low-fee colleges?", answer: "Absolutely. Government colleges like Anna University CEG have better placements than many expensive private colleges." }];

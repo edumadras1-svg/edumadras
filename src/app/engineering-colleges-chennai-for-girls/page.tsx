@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/engineering-colleges-chennai-for-girls";
+const PAGE_URL = "https://www.edumadras.com/engineering-colleges-chennai-for-girls";
 const H1 = "Best Engineering Colleges in Chennai for Girls 2025";
 const BREADCRUMBS = [{ label: "For Girls", href: "/engineering-colleges-chennai-for-girls" }];
 const FAQ_ITEMS = [{ question: "Which Chennai engineering college is best for girls?", answer: "SSN College, SRM, Rajalakshmi, and Anna University CEG are known for excellent safety, hostel facilities, and support systems for women students." }, { question: "Are there women-only engineering colleges in Chennai?", answer: "While most engineering colleges are co-educational, some colleges have dedicated women's hostels with enhanced security and mentoring programs." }];

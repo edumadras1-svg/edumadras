@@ -81,12 +81,12 @@ export default async function GuidePage({ params }: PageProps) {
       "name": "EduMadras",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://edumadras.com/logo.png"
+        "url": "https://www.edumadras.com/logo.png"
       }
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://edumadras.com/guides/${slug}`
+      "@id": `https://www.edumadras.com/guides/${slug}`
     }
   };
 

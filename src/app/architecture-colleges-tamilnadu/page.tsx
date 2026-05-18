@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/architecture-colleges-tamilnadu";
+const PAGE_URL = "https://www.edumadras.com/architecture-colleges-tamilnadu";
 const H1 = "Architecture Colleges in Tamil Nadu 2025";
 const BREADCRUMBS = [{ label: "Architecture TN", href: "/architecture-colleges-tamilnadu" }];
 const FAQ_ITEMS = [{ question: "Which are the best architecture colleges in TN?", answer: "SAP (School of Architecture and Planning) Anna University, Measi Academy, and SRM School of Architecture are top choices." }, { question: "What is the eligibility for B.Arch?", answer: "+2 with Maths and qualifying NATA (National Aptitude Test in Architecture) or JEE Main Paper 2 score." }];

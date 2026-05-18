@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/engineering-colleges/chennai/tambaram";
+const PAGE_URL = "https://www.edumadras.com/engineering-colleges/chennai/tambaram";
 const H1 = "Engineering Colleges in Tambaram 2025";
 const BREADCRUMBS = [{ label: "Engineering Colleges", href: "/engineering-colleges/chennai" }, { label: "Tambaram", href: "/engineering-colleges/chennai/tambaram" }];
 const FAQ_ITEMS = [{ question: "Which engineering colleges are in Tambaram?", answer: "There are several AICTE-approved engineering colleges in and around Tambaram offering various branches of B.E/B.Tech programs." }, { question: "How to reach Tambaram engineering colleges?", answer: "Tambaram is well-connected by Chennai Metro, MTC buses, and suburban trains. Most colleges are within 5 km of the Tambaram railway station." }];

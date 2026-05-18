@@ -309,14 +309,23 @@ export function SEOCollegeListing({
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
               { label: "Top Engineering Colleges in Chennai", href: "/top-engineering-colleges-in-chennai" },
-              { label: "Government Medical Colleges in Chennai", href: "/government-medical-colleges-chennai" },
-              { label: "Arts & Science Colleges in Chennai", href: "/arts-science-colleges/chennai" },
-              { label: "Best Engineering Colleges in Tamil Nadu", href: "/top-engineering-colleges-tamilnadu" },
-              { label: "Engineering Colleges Without JEE", href: "/engineering-colleges-chennai-without-jee" },
-              { label: "Low Fee Engineering Colleges", href: "/engineering-colleges-chennai-low-fees" },
+              { label: "Top 10 Engineering Colleges Chennai", href: "/top-10-engineering-colleges-chennai" },
+              { label: "Top 50 Engineering Colleges Chennai", href: "/top-50-engineering-colleges-chennai" },
+              { label: "Engineering Colleges Tamil Nadu", href: "/engineering-colleges/tamilnadu" },
+              { label: "Top Engineering Colleges Tamil Nadu", href: "/top-engineering-colleges-tamilnadu" },
+              { label: "Government Medical Colleges Chennai", href: "/government-medical-colleges-chennai" },
+              { label: "Best Medical Colleges Chennai", href: "/best-medical-colleges-chennai" },
+              { label: "Arts & Science Colleges Chennai", href: "/arts-science-colleges/chennai" },
+              { label: "Arts & Science Colleges Tamil Nadu", href: "/arts-science-colleges/tamilnadu" },
+              { label: "NIRF Ranking 2025 Engineering", href: "/nirf-ranking-2025-engineering-colleges" },
+              { label: "Engineering Without JEE Chennai", href: "/engineering-colleges-chennai-without-jee" },
+              { label: "Low Fee Engineering Chennai", href: "/engineering-colleges-chennai-low-fees" },
               { label: "MBA Colleges in Tamil Nadu", href: "/mba-colleges/tamilnadu" },
-              { label: "Architecture Colleges in Tamil Nadu", href: "/architecture-colleges-tamilnadu" },
-              { label: "Colleges in Kallakurichi", href: "/colleges-in-kallakurichi" }
+              { label: "Architecture Colleges Tamil Nadu", href: "/architecture-colleges-tamilnadu" },
+              { label: "Marine Engineering Colleges TN", href: "/marine-engineering-colleges-tamilnadu" },
+              { label: "Aeronautical Engineering Chennai", href: "/aeronautical-engineering-colleges-chennai" },
+              { label: "Govt Engineering Colleges TN", href: "/government-engineering-colleges-tamilnadu" },
+              { label: "Colleges in Kallakurichi", href: "/colleges-in-kallakurichi" },
             ].map((link, i) => (
               <Link 
                 key={i} 

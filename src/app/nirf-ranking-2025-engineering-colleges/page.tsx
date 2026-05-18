@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/nirf-ranking-2025-engineering-colleges";
+const PAGE_URL = "https://www.edumadras.com/nirf-ranking-2025-engineering-colleges";
 const H1 = "NIRF Ranking 2025 — Top Engineering Colleges in India";
 const BREADCRUMBS = [{ label: "NIRF Rankings", href: "/nirf-ranking-2025-engineering-colleges" }];
 const FAQ_ITEMS = [

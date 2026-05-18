@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/tier-1-engineering-colleges-chennai";
+const PAGE_URL = "https://www.edumadras.com/tier-1-engineering-colleges-chennai";
 const H1 = "Tier 1 Engineering Colleges in Chennai 2025";
 const BREADCRUMBS = [{ label: "Tier 1", href: "/tier-1-engineering-colleges-chennai" }];
 const FAQ_ITEMS = [{ question: "What makes a college Tier 1?", answer: "Tier 1 colleges have NIRF rankings in the top 100, average placement packages above ₹10 LPA, strong research output, and NAAC A+ accreditation." }, { question: "Which Chennai colleges are Tier 1?", answer: "IIT Madras, Anna University CEG, SSN College, and SRM (main campus) are widely considered Tier 1 engineering colleges in Chennai." }];

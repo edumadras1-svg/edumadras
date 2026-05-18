@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/government-engineering-colleges-tamilnadu";
+const PAGE_URL = "https://www.edumadras.com/government-engineering-colleges-tamilnadu";
 const H1 = "Government Engineering Colleges in Tamil Nadu 2025";
 const BREADCRUMBS = [{ label: "Govt. Engg TN", href: "/government-engineering-colleges-tamilnadu" }];
 const FAQ_ITEMS = [{ question: "How many government engineering colleges are in TN?", answer: "Tamil Nadu has approximately 20+ government and government-aided engineering colleges including Anna University campuses and regional institutions." }, { question: "What are the fees in TN government engineering colleges?", answer: "Government engineering college fees range from ₹25,000-50,000/year — significantly lower than private colleges." }];

@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/biomedical-engineering-colleges-tamilnadu";
+const PAGE_URL = "https://www.edumadras.com/biomedical-engineering-colleges-tamilnadu";
 const H1 = "Biomedical Engineering Colleges in Tamil Nadu 2025";
 const BREADCRUMBS = [{ label: "Biomedical TN", href: "/biomedical-engineering-colleges-tamilnadu" }];
 const FAQ_ITEMS = [{ question: "Which TN colleges offer biomedical engineering?", answer: "SSN College, PSG Tech, SRM, Rajalakshmi, and several Anna University-affiliated colleges offer B.E Biomedical Engineering." }, { question: "What is the job scope for BME graduates in Tamil Nadu?", answer: "Chennai's medical device corridor offers strong employment. GE Healthcare, Siemens, Philips, and local medtech companies actively recruit from TN colleges." }];

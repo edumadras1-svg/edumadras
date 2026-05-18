@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/private-medical-colleges-chennai";
+const PAGE_URL = "https://www.edumadras.com/private-medical-colleges-chennai";
 const H1 = "Private Medical Colleges in Chennai 2025";
 const BREADCRUMBS = [{ label: "Private Medical", href: "/private-medical-colleges-chennai" }];
 const FAQ_ITEMS = [{ question: "Which are the best private medical colleges in Chennai?", answer: "Sri Ramachandra, SRM Medical College, Saveetha Medical College, and Chettinad Medical College are top-rated private institutions." }, { question: "Is private medical college worth the fees?", answer: "Top private colleges like Sri Ramachandra have excellent clinical training and global recognition. Consider ROI, clinical exposure, and hospital quality." }];

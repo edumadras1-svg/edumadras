@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/aerospace-engineering-colleges-chennai";
+const PAGE_URL = "https://www.edumadras.com/aerospace-engineering-colleges-chennai";
 const H1 = "Aerospace Engineering Colleges in Chennai 2025";
 const BREADCRUMBS = [{ label: "Aerospace Chennai", href: "/aerospace-engineering-colleges-chennai" }];
 const FAQ_ITEMS = [{ question: "What is the difference between aeronautical and aerospace engineering?", answer: "Aerospace covers both atmospheric (aeronautical) and space (astronautical) engineering. Aeronautical focuses only on aircraft within Earth's atmosphere." }, { question: "Which Chennai college is best for aerospace?", answer: "MIT Anna University and IIT Madras (at PG level) are the top choices for aerospace engineering in Chennai." }];

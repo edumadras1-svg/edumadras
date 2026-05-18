@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/engineering-colleges/chennai/omr";
+const PAGE_URL = "https://www.edumadras.com/engineering-colleges/chennai/omr";
 const H1 = "Engineering Colleges in Omr 2025";
 const BREADCRUMBS = [{ label: "Engineering Colleges", href: "/engineering-colleges/chennai" }, { label: "Omr", href: "/engineering-colleges/chennai/omr" }];
 const FAQ_ITEMS = [{ question: "Which engineering colleges are in Omr?", answer: "There are several AICTE-approved engineering colleges in and around Omr offering various branches of B.E/B.Tech programs." }, { question: "How to reach Omr engineering colleges?", answer: "Omr is well-connected by Chennai Metro, MTC buses, and suburban trains. Most colleges are within 5 km of the Omr railway station." }];

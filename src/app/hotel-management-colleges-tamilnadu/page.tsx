@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/hotel-management-colleges-tamilnadu";
+const PAGE_URL = "https://www.edumadras.com/hotel-management-colleges-tamilnadu";
 const H1 = "Hotel Management Colleges in Tamil Nadu 2025";
 const BREADCRUMBS = [{ label: "Hotel Management TN", href: "/hotel-management-colleges-tamilnadu" }];
 const FAQ_ITEMS = [{ question: "Which are the best hotel management colleges in TN?", answer: "IHM Chennai, SRM Hotel Management, and Welcomgroup Graduate School of Hotel Administration (Manipal, with TN campus) are top choices." }, { question: "What is the career scope after hotel management?", answer: "Hotels, airlines, cruise ships, event management, food industry. Starting salary: ₹3-6 LPA with rapid growth potential." }];

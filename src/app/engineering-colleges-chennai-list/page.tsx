@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/engineering-colleges-chennai-list";
+const PAGE_URL = "https://www.edumadras.com/engineering-colleges-chennai-list";
 const H1 = "Engineering Colleges in Chennai — Complete Directory 2025";
 const BREADCRUMBS = [{ label: "Full Directory", href: "/engineering-colleges-chennai-list" }];
 const FAQ_ITEMS = [{ question: "How many engineering colleges are in Chennai?", answer: "Chennai has approximately 100+ engineering colleges including government, government-aided, and self-financing institutions." }, { question: "How to reach these colleges?", answer: "Most colleges are well-connected by Chennai Metro, MTC buses, and suburban trains. Check individual college pages for detailed directions." }];

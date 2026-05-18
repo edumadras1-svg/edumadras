@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/chemical-engineering-colleges-tamilnadu";
+const PAGE_URL = "https://www.edumadras.com/chemical-engineering-colleges-tamilnadu";
 const H1 = "Chemical Engineering Colleges in Tamil Nadu 2025";
 const BREADCRUMBS = [{ label: "Chemical TN", href: "/chemical-engineering-colleges-tamilnadu" }];
 const FAQ_ITEMS = [{ question: "Which TN colleges offer chemical engineering?", answer: "ACT Anna University, NIT Trichy, PSG Tech (Coimbatore), and Coimbatore Institute of Technology are top choices for chemical engineering." }, { question: "What are the career options after chemical engineering?", answer: "Petrochemicals, pharmaceuticals, food processing, environmental engineering, and process industries. Average packages: ₹5-10 LPA." }];

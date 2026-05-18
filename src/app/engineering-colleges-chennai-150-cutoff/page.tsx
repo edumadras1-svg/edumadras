@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/engineering-colleges-chennai-150-cutoff";
+const PAGE_URL = "https://www.edumadras.com/engineering-colleges-chennai-150-cutoff";
 const H1 = "Engineering Colleges in Chennai — 150 Cutoff 2025";
 const BREADCRUMBS = [{ label: "150 Cutoff", href: "/engineering-colleges-chennai-150-cutoff" }];
 const FAQ_ITEMS = [{ question: "Which colleges accept 150 cutoff in Chennai?", answer: "At 150 cutoff, you can get admission in colleges like Jeppiaar, Panimalar, Sairam, and several other well-established private engineering colleges." }, { question: "What branches are available at 150 cutoff?", answer: "CSE, IT, ECE, EEE, Mechanical, and Civil branches are typically available at various colleges with 150 cutoff." }];

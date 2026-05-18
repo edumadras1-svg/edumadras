@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   title: "Find the Best Colleges in Tamil Nadu 2026 | EduMadras",
   description: "Discover top engineering, medical, arts and science colleges in Tamil Nadu. Compare fees, placements, and cutoffs.",
   alternates: {
-    canonical: "https://edumadras.com",
+    canonical: "https://www.edumadras.com",
   },
 };
 
@@ -42,7 +42,7 @@ const homeSchema = {
   "@type": "LocalBusiness",
   "name": "EduMadras",
   "description": "College discovery platform for Tamil Nadu",
-  "url": "https://edumadras.com",
+  "url": "https://www.edumadras.com",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Pondicherry",
@@ -411,6 +411,126 @@ export default async function Home() {
           <p className="text-body-sm text-text-secondary text-center mt-2">Quick answers for students and parents</p>
           <div className="mt-8">
             <FAQAccordion items={faqItems} />
+          </div>
+        </div>
+      </section>
+
+      {/* ==================== SEO INTERNAL LINKS FOOTER ==================== */}
+      <section className="section-gap bg-[#F1F5F9]">
+        <div className="container-mobile">
+          <h2 className="text-h3 text-text-primary mb-1">Browse Colleges by Category</h2>
+          <p className="text-caption text-text-secondary mb-8">Explore our comprehensive college listings across Tamil Nadu</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Engineering */}
+            <div>
+              <h3 className="text-label font-bold text-navy mb-3 flex items-center gap-1.5">
+                <GraduationCap className="w-4 h-4 text-teal" /> Engineering Colleges
+              </h3>
+              <ul className="space-y-1.5">
+                {[
+                  { label: "Top Engineering Colleges Chennai", href: "/top-engineering-colleges-in-chennai" },
+                  { label: "Top 10 Engineering Chennai", href: "/top-10-engineering-colleges-chennai" },
+                  { label: "Top 50 Engineering Chennai", href: "/top-50-engineering-colleges-chennai" },
+                  { label: "Top 10 Engineering Chennai 2025", href: "/top-10-engineering-colleges-chennai-2025" },
+                  { label: "Engineering Colleges Tamil Nadu", href: "/engineering-colleges/tamilnadu" },
+                  { label: "Top Engineering TN", href: "/top-engineering-colleges-tamilnadu" },
+                  { label: "Top 10 Engineering TN", href: "/top-10-engineering-colleges-tamilnadu" },
+                  { label: "Top 50 Engineering TN Rank Wise", href: "/top-50-engineering-colleges-tamilnadu-rank-wise" },
+                  { label: "Engineering TN Rank Wise", href: "/engineering-colleges-tamilnadu-rank-wise" },
+                  { label: "Engineering TN Cutoff", href: "/engineering-colleges-tamilnadu-cutoff" },
+                  { label: "Government Engineering TN", href: "/government-engineering-colleges-tamilnadu" },
+                  { label: "NIRF Ranking 2025", href: "/nirf-ranking-2025-engineering-colleges" },
+                  { label: "Tier 1 Engineering Chennai", href: "/tier-1-engineering-colleges-chennai" },
+                  { label: "Tier 3 Engineering Chennai", href: "/tier-3-engineering-colleges-chennai" },
+                ].map((link) => (
+                  <li key={link.href}><Link href={link.href} className="text-caption text-text-secondary hover:text-teal transition-colors">{link.label}</Link></li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Engineering - Specializations */}
+            <div>
+              <h3 className="text-label font-bold text-navy mb-3 flex items-center gap-1.5">
+                <GraduationCap className="w-4 h-4 text-teal" /> Specialized Engineering
+              </h3>
+              <ul className="space-y-1.5">
+                {[
+                  { label: "Aeronautical Engineering Chennai", href: "/aeronautical-engineering-colleges-chennai" },
+                  { label: "Aeronautical Engineering TN", href: "/aeronautical-engineering-colleges-tamilnadu" },
+                  { label: "Aerospace Engineering Chennai", href: "/aerospace-engineering-colleges-chennai" },
+                  { label: "Aerospace Engineering TN", href: "/aerospace-engineering-colleges-tamilnadu" },
+                  { label: "Biomedical Engineering Chennai", href: "/biomedical-engineering-colleges-chennai" },
+                  { label: "Biomedical Engineering TN", href: "/biomedical-engineering-colleges-tamilnadu" },
+                  { label: "Chemical Engineering TN", href: "/chemical-engineering-colleges-tamilnadu" },
+                  { label: "Marine Engineering Chennai", href: "/marine-engineering-colleges-chennai" },
+                  { label: "Marine Engineering TN", href: "/marine-engineering-colleges-tamilnadu" },
+                  { label: "Cyber Security Colleges Chennai", href: "/engineering-colleges-chennai-cyber-security" },
+                  { label: "CSE Fees Chennai", href: "/engineering-colleges-chennai-cse-fees" },
+                  { label: "Engineering Placement Chennai", href: "/engineering-colleges-chennai-placement" },
+                  { label: "Low Fee Engineering Chennai", href: "/engineering-colleges-chennai-low-fees" },
+                  { label: "Without JEE Chennai", href: "/engineering-colleges-chennai-without-jee" },
+                  { label: "For Girls Chennai", href: "/engineering-colleges-chennai-for-girls" },
+                  { label: "140 Cutoff Chennai", href: "/engineering-colleges-chennai-140-cutoff" },
+                  { label: "150 Cutoff Chennai", href: "/engineering-colleges-chennai-150-cutoff" },
+                  { label: "160 Cutoff Chennai", href: "/engineering-colleges-chennai-160-cutoff" },
+                ].map((link) => (
+                  <li key={link.href}><Link href={link.href} className="text-caption text-text-secondary hover:text-teal transition-colors">{link.label}</Link></li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Medical & Other Streams */}
+            <div>
+              <h3 className="text-label font-bold text-navy mb-3 flex items-center gap-1.5">
+                <Stethoscope className="w-4 h-4 text-teal" /> Medical & Other Streams
+              </h3>
+              <ul className="space-y-1.5">
+                {[
+                  { label: "Best Medical Colleges Chennai", href: "/best-medical-colleges-chennai" },
+                  { label: "Top Medical Colleges Chennai", href: "/top-medical-colleges-chennai" },
+                  { label: "Govt Medical Colleges Chennai", href: "/government-medical-colleges-chennai" },
+                  { label: "Top 10 Govt Medical Chennai", href: "/government-medical-colleges-chennai-top-10" },
+                  { label: "Private Medical Chennai", href: "/private-medical-colleges-chennai" },
+                  { label: "Private Medical Fees Chennai", href: "/private-medical-colleges-chennai-fees" },
+                  { label: "MBA Colleges Tamil Nadu", href: "/mba-colleges/tamilnadu" },
+                  { label: "Law Colleges Tamil Nadu", href: "/law-colleges/tamilnadu" },
+                  { label: "Architecture Colleges TN", href: "/architecture-colleges-tamilnadu" },
+                  { label: "Hotel Management TN", href: "/hotel-management-colleges-tamilnadu" },
+                  { label: "Govt Pharmacy Colleges TN", href: "/government-pharmacy-colleges-tamilnadu" },
+                ].map((link) => (
+                  <li key={link.href}><Link href={link.href} className="text-caption text-text-secondary hover:text-teal transition-colors">{link.label}</Link></li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Arts & Science + Regional */}
+            <div>
+              <h3 className="text-label font-bold text-navy mb-3 flex items-center gap-1.5">
+                <BookOpen className="w-4 h-4 text-teal" /> Arts, Science & Regional
+              </h3>
+              <ul className="space-y-1.5">
+                {[
+                  { label: "Arts & Science Chennai", href: "/arts-science-colleges/chennai" },
+                  { label: "Arts & Science Tamil Nadu", href: "/arts-science-colleges/tamilnadu" },
+                  { label: "Top Arts & Science Chennai", href: "/top-arts-science-colleges-chennai" },
+                  { label: "Top 5 Arts & Science Chennai", href: "/top-5-arts-science-colleges-chennai" },
+                  { label: "Top 10 Arts & Science Chennai", href: "/top-10-arts-science-colleges-chennai" },
+                  { label: "Govt Arts & Science Chennai", href: "/government-arts-science-colleges-chennai" },
+                  { label: "Top Arts & Science TN", href: "/top-arts-science-colleges-tamilnadu" },
+                  { label: "Top 10 Arts & Science TN", href: "/top-10-arts-science-colleges-tamilnadu" },
+                  { label: "Top 20 Arts & Science TN", href: "/top-20-arts-science-colleges-tamilnadu" },
+                  { label: "Engineering Chennai (All)", href: "/engineering-colleges/chennai" },
+                  { label: "Colleges in Kallakurichi", href: "/colleges-in-kallakurichi" },
+                  { label: "Engineering Avadi", href: "/engineering-colleges/chennai/avadi" },
+                  { label: "Engineering OMR", href: "/engineering-colleges/chennai/omr" },
+                  { label: "Engineering Tambaram", href: "/engineering-colleges/chennai/tambaram" },
+                  { label: "Engineering Poonamallee", href: "/engineering-colleges/chennai/poonamallee" },
+                ].map((link) => (
+                  <li key={link.href}><Link href={link.href} className="text-caption text-text-secondary hover:text-teal transition-colors">{link.label}</Link></li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>

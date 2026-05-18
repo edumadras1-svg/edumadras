@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/engineering-colleges/kallakurichi";
+const PAGE_URL = "https://www.edumadras.com/engineering-colleges/kallakurichi";
 const H1 = "Top Engineering Colleges for Kallakurichi Students 2025";
 const BREADCRUMBS = [{ label: "Kallakurichi", href: "/engineering-colleges/kallakurichi" }];
 const FAQ_ITEMS = [{ question: "Why do Kallakurichi students prefer Chennai engineering colleges?", answer: "Chennai offers proximity to major IT parks (Tidel Park, SIPCOT), significantly higher average placement packages (₹5-12 LPA), and superior industry exposure compared to local district colleges." }, { question: "Which are the best engineering colleges near Kallakurichi?", answer: "Top institutions like Saveetha, SRM, and SSN are highly preferred by Kallakurichi students for their excellent hostel facilities and safe campus environments." }];

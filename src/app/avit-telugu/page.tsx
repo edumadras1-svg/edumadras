@@ -79,7 +79,7 @@ export default function AVITTeluguPage() {
           "@type": "CollegeOrUniversity",
           "name": "Aarupadai Veedu Institute of Technology",
           "description": "ఆరుపాదై వీడు ఇన్స్టిట్యూట్ ఆఫ్ టెక్నాలజీ (AVIT) చెన్నైలో ఉన్న ప్రముఖ ఇంజనీరింగ్ కళాశాల. VMRF సంస్థ ద్వారా నిర్వహించబడుతోంది.",
-          "url": "https://edumadras.com/avit-telugu"
+          "url": "https://www.edumadras.com/avit-telugu"
         }}
       />
 

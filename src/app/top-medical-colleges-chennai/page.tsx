@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/top-medical-colleges-chennai";
+const PAGE_URL = "https://www.edumadras.com/top-medical-colleges-chennai";
 const H1 = "Top Medical Colleges in Chennai 2025";
 const BREADCRUMBS = [{ label: "Top Medical Chennai", href: "/top-medical-colleges-chennai" }];
 const FAQ_ITEMS = [{ question: "How many medical colleges are in Chennai?", answer: "Chennai has approximately 15+ medical colleges including 4 government and several private institutions." }, { question: "Which Chennai medical college has the best hospital?", answer: "Rajiv Gandhi Government General Hospital (MMC) and Sri Ramachandra Hospital are among the best teaching hospitals in Chennai." }];

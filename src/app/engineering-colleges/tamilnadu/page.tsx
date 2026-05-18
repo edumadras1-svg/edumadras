@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/engineering-colleges/tamilnadu";
+const PAGE_URL = "https://www.edumadras.com/engineering-colleges/tamilnadu";
 const H1 = "Best Engineering Colleges in Tamil Nadu 2025 — Rank Wise";
 const BREADCRUMBS = [{ label: "Engineering Colleges", href: "/engineering-colleges/tamilnadu" }, { label: "Tamil Nadu", href: "/engineering-colleges/tamilnadu" }];
 const FAQ_ITEMS = [

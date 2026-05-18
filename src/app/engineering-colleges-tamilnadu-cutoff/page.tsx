@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/engineering-colleges-tamilnadu-cutoff";
+const PAGE_URL = "https://www.edumadras.com/engineering-colleges-tamilnadu-cutoff";
 const H1 = "Engineering Colleges in Tamil Nadu — TNEA Cutoff 2025";
 const BREADCRUMBS = [{ label: "TNEA Cutoff", href: "/engineering-colleges-tamilnadu-cutoff" }];
 const FAQ_ITEMS = [{ question: "What was the TNEA cutoff for top colleges in 2024?", answer: "CEG Anna University CSE: ~197/200 cutoff. SSN CSE: ~195. MIT Anna University: ~194. Cutoffs vary by branch and category." }, { question: "How are TNEA cutoffs calculated?", answer: "TNEA cutoff is based on +2 marks: (Maths + Physics + Chemistry) / 3 * 200/300. Total is normalized to 200." }];

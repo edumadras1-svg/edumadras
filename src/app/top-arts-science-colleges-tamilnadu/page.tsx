@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/top-arts-science-colleges-tamilnadu";
+const PAGE_URL = "https://www.edumadras.com/top-arts-science-colleges-tamilnadu";
 const H1 = "Top Arts and Science Colleges in Tamil Nadu 2025";
 const BREADCRUMBS = [{ label: "Top A&S TN", href: "/top-arts-science-colleges-tamilnadu" }];
 const FAQ_ITEMS = [{ question: "Which is the best arts college in Tamil Nadu?", answer: "Loyola College (Chennai) is consistently ranked #1. PSG CAS (Coimbatore) and The American College (Madurai) are also top-tier." }, { question: "What are the fees in TN arts colleges?", answer: "Government: ₹500-5K/year. Aided: ₹5K-25K/year. Self-financing: ₹20K-1L/year." }];

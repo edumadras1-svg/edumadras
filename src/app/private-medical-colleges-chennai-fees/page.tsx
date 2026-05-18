@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/private-medical-colleges-chennai-fees";
+const PAGE_URL = "https://www.edumadras.com/private-medical-colleges-chennai-fees";
 const H1 = "Private Medical Colleges in Chennai — Complete Fee Structure 2025";
 const BREADCRUMBS = [{ label: "Private Medical Fees", href: "/private-medical-colleges-chennai-fees" }];
 const FAQ_ITEMS = [{ question: "What is the MBBS fee in private medical colleges in Chennai?", answer: "Private MBBS fees range from ₹10-25 lakhs/year depending on the institution. Total course cost: ₹50 lakhs to ₹1.5 crores." }, { question: "Are there scholarships for private medical colleges?", answer: "Yes, many private colleges offer merit scholarships for high NEET scorers. Some offer up to 50-100% fee waivers for top rankers." }];

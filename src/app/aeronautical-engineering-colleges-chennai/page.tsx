@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/aeronautical-engineering-colleges-chennai";
+const PAGE_URL = "https://www.edumadras.com/aeronautical-engineering-colleges-chennai";
 const H1 = "Aeronautical Engineering Colleges in Chennai 2025";
 const BREADCRUMBS = [{ label: "Aeronautical Chennai", href: "/aeronautical-engineering-colleges-chennai" }];
 const FAQ_ITEMS = [{ question: "Which Chennai colleges offer aeronautical engineering?", answer: "MIT Anna University, Hindustan Institute of Technology, Vel Tech, and Jeppiaar Engineering College offer B.E Aeronautical Engineering." }, { question: "What is the scope of aeronautical engineering from Chennai?", answer: "Excellent career prospects with ISRO, HAL, Boeing, Airbus, and defense organizations. Average packages range from ₹5-12 LPA." }];

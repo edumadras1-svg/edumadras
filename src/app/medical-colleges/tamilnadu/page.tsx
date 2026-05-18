@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/medical-colleges/tamilnadu";
+const PAGE_URL = "https://www.edumadras.com/medical-colleges/tamilnadu";
 const H1 = "Medical Colleges in Tamil Nadu 2025";
 const BREADCRUMBS = [{ label: "Medical TN", href: "/medical-colleges/tamilnadu" }];
 const FAQ_ITEMS = [{ question: "How many medical colleges are in Tamil Nadu?", answer: "Tamil Nadu has approximately 50+ medical colleges including government, private, and deemed university institutions across all districts." }, { question: "What is the MBBS admission process in TN?", answer: "Admission is through state counseling based on NEET scores conducted by the TN Medical Admissions Committee." }];

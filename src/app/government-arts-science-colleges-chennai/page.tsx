@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/government-arts-science-colleges-chennai";
+const PAGE_URL = "https://www.edumadras.com/government-arts-science-colleges-chennai";
 const H1 = "Government Arts & Science Colleges in Chennai 2025";
 const BREADCRUMBS = [{ label: "Govt. A&S Colleges", href: "/government-arts-science-colleges-chennai" }];
 const FAQ_ITEMS = [{ question: "Which are the best government arts and science colleges in Chennai?", answer: "Presidency College, Queen Mary's College, Pachaiyappa's College, and Nandanam Government Arts College are among the top government institutions in Chennai." }, { question: "What are the fees for government arts colleges in Chennai?", answer: "Government arts and science college fees range from ₹500–₹5,000 per year, making them the most affordable higher education option." }];

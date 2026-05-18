@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/engineering-colleges-chennai-140-cutoff";
+const PAGE_URL = "https://www.edumadras.com/engineering-colleges-chennai-140-cutoff";
 const H1 = "Engineering Colleges in Chennai — 140 Cutoff 2025";
 const BREADCRUMBS = [{ label: "140 Cutoff", href: "/engineering-colleges-chennai-140-cutoff" }];
 const FAQ_ITEMS = [{ question: "Which Chennai colleges accept 140 cutoff?", answer: "Several quality private engineering colleges in Chennai accept students with 140 TNEA cutoff including colleges in areas like Poonamallee, Avadi, and Tambaram." }, { question: "Can I get CSE with 140 cutoff in Chennai?", answer: "CSE seats at 140 cutoff are available in select private colleges. IT and related branches have wider availability at this cutoff range." }];

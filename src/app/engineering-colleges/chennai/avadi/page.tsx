@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/engineering-colleges/chennai/avadi";
+const PAGE_URL = "https://www.edumadras.com/engineering-colleges/chennai/avadi";
 const H1 = "Engineering Colleges in Avadi 2025";
 const BREADCRUMBS = [{ label: "Engineering Colleges", href: "/engineering-colleges/chennai" }, { label: "Avadi", href: "/engineering-colleges/chennai/avadi" }];
 const FAQ_ITEMS = [{ question: "Which engineering colleges are in Avadi?", answer: "There are several AICTE-approved engineering colleges in and around Avadi offering various branches of B.E/B.Tech programs." }, { question: "How to reach Avadi engineering colleges?", answer: "Avadi is well-connected by Chennai Metro, MTC buses, and suburban trains. Most colleges are within 5 km of the Avadi railway station." }];

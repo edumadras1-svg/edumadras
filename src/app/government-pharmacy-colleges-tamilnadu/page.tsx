@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/government-pharmacy-colleges-tamilnadu";
+const PAGE_URL = "https://www.edumadras.com/government-pharmacy-colleges-tamilnadu";
 const H1 = "Government Pharmacy Colleges in Tamil Nadu 2025";
 const BREADCRUMBS = [{ label: "Govt Pharmacy TN", href: "/government-pharmacy-colleges-tamilnadu" }];
 const FAQ_ITEMS = [{ question: "Which government pharmacy colleges are in TN?", answer: "Madras Medical College (Pharmacy), Govt. College of Pharmacy (Ramanathapuram), and other district-level government pharmacy institutions." }, { question: "What is the fee for government pharmacy colleges?", answer: "Government pharmacy college fees are approximately ₹5,000-15,000 per year — highly affordable compared to private institutions." }];

@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/aerospace-engineering-colleges-tamilnadu";
+const PAGE_URL = "https://www.edumadras.com/aerospace-engineering-colleges-tamilnadu";
 const H1 = "Aerospace Engineering Colleges in Tamil Nadu 2025";
 const BREADCRUMBS = [{ label: "Aerospace TN", href: "/aerospace-engineering-colleges-tamilnadu" }];
 const FAQ_ITEMS = [{ question: "Which TN colleges offer aerospace engineering?", answer: "MIT Anna University, Kumaraguru College (Coimbatore), Hindusthan College, and others offer B.E/B.Tech in Aerospace Engineering." }, { question: "Is aerospace engineering a good career in India?", answer: "Yes — with ISRO expansion, defense modernization, and private space companies, demand for aerospace engineers is growing rapidly." }];

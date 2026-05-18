@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/top-5-arts-science-colleges-chennai";
+const PAGE_URL = "https://www.edumadras.com/top-5-arts-science-colleges-chennai";
 const H1 = "Top 5 Arts and Science Colleges in Chennai 2025";
 const BREADCRUMBS = [{ label: "Top 5 A&S", href: "/top-5-arts-science-colleges-chennai" }];
 const FAQ_ITEMS = [{ question: "Which are the top 5 arts colleges in Chennai?", answer: "Loyola College, Stella Maris College, Presidency College, Madras Christian College, and Ethiraj College are widely considered the top 5." }, { question: "How to get admission in these top colleges?", answer: "Apply directly through college websites based on +2 marks. Some conduct entrance exams. Apply early as seats fill fast." }];

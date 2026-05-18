@@ -39,7 +39,7 @@ export function buildListingJsonLd({
       "@type": "ListItem",
       position: i + 1,
       name: c.name,
-      url: `https://edumadras.com/colleges/${c.id}`,
+      url: `https://www.edumadras.com/colleges/${c.id}`,
     })),
   };
 
@@ -47,12 +47,12 @@ export function buildListingJsonLd({
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://edumadras.com" },
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://www.edumadras.com" },
       ...breadcrumbs.map((b, i) => ({
         "@type": "ListItem",
         position: i + 2,
         name: b.label,
-        item: `https://edumadras.com${b.href}`,
+        item: `https://www.edumadras.com${b.href}`,
       })),
     ],
   };

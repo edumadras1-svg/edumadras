@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/arts-science-colleges/kallakurichi";
+const PAGE_URL = "https://www.edumadras.com/arts-science-colleges/kallakurichi";
 const H1 = "Top Arts & Science Colleges for Kallakurichi Students";
 const BREADCRUMBS = [{ label: "Kallakurichi", href: "/arts-science-colleges/kallakurichi" }];
 const FAQ_ITEMS = [{ question: "Are there good arts and science colleges near Kallakurichi?", answer: "Yes, while Kallakurichi has local arts colleges, students seeking top-tier MNC placements often choose premier colleges in Chennai, Salem, and Coimbatore." }, { question: "Do these top colleges offer hostel facilities for Kallakurichi students?", answer: "Absolutely. All the top recommended colleges listed here provide safe, secure, and fully equipped hostels specifically designed for out-of-town students." }];

@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/tier-3-engineering-colleges-chennai";
+const PAGE_URL = "https://www.edumadras.com/tier-3-engineering-colleges-chennai";
 const H1 = "Tier 3 Engineering Colleges in Chennai 2025";
 const BREADCRUMBS = [{ label: "Tier 3", href: "/tier-3-engineering-colleges-chennai" }];
 const FAQ_ITEMS = [{ question: "Are Tier 3 colleges worth it?", answer: "Yes, if you choose the right branch (CSE/IT) and actively participate in skill development. Many Tier 3 college CSE graduates earn ₹4-6 LPA." }, { question: "How to succeed in a Tier 3 college?", answer: "Focus on coding skills, certifications, internships, and competitive programming. Your skills matter more than your college tier in the IT industry." }];

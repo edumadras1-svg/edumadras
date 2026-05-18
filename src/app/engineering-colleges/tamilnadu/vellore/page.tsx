@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/engineering-colleges/tamilnadu/vellore";
+const PAGE_URL = "https://www.edumadras.com/engineering-colleges/tamilnadu/vellore";
 const H1 = "Engineering Colleges in Vellore 2025";
 const BREADCRUMBS = [{ label: "Engineering Colleges", href: "/engineering-colleges/vellore" }, { label: "Vellore", href: "/engineering-colleges/tamilnadu/vellore" }];
 const FAQ_ITEMS = [{ question: "Which engineering colleges are in Vellore?", answer: "There are several AICTE-approved engineering colleges in and around Vellore offering various branches of B.E/B.Tech programs." }, { question: "How to reach Vellore engineering colleges?", answer: "Vellore is well-connected by Chennai Metro, MTC buses, and suburban trains. Most colleges are within 5 km of the Vellore railway station." }];

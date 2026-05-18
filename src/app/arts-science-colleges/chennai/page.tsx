@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/arts-science-colleges/chennai";
+const PAGE_URL = "https://www.edumadras.com/arts-science-colleges/chennai";
 const H1 = "Best Arts and Science Colleges in Chennai 2025";
 const BREADCRUMBS = [{ label: "Arts & Science Colleges", href: "/arts-science-colleges/chennai" }, { label: "Chennai", href: "/arts-science-colleges/chennai" }];
 const FAQ_ITEMS = [

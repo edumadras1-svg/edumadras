@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/engineering-colleges-chennai-160-cutoff";
+const PAGE_URL = "https://www.edumadras.com/engineering-colleges-chennai-160-cutoff";
 const H1 = "Engineering Colleges in Chennai — 160 Cutoff 2025";
 const BREADCRUMBS = [{ label: "160 Cutoff", href: "/engineering-colleges-chennai-160-cutoff" }];
 const FAQ_ITEMS = [{ question: "Is 160 cutoff good for engineering in Chennai?", answer: "160 is a competitive cutoff that opens doors to many good colleges including some branches at top-tier private institutions." }, { question: "Can I get CSE at a good college with 160?", answer: "Yes, CSE and IT seats are available at several reputed colleges like Sairam, Rajalakshmi, and Panimalar at 160 cutoff." }];

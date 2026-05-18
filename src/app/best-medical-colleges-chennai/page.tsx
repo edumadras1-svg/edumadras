@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/best-medical-colleges-chennai";
+const PAGE_URL = "https://www.edumadras.com/best-medical-colleges-chennai";
 const H1 = "Best Medical Colleges in Chennai 2025";
 const BREADCRUMBS = [{ label: "Best Medical Chennai", href: "/best-medical-colleges-chennai" }];
 const FAQ_ITEMS = [{ question: "Which is the best medical college in Chennai?", answer: "Madras Medical College (MMC) is the most prestigious government medical college. Sri Ramachandra and SRM Medical are top private choices." }, { question: "What NEET score is needed for medical colleges in Chennai?", answer: "Government colleges require 550-650+ NEET marks. Private colleges accept from 400+ depending on quota and category." }];

@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/marine-engineering-colleges-chennai";
+const PAGE_URL = "https://www.edumadras.com/marine-engineering-colleges-chennai";
 const H1 = "Marine Engineering Colleges in Chennai 2025";
 const BREADCRUMBS = [{ label: "Marine Chennai", href: "/marine-engineering-colleges-chennai" }];
 const FAQ_ITEMS = [{ question: "Which Chennai colleges offer marine engineering?", answer: "Indian Maritime University (IMU), AMET University, and Hindustan Institute are top choices for marine engineering in Chennai." }, { question: "What is the starting salary for marine engineers?", answer: "Marine engineers start at ₹6-12 LPA and can earn ₹30-60 LPA with experience in international shipping companies." }];

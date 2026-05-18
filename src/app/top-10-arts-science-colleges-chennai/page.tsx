@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/top-10-arts-science-colleges-chennai";
+const PAGE_URL = "https://www.edumadras.com/top-10-arts-science-colleges-chennai";
 const H1 = "Top 10 Arts and Science Colleges in Chennai 2025";
 const BREADCRUMBS = [{ label: "Top 10 A&S", href: "/top-10-arts-science-colleges-chennai" }];
 const FAQ_ITEMS = [{ question: "What are the top 10 arts and science colleges in Chennai?", answer: "Loyola College, Stella Maris College, Presidency College, MCC, Ethiraj College, WCC, and others form the top 10." }, { question: "Which Chennai arts college has the best placements?", answer: "Loyola College and MCC have strong placement cells with companies recruiting for IT, banking, and consulting roles." }];

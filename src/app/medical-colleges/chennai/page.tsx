@@ -4,7 +4,7 @@ import { buildListingJsonLd } from "@/lib/seo/jsonLd";
 import { HeadJsonLd } from "@/components/seo/HeadJsonLd";
 import { SEOCollegeListing } from "@/components/seo/SEOCollegeListing";
 
-const PAGE_URL = "https://edumadras.com/medical-colleges/chennai";
+const PAGE_URL = "https://www.edumadras.com/medical-colleges/chennai";
 const H1 = "Best Medical Colleges in Chennai 2025 — NEET Cutoff & Fees";
 const BREADCRUMBS = [{ label: "Medical Colleges", href: "/medical-colleges/chennai" }, { label: "Chennai", href: "/medical-colleges/chennai" }];
 const FAQ_ITEMS = [
