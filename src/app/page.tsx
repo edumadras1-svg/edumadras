@@ -9,6 +9,7 @@ import { HeroLeadForm } from "@/components/HeroLeadForm";
 import { PromoCarousel } from "@/components/PromoCarousel";
 import { supabase } from "@/lib/supabase/client";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Search,
   GraduationCap,
@@ -139,17 +140,18 @@ export default async function Home() {
       <TopNavBar />
 
       {/* ==================== HERO SECTION (Trigger Rebuild) ==================== */}
-      <section
-        className="pt-16 pb-24 text-center relative overflow-hidden"
-        style={{
-          backgroundImage: "url('/hero-bg.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
-      >
+      <section className="pt-16 pb-24 text-center relative overflow-hidden">
+        {/* Optimized LCP Hero Image */}
+        <Image 
+          src="/hero-bg.jpg" 
+          alt="EduMadras College Discovery" 
+          fill 
+          priority 
+          className="object-cover object-center -z-10"
+          quality={85}
+        />
         {/* Dark overlay for readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0F172A]/70 via-[#0F172A]/65 to-[#0F172A]/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0F172A]/70 via-[#0F172A]/65 to-[#0F172A]/80 -z-10" />
         {/* Decorative background blobs */}
         <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-teal/10 rounded-full blur-[120px] animate-pulse" />
         <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-500/10 rounded-full blur-[120px]" />
