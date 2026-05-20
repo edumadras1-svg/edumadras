@@ -429,16 +429,24 @@ export default async function Home() {
               </h3>
               <ul className="space-y-1.5">
                 {[
+                  { label: "Best Engineering Colleges Chennai", href: "/best-engineering-colleges-chennai" },
                   { label: "Top Engineering Colleges Chennai", href: "/top-engineering-colleges-in-chennai" },
                   { label: "Top 10 Engineering Chennai", href: "/top-10-engineering-colleges-chennai" },
+                  { label: "Top 20 Engineering Chennai", href: "/top-20-engineering-colleges-chennai" },
                   { label: "Top 50 Engineering Chennai", href: "/top-50-engineering-colleges-chennai" },
+                  { label: "Private Engineering Chennai", href: "/private-engineering-colleges-chennai" },
+                  { label: "B.Tech Colleges Chennai", href: "/btech-colleges-chennai" },
+                  { label: "CSE Colleges Chennai", href: "/cse-colleges-chennai" },
                   { label: "Top 10 Engineering Chennai 2025", href: "/top-10-engineering-colleges-chennai-2025" },
                   { label: "Engineering Colleges Tamil Nadu", href: "/engineering-colleges/tamilnadu" },
                   { label: "Top Engineering TN", href: "/top-engineering-colleges-tamilnadu" },
                   { label: "Top 10 Engineering TN", href: "/top-10-engineering-colleges-tamilnadu" },
                   { label: "Top 50 Engineering TN Rank Wise", href: "/top-50-engineering-colleges-tamilnadu-rank-wise" },
-                  { label: "Engineering TN Rank Wise", href: "/engineering-colleges-tamilnadu-rank-wise" },
-                  { label: "Engineering TN Cutoff", href: "/engineering-colleges-tamilnadu-cutoff" },
+                  { label: "Engineering Colleges Coimbatore", href: "/engineering-colleges-coimbatore" },
+                  { label: "Top Engineering Coimbatore", href: "/top-engineering-colleges-coimbatore" },
+                  { label: "Engineering Colleges Madurai", href: "/engineering-colleges-madurai" },
+                  { label: "Engineering Colleges Trichy", href: "/engineering-colleges-trichy" },
+                  { label: "Engineering Colleges Salem", href: "/engineering-colleges-salem" },
                   { label: "Government Engineering TN", href: "/government-engineering-colleges-tamilnadu" },
                   { label: "NIRF Ranking 2025", href: "/nirf-ranking-2025-engineering-colleges" },
                   { label: "Tier 1 Engineering Chennai", href: "/tier-1-engineering-colleges-chennai" },
@@ -456,6 +464,12 @@ export default async function Home() {
               </h3>
               <ul className="space-y-1.5">
                 {[
+                  { label: "Mechanical Engineering Chennai", href: "/mechanical-engineering-colleges-chennai" },
+                  { label: "ECE Colleges Chennai", href: "/ece-colleges-chennai" },
+                  { label: "EEE Colleges Chennai", href: "/eee-colleges-chennai" },
+                  { label: "Civil Engineering Chennai", href: "/civil-engineering-colleges-chennai" },
+                  { label: "IT Colleges Chennai", href: "/it-colleges-chennai" },
+                  { label: "AI & ML Colleges Chennai", href: "/ai-ml-colleges-chennai" },
                   { label: "Aeronautical Engineering Chennai", href: "/aeronautical-engineering-colleges-chennai" },
                   { label: "Aeronautical Engineering TN", href: "/aeronautical-engineering-colleges-tamilnadu" },
                   { label: "Aerospace Engineering Chennai", href: "/aerospace-engineering-colleges-chennai" },

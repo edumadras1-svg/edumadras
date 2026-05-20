@@ -75,6 +75,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/arts-science-colleges/tamilnadu',
     '/aeronautical-engineering-colleges-tamilnadu',
     '/marine-engineering-colleges-tamilnadu',
+    // New high-value pages (Phase B expansion)
+    '/best-engineering-colleges-chennai',
+    '/private-engineering-colleges-chennai',
+    '/btech-colleges-chennai',
+    '/top-20-engineering-colleges-chennai',
+    '/cse-colleges-chennai',
+    '/engineering-colleges-coimbatore',
+    '/top-engineering-colleges-coimbatore',
+    '/engineering-colleges-madurai',
     // College-specific SEO pages (high-volume keywords)
     '/colleges/saveetha-engineering-college-chennai',
     '/colleges/avit-chennai',
@@ -112,6 +121,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/private-medical-colleges-chennai-fees',
     '/private-medical-colleges-chennai',
     '/top-medical-colleges-chennai',
+    // Phase C — Branch-specific pages
+    '/mechanical-engineering-colleges-chennai',
+    '/ece-colleges-chennai',
+    '/eee-colleges-chennai',
+    '/civil-engineering-colleges-chennai',
+    '/it-colleges-chennai',
+    '/ai-ml-colleges-chennai',
+    // Phase D — City expansion pages
+    '/engineering-colleges-trichy',
+    '/engineering-colleges-salem',
   ];
   const phase2Routes: MetadataRoute.Sitemap = phase2Pages.map((slug) => ({
     url: `${BASE_URL}${slug}`,
