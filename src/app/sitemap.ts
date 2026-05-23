@@ -88,6 +88,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/colleges/saveetha-engineering-college-chennai',
     '/colleges/avit-chennai',
     '/colleges/hindustan-institute-of-technology-science-chennai',
+    // Reddit-sourced high-intent placement and guide pages
+    '/100-percent-placement-colleges-chennai',
+    '/web-development-colleges-chennai',
+    '/top-it-companies-recruiting-chennai-colleges',
+    '/average-placement-package-chennai-colleges',
+    '/tier-1-vs-tier-2-colleges-chennai',
+    '/private-vs-government-colleges-chennai-placements',
+    '/how-to-verify-college-placement-data',
+    '/coding-skills-vs-college-name-jobs',
+    '/placement-tips-tier-2-colleges-chennai',
+    '/campus-placement-preparation-guide',
+    '/deemed-universities-chennai-job-prospects',
+    '/college-selection-checklist-chennai',
+    '/what-happens-students-not-placed',
+    '/ssn-vs-svce-colleges-chennai',
+    '/anna-university-vs-private-colleges-placement',
   ];
   const seoRoutes: MetadataRoute.Sitemap = seoPages.map((slug) => ({
     url: `${BASE_URL}${slug}`,
@@ -198,5 +214,58 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.75,
   }));
 
-  return [...routes, ...seoRoutes, ...phase2Routes, ...phase3Routes, ...teluguRoutes, ...regionalRoutes, ...collegeRoutes, ...guideRoutes];
+  // 10. Andhra Pradesh SEO Pages
+  const apSeoPages = [
+    '/best-engineering-colleges-andhra-pradesh',
+    '/cse-engineering-colleges-andhra-pradesh',
+    '/private-engineering-colleges-andhra-pradesh',
+    '/engineering-colleges-vizag',
+    '/engineering-colleges-vijayawada',
+    '/top-10-eamcet-engineering-colleges-ap',
+    '/engineering-colleges-ap-placement-records',
+    '/average-package-engineering-colleges-andhra-pradesh',
+    '/ap-eamcet-rank-wise-college-predictor',
+    '/tier-1-engineering-colleges-andhra-pradesh',
+    '/andhra-university-engineering-college-review',
+    '/highest-package-engineering-colleges-ap',
+    '/mechanical-engineering-colleges-ap',
+    '/government-vs-private-engineering-colleges-ap',
+    '/kl-university-engineering-review',
+    '/how-to-choose-engineering-college-ap',
+    '/direct-admission-engineering-colleges-ap',
+    '/engineering-colleges-kadapa-rayalaseema',
+    '/mtech-data-science-ai-colleges-ap',
+    '/engineering-internship-opportunities-ap',
+    '/it-engineering-colleges-andhra-pradesh',
+    '/ece-engineering-colleges-andhra-pradesh',
+    '/engineering-college-fees-andhra-pradesh',
+    '/engineering-college-campus-life-ap',
+    '/is-engineering-good-career-andhra-pradesh',
+    '/ap-engineering-colleges-national-rankings-comparison',
+    '/scholarship-opportunities-ap-engineering-colleges',
+  ];
+  const apSeoRoutes: MetadataRoute.Sitemap = apSeoPages.map((slug) => ({
+    url: `${BASE_URL}${slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly',
+    priority: 0.9,
+  }));
+
+  const hindustanSeoPages = [
+    '/hindustan-university-placements-salary',
+    '/hindustan-university-admission-process',
+    '/hindustan-university-courses-placements',
+    '/freelancing-while-studying-hindustan-university',
+    '/transition-engineering-to-digital-design',
+    '/engineering-skills-employer-demands-india',
+  ];
+  const hindustanSeoRoutes: MetadataRoute.Sitemap = hindustanSeoPages.map((slug) => ({
+    url: `${BASE_URL}${slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly',
+    priority: 0.9,
+  }));
+
+  return [...routes, ...seoRoutes, ...phase2Routes, ...phase3Routes, ...teluguRoutes, ...regionalRoutes, ...collegeRoutes, ...guideRoutes, ...apSeoRoutes, ...hindustanSeoRoutes];
 }
+
