@@ -43,16 +43,9 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <meta name="theme-color" content="#1B3A5C" />
-      </head>
-      <body className="font-sans min-h-screen bg-surface text-text-primary antialiased">
-        <Script
-          strategy="afterInteractive"
-          src="https://www.googletagmanager.com/gtag/js?id=AW-17010139004"
-        />
-        <Script
-          id="google-analytics"
-          strategy="afterInteractive"
-        >
+        {/* Google tag (gtag.js) */}
+        <Script src="https://www.googletagmanager.com/gtag/js?id=AW-17010139004" strategy="afterInteractive" />
+        <Script id="google-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -60,6 +53,8 @@ export default function RootLayout({
             gtag('config', 'AW-17010139004');
           `}
         </Script>
+      </head>
+      <body className="font-sans min-h-screen bg-surface text-text-primary antialiased">
         <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[200] focus:bg-navy focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm focus:font-semibold">
           Skip to main content
         </a>
