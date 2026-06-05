@@ -16,7 +16,11 @@ import {
   Menu,
   X,
   BookOpen,
-  Loader2
+  Loader2,
+  Handshake,
+  Wallet,
+  Banknote,
+  ClipboardList,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase/client";
@@ -28,6 +32,10 @@ const navItems = [
   { name: "Courses", href: "/admin/courses", icon: BookOpen },
   { name: "Leads", href: "/admin/leads", icon: MessageSquare },
   { name: "Counselors", href: "/admin/counselors", icon: Users },
+  { name: "Partners", href: "/admin/partners", icon: Handshake },
+  { name: "Admissions", href: "/admin/partners/admissions", icon: ClipboardList, indent: true },
+  { name: "Commissions", href: "/admin/partners/commissions", icon: Wallet, indent: true },
+  { name: "Payouts", href: "/admin/partners/payouts", icon: Banknote, indent: true },
   { name: "Banners", href: "/admin/banners", icon: ImageIcon },
   { name: "Popups", href: "/admin/popups", icon: Bell },
   { name: "Settings", href: "/admin/settings", icon: Settings },
@@ -115,20 +123,20 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
         {/* Navigation */}
         <nav className="flex-1 py-4 lg:py-6 px-3 lg:px-4 space-y-1 overflow-y-auto custom-scrollbar">
-          {navItems.map((item) => {
+          {navItems.map((item: any) => {
             const isActive = pathname === item.href;
             return (
               <Link
                 key={item.name}
                 href={item.href}
-                className={`flex items-center gap-3 px-3 lg:px-4 py-2.5 lg:py-3 rounded-xl transition-all group ${
+                className={`flex items-center gap-3 ${item.indent ? 'pl-10 lg:pl-12 pr-3 lg:pr-4' : 'px-3 lg:px-4'} py-2.5 lg:py-3 rounded-xl transition-all group ${
                   isActive
                     ? "bg-teal text-white shadow-lg shadow-teal/20"
                     : "text-white/60 hover:bg-white/5 hover:text-white"
                 }`}
               >
-                <item.icon className={`w-5 h-5 shrink-0 ${isActive ? "text-white" : "group-hover:text-teal"}`} />
-                <span className="font-medium text-sm lg:text-[15px]">{item.name}</span>
+                <item.icon className={`${item.indent ? 'w-4 h-4' : 'w-5 h-5'} shrink-0 ${isActive ? "text-white" : "group-hover:text-teal"}`} />
+                <span className={`font-medium ${item.indent ? 'text-xs lg:text-[13px]' : 'text-sm lg:text-[15px]'}`}>{item.name}</span>
               </Link>
             );
           })}
