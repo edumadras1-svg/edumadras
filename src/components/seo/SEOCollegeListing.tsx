@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { TopNavBar } from "@/components/TopNavBar";
 import { InlineCTABanner } from "@/components/InlineCTABanner";
+import { HeroLeadForm } from "@/components/HeroLeadForm";
 import { FAQAccordion } from "@/components/FAQAccordion";
 import { ApplicationModal } from "@/components/ApplicationModal";
 import {
@@ -43,6 +44,7 @@ interface SEOCollegeListingProps {
   filterLabel?: string;
   showRankColumn?: boolean;
   showPlacementColumn?: boolean;
+  showHeroForm?: boolean;
 }
 
 function formatPkg(val: number | null): string {
@@ -69,6 +71,7 @@ export function SEOCollegeListing({
   filterLabel,
   showRankColumn = true,
   showPlacementColumn = true,
+  showHeroForm = false,
 }: SEOCollegeListingProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [filterType, setFilterType] = useState("All");
@@ -111,28 +114,40 @@ export function SEOCollegeListing({
             ))}
           </nav>
 
-          <h1 className="text-3xl md:text-5xl font-extrabold leading-tight tracking-tight max-w-3xl">
-            {h1}
-          </h1>
-          <p className="text-lg md:text-xl text-white/70 mt-4 max-w-2xl leading-relaxed font-medium">
-            {subtitle}
-          </p>
+          <div className={showHeroForm ? "grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start" : ""}>
+            {/* Left: Title + Stats */}
+            <div className={showHeroForm ? "lg:col-span-7" : ""}>
+              <h1 className="text-3xl md:text-5xl font-extrabold leading-tight tracking-tight max-w-3xl">
+                {h1}
+              </h1>
+              <p className="text-lg md:text-xl text-white/70 mt-4 max-w-2xl leading-relaxed font-medium">
+                {subtitle}
+              </p>
 
-          {/* Quick Stats */}
-          <div className="flex flex-wrap gap-6 mt-10">
-            {[
-              { icon: GraduationCap, label: "Colleges Listed", value: colleges.length.toString() },
-              { icon: Building2, label: "Govt. Colleges", value: colleges.filter(c => c.type === "Government").length.toString() },
-              { icon: TrendingUp, label: "Avg. Package", value: colleges.length > 0 ? formatPkg(Math.round(colleges.reduce((s, c) => s + (c.avg_package || 0), 0) / colleges.filter(c => c.avg_package).length)) : "N/A" },
-            ].map((stat, i) => (
-              <div key={i} className="flex items-center gap-3 bg-white/10 backdrop-blur-md rounded-2xl px-5 py-3 border border-white/10">
-                <stat.icon className="w-5 h-5 text-teal-light" />
-                <div>
-                  <p className="text-xl font-bold">{stat.value}</p>
-                  <p className="text-[11px] text-white/50 uppercase tracking-wider font-bold">{stat.label}</p>
-                </div>
+              {/* Quick Stats */}
+              <div className="flex flex-wrap gap-6 mt-10">
+                {[
+                  { icon: GraduationCap, label: "Colleges Listed", value: colleges.length.toString() },
+                  { icon: Building2, label: "Govt. Colleges", value: colleges.filter(c => c.type === "Government").length.toString() },
+                  { icon: TrendingUp, label: "Avg. Package", value: colleges.length > 0 ? formatPkg(Math.round(colleges.reduce((s, c) => s + (c.avg_package || 0), 0) / colleges.filter(c => c.avg_package).length)) : "N/A" },
+                ].map((stat, i) => (
+                  <div key={i} className="flex items-center gap-3 bg-white/10 backdrop-blur-md rounded-2xl px-5 py-3 border border-white/10">
+                    <stat.icon className="w-5 h-5 text-teal-light" />
+                    <div>
+                      <p className="text-xl font-bold">{stat.value}</p>
+                      <p className="text-[11px] text-white/50 uppercase tracking-wider font-bold">{stat.label}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+
+            {/* Right: Hero Lead Form */}
+            {showHeroForm && (
+              <div className="lg:col-span-5">
+                <HeroLeadForm />
+              </div>
+            )}
           </div>
         </div>
       </section>
